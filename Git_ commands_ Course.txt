@@ -1,0 +1,104 @@
+This course you can find :
+
+Video nr 14
+-- advanced video tutorial : 
+https://www.youtube.com/playlist?list=PL6gx4Cwl9DGAKWClAD_iKpNC0bGHxGhcx
+
+Orginal based video // first video to see:
+https://www.youtube.com/watch?v=SWYqp7iY_Tc&list=PLYiv-DFk1jyDXcLxzdZnQcqYZaerj7cwd&index=3&t=1s
+
+-- remote repo located on GitHUB.
+
+* git --version
+check the latest version of GIT
+* touch <File name.extension>
+create a file
+*LS (list)
+shows all files inside the file folder
+-------setting the users that working with repo.-------
+* Git init
+initalize GIT as repository inside the desired folder
+then you need to add your credentials to the repository
+*Git config  -- global user.name 'Mouhammad'
+* Git config  -- global user.email 'ktkoot88kh@gmail.com'
+---------------------------------------------------------
+* Git add <file>
+will add specific file to the mentioned repository
+
+* Git rm --cached <file name.extension>
+will remove the file from staged, tracked file list to untracked file list
+* Git add *.html (will add all files with HTML type to the repo)
+
+* Git add . ( will add all files to the repo).
+
+* GIT COMMIT (sending all your information/changes )
+
+* clear :to clear the console
+i (insert)
+:wq (to commit your message)
+
+* Git commit -m 'your commments will be shown without opening the emulator'
+
+touch .gitignore (building a file that can ignore all the changes inside the folder even if I use add ., we use it normally to ignore log files).
+
+* git log 
+shows the log(commits that happened) of the file 
+
+
+* Git reset
+git log (choose which commit you will chose)
+git reset --hard  2c4e793640c753(part of log id)
+
+* Git diff "if it did not show any thing that means you have the same copy of the repo"(which part before) (same part)  which file 
+ git diff HEAD~5 HEAD -- Pipelines/Build_Model_PHS.groovy
+
+* git log -- author ="Mouhamad" // the use must be registreed other wise the result will show no thing if the user is not registered in the developer list
+
+ * git diff --staged 
+ comparing your staging area with your repo, beacuse when you make git diff it compares lokal copy with staging area, then when you add . statment
+ Git put every thing to staging area and when you make git diff again (nothing will be shown) because there is no difference between staging area and lokal copy.
+ 
+ * git rm first.txt "the name" 
+ then you need directly to commit your changes to staging area
+
+ * git mv first.txt pud.txt (move and rename are the same)
+ renaming of file to other filename 
+ 
+ * git commit --all -m "add your message"
+ this statment is a commit and add statment in one statment
+ 
+ *mkdir "name of the directory" 
+ making new folder / adding new folder
+ 
+ * git commit -am "add new changes and commit"
+ add new changes and commit
+ 
+ * git checkout -- index.html
+ taking a copy of index.html file from the repo and replace the same file which is corrputed in my local copy.
+ 
+ *********************
+
+
+
+********************
+Git branch NAME"put the functionality that you will develop as name e.g login functionality"
+
+(the idea of branch is to have a copy of the trunk and make a changes of it then add functionality to it then merge it to the trunk --OBS all the changes in the brnach will not affect the trunk until I merge the branch with the trunk) 
+--- You need to checkout to the branch name after that to start doing your changes then merge them to the trunc.
+Git merge 
+
+* Git branch login (create a branch)
+* Git checkout log (switch to that branch)
+* Git merge login(merge the branch with trunc)
+
+
+
+
+When dealing with server 
+
+* Git push 
+to remote server 
+* Git pull 
+pulling the latest changes that other programmer did 
+* git clone 
+take a copy of the repository
