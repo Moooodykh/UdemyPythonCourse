@@ -147,11 +147,15 @@ print(statment)
 
  """
 
-###### examples : Alignment, padding and precision with .format()
-# notebooks : Complete-Python-3-Bootcamp\00-Python Object and Data Structure Basics\ # 03-Print Formatting with Strings
+###### examples : Alignment, padding and precision with .format() 
+### HERE IS AN AWESOME SOURCE FOR PRINT FORMATTING: https://pyformat.info/ 
 
+# the source of this is coming from 
+# notebooks : Complete-Python-3-Bootcamp\00-Python Object and Data Structure Basics\ # 03-Print Formatting with Strings
 # By default, .format() aligns text to the left, numbers to the right. 
 # You can pass an optional <,^, or > to set a left, center or right alignment
+
+
 """ 
 print('{0:8}|{1:10}'.format('Fruits','Qunatity')) 
 print('{0:8}|{1:10}'.format('Orange','10'))  # aligned to the left by default
@@ -166,4 +170,37 @@ print('{0:-^8}|{1:+^10}'.format('100','2536')) # autofill the left and right sid
 
  """
 
-# # # # # # # # #  part 20 (Print Formatting with Strings ) # # # # # # # # #
+# # # # # # # # #  part 20 ( Lists in Python ) # # # # # # # # #
+
+mylist = [1,2,3]
+mixedList=['sring',100,23.3]
+lenght = len(mixedList) # lenth of the list
+sliced = ['one','two','three']
+sliced[0]
+sliced[1:]
+another_list = [4,5]
+together = mylist + another_list
+together[0] = 'ONE all caps' # CHANGING THE FIRST ELEMENT
+together.append('six') # add an element to the end of the list
+together.insert(3,'mark') #insert an element before index
+st = together.pop(3) # reomve and return the element at index 
+together.remove('six') # remove the value from the list
+stringList =[1,5,6,33,3]
+stringList.sort() # sort the list , NO VALUES WILL BE SAVED, IT IS OPERATION THAT IS DONE TO THE LIST
+X = stringList.sort() # THIS IS WRONG (X WILL BE NONE OBJECT)
+# None  is a OBJECT THAT CONTAINS NOTHING
+
+stringList.pop()# without adding any index , this will delete the last object
+
+new_list = ['a','x','c','b','e']
+Num_list= [1,33,4,2,555]
+new_list.sort() # no need to save any thing the result will stay to the list object
+
+# you can use this if you want to save the sorted list
+new_list.sort()
+New_sortedList = new_list
+
+# REVERSE LIST
+Num_list.reverse()
+print(Num_list)
+# print(st)
