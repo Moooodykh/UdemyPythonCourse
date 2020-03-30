@@ -170,8 +170,9 @@ print('{0:-^8}|{1:+^10}'.format('100','2536')) # autofill the left and right sid
 
  """
 
-# # # # # # # # #  part 20 ( Lists in Python ) # # # # # # # # #
+# # # # # # # # #  part 20-21 ( Lists in Python ) # # # # # # # # #
 
+""" 
 mylist = [1,2,3]
 mixedList=['sring',100,23.3]
 lenght = len(mixedList) # lenth of the list
@@ -203,4 +204,44 @@ New_sortedList = new_list
 # REVERSE LIST
 Num_list.reverse()
 print(Num_list)
-# print(st)
+# print(st) 
+
+"""
+
+# # # # # # # # #  part 22-23 ( Dictionaries in Python ) # # # # # # # # #
+
+""" 
+# the dictionary is calling the key and you get the vaule despite in which ordere is located (unordered and can not be sorted)
+#KEYS should be strings
+#{'Key1':'value1','Key2':'value2',....etc}
+
+my_dict ={'key1':'value1','key2':'value2'} # Dic
+my_dict['key1'] # calling the dictionary
+print(my_dict['key1'])
+Prices_dict = {'Apple':2.85,'Orange':5.99,'Milk':3.67} # MAIN exampleis to have a paired things LIKE SUPERMARKET
+print(Prices_dict['Apple'])
+# the dictionary is so flex, it can contain LIST, dictionary,strigs,floats ....etc
+d= {'k1':123.44,'k2':[1,2,3],'k3':{'age':35}}
+d['k3']
+
+d['k3']['age'] # this call is to grap the content of the second dictionary
+d['k2'][1] # this call is to grap the content of the second object in the list
+print(d['k2'][1])
+
+
+print('---------------------')
+dic={'key1':['a','b','c']}
+print(dic['key1'][2].upper()) # this call wil bring  c value and then make it UPPER CASE
+new_dec ={'k1':100,'k2':200}
+# if I want to add an elemnt to this dictionary
+new_dec['k3']= 300
+# modify existing value
+new_dec['k1']= 'NEW VALUE'
+new_dec ={'k1':100,'k2':200,'k3':300}
+new_dec.keys() # Shows all dictionary keys
+new_dec.values() # Shows all dictionary values
+new_dec.items() # Shows all pairing(keys and values)
+print(new_dec.values())
+"""
+
+# # # # # # # # #  part 24-25 ( Tuples in Python ) # # # # # # # # #
