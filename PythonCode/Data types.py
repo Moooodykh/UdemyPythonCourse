@@ -290,3 +290,19 @@ print(newSet)
 
 # # # # # # # # # #  part 26 ( Booleans in Python ) # # # # # # # # #
 
+""" 
+True
+False #Need to be written in Capital letter
+type(True)
+print(type(True))
+b = None  # We use None as a place holder to this object that it will be used later on 
+# c NameError: name 'c' is not defined
+ """
+
+ # # # # # # # # # #  part 27 (  I/O with Basic Files in Python ) # # # # # # # # #
+
+ # We creat a text file to deal with
+ # we will work to deal with this file
+ """ with open('myfile.txt',mode= 'w') as f:
+     f.write('I have created this file')
+      """
