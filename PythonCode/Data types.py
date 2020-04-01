@@ -210,7 +210,7 @@ print(Num_list)
 
 # # # # # # # # #  part 22-23 ( Dictionaries in Python ) # # # # # # # # #
 
-""" 
+"""
 # the dictionary is calling the key and you get the vaule despite in which ordere is located (unordered and can not be sorted)
 #KEYS should be strings
 #{'Key1':'value1','Key2':'value2',....etc}
@@ -244,4 +244,49 @@ new_dec.items() # Shows all pairing(keys and values)
 print(new_dec.values())
 """
 
-# # # # # # # # #  part 24-25 ( Tuples in Python ) # # # # # # # # #
+# # # # # # # # #  part 24( Tuples in Python ) # # # # # # # # #
+
+"""
+# List content can be changed based on the index
+# Tuples are very useful when u pass and object and need to be supervised that will 
+# not be changed through the program
+
+mylist = [1,2,3]
+mylist[0] = 'Ali'
+# print(mylist)
+
+# Tuples content CAN NOT be changed based on the index (Tuples are immutable)
+T = (1,2,3)
+mylist = [1,2,3,1,1]
+mylist.count(1) # counts how many time the object counted
+mylist.index(3)# showing the first time the value appears in a list
+type(mylist)
+type(T)
+len(T)
+t = (1,'two',3)
+t[0] # calling the elements from Tuples
+t[-1] # calling the last element from Tuples
+# print(t[0])
+# print(f'length of Tuples {len(T)}')
+tou =('a','a','b')
+tou.count('a') # counts how many 'a' is repeated
+tou.index('b') # showing the first time the value appears in a Tuple
+print(mylist.index(3))
+# tou[0] = 'f' # TUPLES ARE IMMUTABLE AND does not support item assignment
+""" 
+# # # # # # # # # #  part 25 ( Sets in Python ) # # # # # # # # #
+
+""" 
+#SETS are unordered collections of unique elements
+mySet = set()
+mySet.add(1)
+mySet.add(2)
+mySet.add(1) # this will not be excuted because it is already added
+mlist = [1,23,4,1,3,4,2,3,2,2,3,4,5,6,7,7]
+# If I want to get the unique values from that list I will cast it to a SET
+newSet = set(mlist) # casting a list
+print(newSet)
+"""
+
+# # # # # # # # # #  part 26 ( Booleans in Python ) # # # # # # # # #
+
