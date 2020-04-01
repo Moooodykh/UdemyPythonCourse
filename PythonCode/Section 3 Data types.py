@@ -299,7 +299,7 @@ b = None  # We use None as a place holder to this object that it will be used la
 # c NameError: name 'c' is not defined
  """
 
- # # # # # # # # # #  part 27 (  I/O with Basic Files in Python ) # # # # # # # # #
+ # # # # # # # # # #  part 27-28 (  I/O with Basic Files in Python ) # # # # # # # # #
 
 """  
  # We creat a text file to deal with
@@ -377,3 +377,5 @@ with open('my_new_file.txt',mode='r+') as m:
     m.write('\nhere we go')
 
 """
+ # # # # # # # # # #  part 29-30 (  I/O Assessment Test & Python Objects and Data Structures Solutions ) # # # # # # # # #
+ # Check the Jupyter note for the questions and answers
