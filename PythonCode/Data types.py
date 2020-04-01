@@ -301,8 +301,79 @@ b = None  # We use None as a place holder to this object that it will be used la
 
  # # # # # # # # # #  part 27 (  I/O with Basic Files in Python ) # # # # # # # # #
 
+"""  
  # We creat a text file to deal with
  # we will work to deal with this file
- """ with open('myfile.txt',mode= 'w') as f:
-     f.write('I have created this file')
-      """
+
+# myfileerror = open('whoops.txt', mode='r') # this will show an error "No such file or directory: 'whoops.txt'"
+
+with open('my_new_file.txt',mode='w') as f:
+    f.write('One is First')
+# this will open a file and then write(rewrite existing) new file
+
+Readfile = open('my_new_file.txt')
+text = Readfile.read()
+text = Readfile.read() # this will read the last cursor point and when I read before it was at the end of the file, 
+#this will read the end of file cursor which is empty string and for that I need to reset the counter by using 
+Readfile.seek(0) # this will reset the cursor
+text = Readfile.read()
+textLine = Readfile.readlines()
+print(text)
+print('--------------------------------')
+otherlocation = open('E:\PROGRAMMING\PythonTutorials\myfile.txt')
+textfile = open('myfile.txt')
+lines = textfile.readlines() # this will return each line as a part(elemnt) of the list
+otherlines = otherlocation.read()
+otherlocation.seek(0)
+Listotherlines = otherlocation.readlines()
+print(Listotherlines)
+textfile.close() # this is important to release the file and not having error that the file is still open somewhere
+otherlocation.close()
+Readfile.close()
+print('--------------------------------')
+# to avoid open and forget to close we use the next statment WITH, which means open and then close 
+
+#READING FILE
+with open('myfile.txt') as readingfile: #what ever you name it 
+    content = readingfile.read()
+print(content)
+
+#Shift + tab at the start of Open , will show u the 
+
+# Passing 'r' lets us read only the existing file
+# Passing 'w' lets us  write only to the file(if there is already it will override it or Create new)
+# Passing 'w+' lets us read and write to the file (if there is already it will override it or Create new)
+# Passing 'r+' lets us read and write 
+# Passing 'a' lets us  write to the file by appending to the end of the text file
+
+print('********************************************')
+# WRITING ONLY 'w'
+with open('newfile.txt',mode='w') as f:
+    f.write('This is a new file\n see you there.')
+    #this will generate error if we write f.read()
+
+#READING ONLY 'r'
+with open('newfile.txt',mode='r') as re:
+    print(re.read())
+    #this will generate error if we write f.write('here is the extra')
+
+# APPENDING 'a'
+with open('myfile.txt',mode='a') as appendedfile:
+    appendedfile.write('\nTHIS WILL BE ADDED TO THE END OF THE FILE')
+
+# WRITING AND READING 'r+'
+with open('my_new_file.txt',mode='r+') as readwritefile:
+    readwritefile.write('two is SECOND\n three is THIRD') # this statement will delete the previous written text, 
+    #starting from the start of the file and then adding two is second.... if the size is bigger than the old size will override that
+    print(readwritefile.read())
+    readwritefile.write('\nhello poopy')
+
+
+# WRITING AND READING 'w+' lets us read and write to the file (if there is already it will override it or CREATE NEW
+with open('lastfile.txt',mode='w+') as re_write: # the file is not exist
+    re_write.write('Welcome to Sweden.')
+
+with open('my_new_file.txt',mode='r+') as m:
+    m.write('\nhere we go')
+
+"""
