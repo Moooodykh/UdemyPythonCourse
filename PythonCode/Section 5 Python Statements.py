@@ -133,3 +133,75 @@ for key,value in dic.items():
 for keys in dic.values():
     print(keys)
  """
+
+  # # # # # # # # # #  part 35 (While Loops in Python) # # # # # # # # #
+
+"""
+  # while some_condition(true):
+    # do something
+  # else:
+    # do something else
+
+### WHILE
+x = 0
+while x<5:
+    print(f"the current value of is {x}")
+    x = x + 1
+# YOU NEED TO ADD A CONDITION TO STOP WHILE LOOP, otherwises it will continue forever
+
+print('**************************')
+### WHILE ELSE
+y = 50
+while y < 5:
+    print(f"the current value of is {y}")
+    y += 1
+else:
+    print(f"y is not less than 5")
+
+
+#---------------------- these words work with all loops , for while.....
+### BRAEK: Break out of the current closest enclosing loop 
+myString = 'Sammy'
+for e in myString:
+    if e == 'a':
+        break # when It comes to a letter it will go out of this for loop
+    print(e)
+    #IF I want to stop the loop when I reach some thing I use BREAK
+    
+
+### CONTINUE:goes to hte top of the closet enclosing lopp
+# which means If I want to ignor some thing and be back again to the start of the loop
+myString = 'Sammy'
+for letter in myString:
+    # f I want to avoid 'a' letter
+    if letter == 'a':
+        continue # will send me to the start of for loop again
+    print(letter) 
+
+### PASS:doe nothing at all
+x=[1,2,3]
+for item in x:
+    # if you leave it empty
+    #SyntaxError: unexpected EOF while parsing
+    # we use Pass
+    pass 
+
+print('end of my script')
+
+print('**************************')
+# break pass contiue with while
+
+z = 0
+while z<7:# do not forget to break the condition otherwise it will be endless
+    if z == 1:
+        pass
+    elif z == 3 :
+        z += 1
+        continue
+    elif z == 5:
+        break
+    print(z)
+    z += 1
+"""
+
+ # # # # # # # # # #  part 36 (Useful Operators in Python) # # # # # # # # #
