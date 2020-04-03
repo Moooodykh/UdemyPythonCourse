@@ -14,6 +14,7 @@ print('Bye' == 'bye')
 # # # # # # # # # #  part 32 (Logical Operators in Python) # # # # # # # # #
 # AND , OR , NOT
 
+"""
 1 < 2 
 2 < 3
 1 < 2 < 3 # 
@@ -24,5 +25,5 @@ print('Bye' == 'bye')
 1 == 1
 not(1==1)
 not 1 == 1 # same line 25
-
+"""
 
