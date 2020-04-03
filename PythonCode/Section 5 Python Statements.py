@@ -363,3 +363,82 @@ print(fehren)
  """
 
  # # # # # # # # # #  part 38-39 (Statment test and solution in Python) # # # # # # # # #
+
+# Excersise 1
+# Use for, .split(), and if to create a Statement that will print out words that start with 's':
+stat = 'Print only the words that starts with s in the sentence'
+splitted_list = stat.split()
+result_list= []
+print(splitted_list)
+for ele in splitted_list:
+    if ele[0] == 's':
+        result_list.append(ele)
+
+print(result_list)
+
+# another way
+splitted_list = stat.split()
+result =[x for x in splitted_list if x[0]=='s']
+print(result)
+
+# Excersise 2
+# Use range() to print all the even numbers from 0 to 10.
+
+#way nr 1 
+result =[x for x in range(0,10) if x%2 == 0]
+print(result)
+#way nr 2
+resultL = []
+for x in range(0,10):
+    if x%2 == 0:
+        resultL.append(x)
+print(resultL)
+
+
+# Excersise 3
+#Use a List Comprehension to create a list of all numbers between 1 and 50 that are divisible by 3
+#way 1
+div3 =[x for x in range(1,50) if x%3 == 0]
+print(div3)
+
+#way 2
+divisble =[]
+for t in range(1,50):
+    if t %3 == 0:
+        divisble.append(t)
+
+print(divisble)
+
+# Excersise 4
+#Go through the string below and if the length of a word is even print "even!"
+# Print every word in this sentence that has an even number of letters
+stringIn = 'Print every word in this sentence that has an even number of letters'
+wordList = stringIn.split()
+for i in wordList:
+    if len(i) %2 == 0:
+        print(f"{i} is even!")
+
+
+# Excersise 5
+# Write a program that prints the integers from 1 to 100.
+# But for multiples of three # print "Fizz" instead of the number, 
+# and for the multiples of  five print "Buzz".
+#  For numbers which are multiples of both three and five print "FizzBuzz".
+
+for number in range(1,100):
+    if  number % 15 == 0:
+        print(f"{number} :FizzBuzz")
+    elif number % 5 == 0:
+        print(f"{number} : Buzz")
+    elif number % 3 == 0:
+        print(f"{number} : Fizz")
+
+
+print('---------------------------------------')
+
+# Excersise 5
+# Use List Comprehension to create a list of the first letters of every word in the string below:
+# Create a list of the first letters of every word in this string
+st = 'Create a list of the first letters of every word in this string'
+lettList =[x[0] for x in st.split() ]
+print(lettList)
