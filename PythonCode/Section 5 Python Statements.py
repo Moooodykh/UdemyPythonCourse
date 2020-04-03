@@ -319,3 +319,47 @@ print(randint(0,99))
 
  """
 # # # # # # # # # #  part 37 (List Comprehensions in Python) # # # # # # # # #
+
+""" 
+### flaten version of comprehension ist 
+
+mystring = 'hello'
+mlist = []
+for leter in mystring:
+    mlist.append(leter)
+print(mlist)
+
+# we can make the text more easier(one line)
+string ='Hello'
+newList = [x for x in string]
+print(newList)
+
+#other example
+my_list = [x for x in 'word'] 
+print(my_list)
+
+# another example
+n_list = [x for x in range(0,11)]
+print(n_list)
+
+# square of each element list 
+n_list = [x**2 for x in range(0,11)]
+print(n_list)
+
+# adding IF as example
+n_list = [x for x in range(0,11) if x%2 == 0]
+print(n_list)
+
+# last example
+celcius = [0,10,20,34.5]
+ferhrenheit = [((9/5)*temp +32) for temp in celcius]
+print(ferhrenheit)
+
+fehren = []
+for temp in celcius:
+    fehren.append((9/5)*temp + 32)
+print(fehren)
+
+ """
+
+ # # # # # # # # # #  part 38-39 (Statment test and solution in Python) # # # # # # # # #
