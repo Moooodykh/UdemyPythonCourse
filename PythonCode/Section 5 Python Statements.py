@@ -365,8 +365,9 @@ print(fehren)
  # # # # # # # # # #  part 38-39 (Statment test and solution in Python) # # # # # # # # #
 
 
-""" 
+
 # A.statment test and solution 
+""" 
 # Excersise 1
 # Use for, .split(), and if to create a Statement that will print out words that start with 's':
 stat = 'Print only the words that starts with s in the sentence'
@@ -449,4 +450,56 @@ print(lettList)
 
 """
 # B.Guessing Game Challenge , 09-Guessing Game Challenge.IPYNB
+""" 
+#First, pick a random integer from 1 to 100 using the random module and assign it to a variable
 
+print('Game Rules')
+print('1.If a players guess is less than 1 or greater than 100, say "OUT OF BOUNDS" ')
+print('2. On a players first turn, if their guess is ')
+print('         a. within 10 of the number, return "WARM!" ')
+print('         b. further than 10 away from the number, return "COLD!" ')
+print('3. On all subsequent turns, if a guess is  ')
+print('         a. closer to the number than the previous guess return "WARMER!" ')
+print('         b. farther from the number than the previous guess, return "COLDER!" ')
+print("4. When the player's guess equals the number, tell them they've guessed correctly and how many guesses it took!  ")
+
+
+from random import randint
+
+previous_round = 0
+guesses = 0
+counter = 0
+while counter < 5:
+    NumberfromUser = int(input('Please give us your Guess'))
+    random_int = randint(1,100)
+    if counter < 1:
+        if NumberfromUser == random_int:
+            guesses += 1
+            print(f"you've guessed correctly and you have {guesses} correct guesses ") 
+        elif NumberfromUser < 0 or NumberfromUser >100:
+            print('OUT OF BOUNDS')
+        elif random_int > NumberfromUser >= random_int +10 or random_int < NumberfromUser <= random_int -10 :
+            print('WARM!')
+        else:
+            print('COLD!')
+    else:
+        if NumberfromUser == random_int:
+            guesses += 1
+            print(f"you've guessed correctly and you have {guesses} correct guesses ") 
+        elif NumberfromUser < 0 or NumberfromUser >100:
+            print('OUT OF BOUNDS')
+        elif random_int > NumberfromUser >= random_int +10 or random_int < NumberfromUser <= random_int -10 :
+            print('WARM!')
+        else:
+            print('COLD!')
+
+        if ( NumberfromUser > previous_round and NumberfromUser < random_int ) or ( NumberfromUser < previous_round and NumberfromUser > random_int ):
+            print('WARMER!')
+        else:
+            print('COLDER!')
+    counter += 1
+    previous_round = NumberfromUser
+    print(f"the random number which generated was {random_int} and your guess was {NumberfromUser}")
+
+ """
+ 
