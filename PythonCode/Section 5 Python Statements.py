@@ -450,9 +450,10 @@ print(lettList)
 
 """
 # B.Guessing Game Challenge , 09-Guessing Game Challenge.IPYNB
+
+# way 1
 """ 
 #First, pick a random integer from 1 to 100 using the random module and assign it to a variable
-
 print('Game Rules')
 print('1.If a players guess is less than 1 or greater than 100, say "OUT OF BOUNDS" ')
 print('2. On a players first turn, if their guess is ')
@@ -501,5 +502,84 @@ while counter < 5:
     previous_round = NumberfromUser
     print(f"the random number which generated was {random_int} and your guess was {NumberfromUser}")
 
+"""
+
+# way 2
+
+"""  
+print('Game Rules')
+print("I'm thinking of a number between 1 and 100 ")
+print("If your guess is more than 10 away from my number, I'll tell you you're COLD")
+print("If your guess is within 10 of my number, I'll tell you you're WARM")
+print("If your guess is farther than your most recent guess, I'll say you're getting COLDER")
+print("If your guess is closer than your most recent guess, I'll say you're getting WARMER")
+print("LET'S PLAY!")
+
+from random import randint
+mynumber = randint(1,100)
+guess= [0]
+FirstTimecounter = 0
+while True:
+    UserInput = int(input("I'm thinking of a number between 1 and 100.\n  What is your guess?"))
+    
+    if UserInput > 100 and UserInput < 0:
+        print("OUT OF BOUNDS! Please try again")
+        continue
+    if UserInput == mynumber:
+        print(f"CONGRATULATIONS, YOU GUESSED IT IN ONLY {len(guess)} GUESSES!!")
+    # if guess is incorrect, add guess to the list
+    guess.append(UserInput)
+    
+
+    if FirstTimecounter < 1: 
+        if   abs(UserInput - mynumber) <=  10 :
+            print('WARM!')        
+        else:
+            print('COLD!')
+        FirstTimecounter += 1
+
+    else:  
+        if abs(mynumber - UserInput) < abs(mynumber - guess[-2]):
+        #previous guess
+            print('WARMER!')
+        else:
+            print('COLDER!')
+
+"""
+
+
+# Teacher Solution
+""" 
+while True:
+
+    # we can copy the code from above to take an input
+    guess = int(input("I'm thinking of a number between 1 and 100.\n  What is your guess? "))
+    
+    if guess < 1 or guess > 100:
+        print('OUT OF BOUNDS! Please try again: ')
+        continue
+    
+    # here we compare the player's guess to our number
+    if guess == num:
+        print(f'CONGRATULATIONS, YOU GUESSED IT IN ONLY {len(guesses)} GUESSES!!')
+        break
+        
+    # if guess is incorrect, add guess to the list
+    guesses.append(guess)
+    
+    # when testing the first guess, guesses[-2]==0, which evaluates to False
+    # and brings us down to the second section
+    
+    if guesses[-2]:  
+        if abs(num-guess) < abs(num-guesses[-2]):
+            print('WARMER!')
+        else:
+            print('COLDER!')
+   
+    else:
+        if abs(num-guess) <= 10:
+            print('WARM!')
+        else:
+            print('COLD!')
  """
- 
+
