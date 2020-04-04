@@ -364,6 +364,9 @@ print(fehren)
 
  # # # # # # # # # #  part 38-39 (Statment test and solution in Python) # # # # # # # # #
 
+
+""" 
+# A.statment test and solution 
 # Excersise 1
 # Use for, .split(), and if to create a Statement that will print out words that start with 's':
 stat = 'Print only the words that starts with s in the sentence'
@@ -393,7 +396,8 @@ for x in range(0,10):
     if x%2 == 0:
         resultL.append(x)
 print(resultL)
-
+#way 3
+list(range(0,11,2))
 
 # Excersise 3
 #Use a List Comprehension to create a list of all numbers between 1 and 50 that are divisible by 3
@@ -426,7 +430,7 @@ for i in wordList:
 #  For numbers which are multiples of both three and five print "FizzBuzz".
 
 for number in range(1,100):
-    if  number % 15 == 0:
+    if  number % 15 == 0: # you can write : if number %5 == 0 and  number %3 == 0
         print(f"{number} :FizzBuzz")
     elif number % 5 == 0:
         print(f"{number} : Buzz")
@@ -442,3 +446,7 @@ print('---------------------------------------')
 st = 'Create a list of the first letters of every word in this string'
 lettList =[x[0] for x in st.split() ]
 print(lettList)
+
+"""
+# B.Guessing Game Challenge , 09-Guessing Game Challenge.IPYNB
+
