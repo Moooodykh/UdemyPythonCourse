@@ -1,5 +1,7 @@
 from decimal import Decimal
 
+# ------------------------ Section 3 "Data types" is from part 10 to 30   -----------------------------
+
 # # # # # # # # #  part  number 11 and 12   # # # # # # # # #
 
 """ 

@@ -1,3 +1,5 @@
+# ------------------------ Section 4 "comparsion operator" is from part 31 to 32   -----------------------------
+
 # # # # # # # # # #  part 31 (Comparison Operators in Python) # # # # # # # # #
 
 """ 
