@@ -14,6 +14,8 @@ help(MyList.insert)
 
 """
 # # # # # # # # # #  part 41 (Functions in Python) # # # # # # # # #
+
+"""
 # function is creating a clean repeatable code which will be used in different places
 
 # def name_of_function(ONLY LOWER CASE)("variable"):
@@ -86,7 +88,7 @@ print('dog' in 'My Dog is running'.lower())
 
 def pig_latin(word):
     '''
-    This function convet the text word to pig latin language
+     A native method to convert the text word to pig latin language
     '''
     first_letter = word[0]
     # check the vowel
@@ -102,4 +104,33 @@ print(pig_latin('orange'))
 
 # WE NEED TO IMPLEMNT
 def is_prime(num):
-    pass
+    ''' 
+    Naive method of checking for primes. 
+    '''
+    for n in range(2,num):
+        if num % n == 0:
+            print(f'{num} is not a prime number')
+            break
+    else:
+        print(f'{num} is a prime number')
+
+is_prime(21)
+
+import math
+print(math.sqrt(25))
+
+# another way of developing prime
+import math
+
+def is_prime2(num):
+    '''
+    Better method of checking for primes. 
+    '''
+    if num % 2 == 0 and num > 2: 
+        return False
+    for i in range(3, int(math.sqrt(num)) + 1, 2):
+        if num % i == 0:
+            return False
+    return True
+
+"""
