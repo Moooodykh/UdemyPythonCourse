@@ -264,6 +264,7 @@ hungry('eggs','tomate',fruit='pineapple',juice='orange')
 ###  LESSER OF TWO EVENS: Write a function that returns the lesser of two given numbers 
 # if both numbers are even, but returns the greater if one or both numbers are odd
 
+""" 
 def lesser_of_evens(arg1,arg2):
     if arg1 %2 == 0 and  arg2 %2 == 0:
         if arg1 > arg2:
@@ -277,10 +278,12 @@ def lesser_of_evens(arg1,arg2):
             return arg2
 
 print(lesser_of_evens(5,11))
-
+ """
 # ------------------------------------------------------------------------------------
 
 ### ANIMAL CRACKERS: Write a function takes a two-word string and returns True if both words begin with same letter
+
+""" 
 def animal_cracker(text):
     itemList = text.split()
     resultList = []
@@ -294,10 +297,11 @@ def animal_cracker(text):
         return False
 
 print(animal_cracker('Crazy Kangaroo'))
-
+"""
 # ------------------------------------------------------------------------------------
 
 ### MAKES TWENTY: Given two integers, return True if the sum of the integers is 20 or if one of the integers is 20. If not, return False
+""" 
 def makes_twenty(num1, num2):
     if num1 == 20 or num2 == 20:
         return True
@@ -310,10 +314,13 @@ def makes_twenty(num1, num2):
 print(makes_twenty(10,20))
 print(makes_twenty(12,8))
 print(makes_twenty(2,3))
+"""
 
-# ------------------------------------------------------------------------------------
+ # ------------------------------------------------------------------------------------
 
 ### OLD MACDONALD: Write a function that capitalizes the first and fourth letters of a name
+
+""" 
 #way nr 1
 def old_macdonald(text):
     counter = 0
@@ -342,10 +349,13 @@ def mcdonaldes(text):
     return(resultstring)
 
 print(mcdonaldes('macdonalds'))
+ """
 
 # ------------------------------------------------------------------------------------
 
 ### MASTER YODA: Given a sentence, return a sentence with the words reversed
+
+""" 
 # way nr 1
 def master_yoda(text):
     splitted_list = text.split()
@@ -363,10 +373,13 @@ def master_yoda2(text):
     return outresult
 
 print(master_yoda2('We are ready'))
+"""
 
 # ------------------------------------------------------------------------------------
 
 ### ALMOST THERE: Given an integer n, return True if n is within 10 of either 100 or 200
+
+""" 
 def almost_there(num):
     if   20 >= num >= 0 or 110 >= num >= 90 or 1110 >= num >= 990:
         return True
@@ -374,10 +387,13 @@ def almost_there(num):
         return False
 
 print(almost_there(209))
+ """
 
 # ------------------------------------------------------------------------------------
 
 ### FIND 33:
+
+""" 
 # Given a list of ints, return True if the array contains a 3 next to a 3 somewhere.
 # has_33([1, 3, 3]) → True
 # has_33([1, 3, 1, 3]) → False
@@ -393,10 +409,13 @@ def find33(listItem):
         return False
 
 print(find33([3,1,3]))
- 
+"""
+
 # ------------------------------------------------------------------------------------
  
 ### PAPER DOLL: Given a string, return a string where for every character in the original there are three characters
+
+""" 
 # paper_doll('Hello') --> 'HHHeeellllllooo'
 # paper_doll('Mississippi') --> 'MMMiiissssssiiippppppiii'
 def paper_doll(text):
@@ -407,10 +426,12 @@ def paper_doll(text):
     return output_text
 
 print(paper_doll('Mississippi'))
-
+ """
 # ------------------------------------------------------------------------------------
 
 ### BLACKJACK: Given three integers between 1 and 11, if their sum is less than or equal to 21, return their sum. 
+
+""" 
 # If their sum exceeds 21 and there's an eleven, reduce the total sum by 10. 
 # Finally, if the sum (even after adjustment) exceeds 21, return 'BUST'
 
@@ -429,7 +450,7 @@ def blackjack(arg1,arg2,arg3):
         return 'BUST'
         
 print(blackjack(5,6,7))
-
+"""
 # ------------------------------------------------------------------------------------
 
 print('**********************************************')
@@ -441,3 +462,24 @@ print('**********************************************')
 # summer_69([1, 3, 5]) --> 9
 # summer_69([4, 5, 6, 7, 8, 9]) --> 9
 # summer_69([2, 1, 6, 9, 11]) --> 14
+def summer_69(arr):
+    total = 0
+    add = True
+    for num in arr:
+        while add:
+            if num != 6:
+                total += num
+                break
+            else:
+                add = False
+        while not add:
+            if num != 9:
+                break
+            else:
+                add = True
+                break
+    return total
+
+
+
+print(summer_69([1,3,5,6,7,8,9,11]))
