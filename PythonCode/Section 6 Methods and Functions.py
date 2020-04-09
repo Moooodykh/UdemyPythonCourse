@@ -453,9 +453,9 @@ print(blackjack(5,6,7))
 """
 # ------------------------------------------------------------------------------------
 
-print('**********************************************')
-
+''' 
 ### SUMMER OF '69: Return the sum of the numbers in the array,
+
 #  except ignore sections of numbers starting with a 6 and extending to the next 9 (every 6 will be followed by at least one 9). 
 #  Return 0 for no numbers.
 
@@ -480,6 +480,116 @@ def summer_69(arr):
                 break
     return total
 
+print(summer_69([1,3,5,6,7,8,9,11])) 
+'''
+
+# ------------------------------------------------------------------------------------
+
+#SPY GAME: Write a function that takes in a list of integers and returns True if it contains 007 in order
+
+''' 
+ #spy_game([1,2,4,0,0,7,5]) --> True
+ #spy_game([1,0,2,4,0,5,7]) --> True
+ #spy_game([1,7,2,0,4,5,0]) --> False
+
+def spy_game(nums):
+    empty_string=''
+    for item in nums:
+        if item == 0 or item == 7:
+            empty_string += str(item)
+    if '007' in empty_string:
+        return True
+    else:
+        return False  
+        
+
+print(spy_game([1,0,2,4,0,5,7]))
+ '''
+
+# ------------------------------------------------------------------------------------
+
+#COUNT PRIMES: Write a function that returns the number of prime numbers that exist up
+
+''' 
+# to and including a given number
+#count_primes(100) --> 25
+#By convention, 0 and 1 are not prime.
+
+def count_primess(number):
+    list_of_primes=[]
+    for item in range(2,number):
+        if number % item != 0:
+            list_of_primes.append(item)
+    
+    print(list_of_primes)
+    return len(list_of_primes)
 
 
-print(summer_69([1,3,5,6,7,8,9,11]))
+print(count_primess(100))
+'''
+
+# ------------------------------------------------------------------------------------
+
+# COUNT PRIMES: Write a function that returns the number of prime numbers that 
+''' 
+# exist up to and including a given number
+# count_primes(100) --> 25
+# By convention, 0 and 1 are not prime.
+
+def count_primes(num):
+    primes = [2]
+    x = 3
+    if num < 2:  # for the case of num = 0 or 1
+        return 0
+    while x <= num:
+        for y in range(3,x,2):  # test all odd factors up to x-1
+            if x%y == 0:
+                x += 2
+                break
+        else:
+            primes.append(x)
+            x += 2
+    print(primes)
+    return len(primes)
+
+print(count_primes(100))
+
+'''
+
+''' 
+ # WE NEED TO IMPLEMNT
+def is_prime(num):
+    """
+    Naive method of checking for primes. 
+    """
+    for n in range(2,num):
+        if num % n == 0:
+            print(f'{num} is not a prime number')
+            break
+    else:
+        print(f'{num} is a prime number')
+
+is_prime(21)
+
+
+# another way of developing prime
+import math
+
+def is_prime2(num):
+    """ 
+    Better method of checking for primes. 
+    """
+    listofprimes=[]
+    if num % 2 == 0 and num > 2: 
+        return False
+    for i in range(3, int(math.sqrt(num)) + 1, 2):
+        if num % i == 0:
+            return False
+        else:
+            listofprimes.append(num)
+    return listofprimes
+
+print(is_prime2(21))
+'''
+# ------------------------------------------------------------------------------------
+print('---------------------------------------------')
