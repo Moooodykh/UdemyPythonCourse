@@ -277,13 +277,31 @@ def lesser_of_evens(arg1,arg2):
         else: 
             return arg2
 
+# Teacher_solution 
+# def lesser_of_two_evens(a,b):
+    # if a%2 == 0 and b%2 == 0:
+        # return min(a,b)
+    # else:
+        # return max(a,b)
+
 print(lesser_of_evens(5,11))
  """
 # ------------------------------------------------------------------------------------
 
 ### ANIMAL CRACKERS: Write a function takes a two-word string and returns True if both words begin with same letter
 
+''' 
+# teacher solution
+def animal_crackers(text):
+    wordlist = text.split()
+    print(wordlist[0][0]) # first word # first letter
+    print(wordlist[1][0]) # second word # first letter
+    # return wordlist[0][0] == wordlist[1][0]
+ 
+ '''
 """ 
+animal_crackers('Levelheaded Llama')
+
 def animal_cracker(text):
     itemList = text.split()
     resultList = []
@@ -301,6 +319,14 @@ print(animal_cracker('Crazy Kangaroo'))
 # ------------------------------------------------------------------------------------
 
 ### MAKES TWENTY: Given two integers, return True if the sum of the integers is 20 or if one of the integers is 20. If not, return False
+
+''' 
+#teacher solution
+def makes_twenty(n1,n2):
+    return (n1+n2)==20 or n1==20 or n2==20
+
+'''
+
 """ 
 def makes_twenty(num1, num2):
     if num1 == 20 or num2 == 20:
@@ -320,6 +346,14 @@ print(makes_twenty(2,3))
 
 ### OLD MACDONALD: Write a function that capitalizes the first and fourth letters of a name
 
+''' 
+#Teacher solution
+def old_macdonald(name):
+    if len(name) > 3:
+        return name[:3].capitalize() + name[3:].capitalize()
+    else:
+        return 'Name is too short!'
+'''
 """ 
 #way nr 1
 def old_macdonald(text):
@@ -379,6 +413,12 @@ print(master_yoda2('We are ready'))
 
 ### ALMOST THERE: Given an integer n, return True if n is within 10 of either 100 or 200
 
+''' 
+#TEACHER SOLUTION
+def almost_there(n):
+    return ((abs(100 - n) <= 10) or (abs(200 - n) <= 10))
+
+'''
 """ 
 def almost_there(num):
     if   20 >= num >= 0 or 110 >= num >= 90 or 1110 >= num >= 990:
@@ -393,6 +433,19 @@ print(almost_there(209))
 
 ### FIND 33:
 
+''' 
+#TEACHER SOLUTION
+def has_33(nums):
+    for i in range(0, len(nums)-1):
+      
+        # nicer looking alternative in commented code
+        #if nums[i] == 3 and nums[i+1] == 3:
+    
+        if nums[i:i+2] == [3,3]:
+            return True  
+    
+    return False
+'''
 """ 
 # Given a list of ints, return True if the array contains a 3 next to a 3 somewhere.
 # has_33([1, 3, 3]) → True
@@ -438,6 +491,7 @@ print(paper_doll('Mississippi'))
 # blackjack(5,6,7) --> 18
 # blackjack(9,9,9) --> 'BUST'
 # blackjack(9,9,11) --> 19
+
 def blackjack(arg1,arg2,arg3):
     sumofints = arg1 + arg2 + arg3
     if sumofints <= 21:
@@ -487,6 +541,19 @@ print(summer_69([1,3,5,6,7,8,9,11]))
 
 #SPY GAME: Write a function that takes in a list of integers and returns True if it contains 007 in order
 
+
+''' 
+#TEACHER SOLUTION
+def spy_game(nums):
+    
+    code = [0,0,7,'x']
+    
+    for num in nums:
+        if num == code[0]:
+            code.pop(0)   # code.remove(num) also works
+       
+    return len(code) == 1
+'''
 ''' 
  #spy_game([1,2,4,0,0,7,5]) --> True
  #spy_game([1,0,2,4,0,5,7]) --> True
@@ -594,4 +661,85 @@ def is_prime2(num):
 print(is_prime2(21))
 '''
 # ------------------------------------------------------------------------------------
+
+#BONUS: Here's a faster version that makes use of
+#  the prime numbers we're collecting as we go!
+''' 
+#TEACHER SOLUTION
+def count_primes2(num):
+    primes = [2]
+    x = 3
+    if num < 2:
+        return 0
+    while x <= num:
+        for y in primes:  # use the primes list!
+            if x%y == 0:
+                x += 2
+                break
+        else:
+            primes.append(x)
+            x += 2
+    print(primes)
+    return len(primes)
+ '''
+
+# ------------------------------------------------------------------------------------
+
+# PRINT BIG: Write a function that takes in a single letter, and returns a 5x5 representation of that letter
+''' 
+TEACHER SOLUTION
+def print_big(letter):
+    patterns = {1:'  *  ',2:' * * ',3:'*   *',4:'*****',5:'**** ',6:'   * ',7:' *   ',8:'*   * ',9:'*    '}
+    alphabet = {'A':[1,2,4,3,3],'B':[5,3,5,3,5],'C':[4,9,9,9,4],'D':[5,3,3,3,5],'E':[4,9,4,9,4]}
+    for pattern in alphabet[letter.upper()]:
+        print(patterns[pattern])
+
+print_big('a')
+ '''
+
+"""
+# print_big('a')
+
+# out:   *  
+#       * *
+#      *****
+#      *   *
+#      *   *
+# HINT: Consider making a dictionary of possible patterns, and mapping the alphabet to
+#  specific 5-line combinations of patterns. 
+# For purposes of this exercise, it's ok if your dictionary stops at "E".
+
+def print_big(letter):
+
+    letter_dict = {'a':'  *  \n * * \n*****\n*   *\n*   *\n','b':'**** \n*   *\n* *  \n*   *\n**** \n',
+    'c':'   **\n *   \n*    \n*    \n   **\n','d':'**   \n*  * \n*   *\n*  * \n**   \n',
+    'e':'*****\n*    \n***  \n*    \n*****\n','f':'*****\n*    \n***  \n*    \n*    \n'}
+    # print(letter_dict['b'])
+    if (letter == 'a'):
+        return letter_dict['a']
+    elif (letter == 'b'):
+        return letter_dict['b']
+    elif (letter == 'c'):
+        return letter_dict['c']
+    elif (letter == 'd'):
+        return letter_dict['d']
+    elif (letter == 'e'):
+        return letter_dict['e']
+    else:
+        return letter_dict['f']
+''' 
+*****
+*  
+*** 
+* 
+**** 
+ '''
+print(print_big('e'))
+"""
+# ------------------------------------------------------------------------------------
+
+
+print('********************************************************')
+
+
 print('---------------------------------------------')
