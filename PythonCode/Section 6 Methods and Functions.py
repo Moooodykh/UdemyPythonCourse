@@ -736,10 +736,83 @@ def print_big(letter):
  '''
 print(print_big('e'))
 """
-# ------------------------------------------------------------------------------------
-
 
 print('********************************************************')
 
+# ------------------------------------------------------------------------------------
+
+
+# # # # # # # # # #  part 49 ( Lambda Expressions, Map, and Filter Functions in Python) # # # # # # # # #
+
+### MAP FUNCTION
+
+"""
+# map function is defined to applt aruguments to a specific function.
+# MAP IS CALLING THE FUNCTION WITHOUT () BECAUSE IT IS LATER ON CALL AND EXCUTE THE FUNCTION
+def sequre(number):
+    return number ** 2
+
+Numbers_list = [1,2,3,4,5]
+
+# MAP WIll apply to each memeber of the NUMBER_LIST to be ran into square function
+result = list(map(sequre,Numbers_list))
+print(result)
+# OR
+
+for item in map(sequre,Numbers_list):
+    print(item)
+
+def splicer(string):
+    if len(string) %2 == 0:
+        return 'EVEN'
+    else:
+        return string[0]
+
+Name_list= ['Andy','Sam','Vally']
+
+result2 = list(map(splicer,Name_list))
+#map object at 0x000001BE4E077F08             WE NEED TO CALL LIST CASTING TO PUT THE RESULT AS LIST
+# MAP IS CALLING THE FUNCTION WITHOUT () BECAUSE IT IS LATER ON CALL AND EXCUTE THE FUNCTION
+print(result2)
+"""
 
 print('---------------------------------------------')
+
+
+### FILTER FUNCTION
+
+"""  
+# FILTER function is APPLING THE ARGUMENTS TO SOME FUNCTION HAS A TRUE OR FALSE (RETURN VALUES)
+
+def is_even(num):
+    return num%2 == 0
+
+num_list= [1,2,3,4,5,6]
+# this will apply the list to that function and return the values who apply TRUE returning value. 
+res =  list(filter(is_even,num_list))
+print(res)
+# or
+for item in filter(is_even,num_list):
+    print(item)
+"""
+
+### LAMBDA EXPRESSION
+""" 
+#LAMBDA is a anonymous typ of converting functions which will be used once to this STYLE to have less space in the code.
+
+# converting square function         def sequre(number):
+                                     #return number ** 2
+lambda num : num **2 # this is exactly the same of sequare
+# we use LAMBDA with MAP and filter function
+num_list= [1,2,3,4,5,6]
+
+print(list(map(lambda num: num**2 ,num_list))) #MAP
+print(list(filter(lambda num: num%2 == 0 ,num_list)))# FILTER
+
+Name_list= ['Andy','Sam','Vally']
+print(list(map(lambda name: name[0] ,Name_list))) #MAP
+print(list(map(lambda name: name[::-1] ,Name_list))) #MAP
+
+"""
+
+# # # # # # # # # #  part 50 ( Nested Statements and Scope in Python) # # # # # # # # #
