@@ -776,7 +776,6 @@ result2 = list(map(splicer,Name_list))
 print(result2)
 """
 
-print('---------------------------------------------')
 
 
 ### FILTER FUNCTION
@@ -816,3 +815,284 @@ print(list(map(lambda name: name[::-1] ,Name_list))) #MAP
 """
 
 # # # # # # # # # #  part 50 ( Nested Statements and Scope in Python) # # # # # # # # #
+"""
+x = 25
+def printer():
+    x=50
+    return x
+
+print(x) # x value will be 25
+print(printer()) # x value will be 50
+
+### LOCAL
+lambda num : num ** 2 # num is local
+
+### ENCLOSING FUNCTION LOCCAL
+
+# Global variable
+name = 'THIS IS A GLOBAL STRING' #Global variable
+def greet():
+    # enclosing function variable
+    name= 'Sammy' 
+    
+    def hello():
+        #Local variable
+        name = 'I am local'
+        print('Hello ' + name)
+    
+    hello()
+
+greet()
+# 1. try to find it locally no result , move to  enclosing function variable which is = 'Sammy'
+#2. if I comment #name= 'Sammy' it will jump up to level 3 which is global varable
+# 3. GLOBAL 
+# 4. defined word like len ..... help(len)
+
+
+### GLOBAL VARIABLE
+
+#GLOBAL VARIABLE
+x = 50
+
+def func(x):
+    print(f'X is {x}')
+
+    # LOCAL ASSIGNMENT
+    x = 'NEW VALUE'
+    print(f"I just changed x TO {x}")
+
+print(x)
+func(x)
+print(x) # NOTICE THIS WILL NO AFFECT THE GLOBAL VARIABLE
+### ----- We need to add a global keyword to the function and 
+# delete x from calling inside of the function.
+
+print('---------------------------------------------')
+
+y = 50
+def funct():
+    global y # that means bring it from global declaration and update it throw the code
+    print(f'Y is {y}')
+
+    # LOCAL ASSIGNMENT
+    y = 'NEW VALUE' # local assignment will affect the global variable
+    print(f"I just changed y TO {y}")
+
+print(y)
+funct()
+print(y) # this will show that
+
+
+# YOU NEED TO AVOID TO USE A GLOBAL VARIABLE AND OVERRIDE IT 
+# BECAUSE IT WILL MAKE A HARDED TO DEUG.
+
+# YOU CAN DEFINE GLOBAL IN OTHER WAY
+z = 50
+def funct(z):
+    
+    print(f'Z is {z}')
+
+    # LOCAL ASSIGNMENT
+    z = 'NEW VALUE' # local assignment will affect the global variable
+    print(f"I just changed z TO {z}")
+    return z
+
+print(z)
+z = funct(z)# HERE MAKING THE GLOBAL variable overridding 
+
+print(z) # this will show that
+
+"""
+
+# ------------------------------------------------------------------------------------
+# ------------------------------------------------------------------------------------
+
+
+# # # # # # # # # #  part 51 (Functions and Methods - Homework Assignment) # # # # # # # # #
+# # # # # # # # # #  part 52 ( Hints and Tips for Functions and Methods Assignment) # # # # # # # # #
+
+# ------------------------------------------------------------------------------------
+# ------------------------------------------------------------------------------------
+
+
+### 1. Write a function that computes the volume of a sphere given its radius.
+
+""" 
+#The volume of a sphere is given as $$\frac{4}{3} πr^3$$
+import math
+
+def vol(rad):
+    return (4/3) * math.pi * rad**3
+    # return (4/3) * 3.14 * rad**3 
+
+res = vol(2)
+print(f'{res:1.3f}')
+"""
+# ------------------------------------------------------------------------------------
+### 2. Write a function that checks whether a number is in a given range (inclusive of high and low)
+
+'''
+TEACHER SOLUTION
+if num in range(low,high+1):
+'''
+""" 
+# way 1 : return that the number is in the range
+def ran_check(num,mini,maxi):
+    if num > mini and num < maxi :
+        return 'Number {n} is in range between {mi} and {ma}'.format(n=num, mi =mini,ma= maxi)
+    else:
+        return 'Number {n} is out of range between {mi} and {ma}'.format(n=num, mi =mini,ma= maxi)
+
+print(ran_check(1,3,9))
+
+# way 2 : boolean function
+def ran_bol_Check(num,minimum,maximum):
+    return num > minimum and num < maximum
+
+print(ran_bol_Check(5,3,9))
+ """
+# ------------------------------------------------------------------------------------
+### 3. Write a Python function that accepts a string and calculates the number of upper case letters and lower case letters.
+'''
+TEACHER SOLUTION:
+def up_low(s):
+    d={"upper":0, "lower":0}
+    for c in s:
+        if c.isupper():
+            d["upper"]+=1
+        elif c.islower():
+            d["lower"]+=1
+        else:
+            pass
+    print("Original String : ", s)
+    print("No. of Upper case characters : ", d["upper"])
+    print("No. of Lower case Characters : ", d["lower"])
+'''
+""" 
+# Sample String : 'Hello Mr. Rogers, how are you this fine Tuesday?'
+# Expected Output : 
+# No. of Upper case characters : 4
+# No. of Lower case Characters : 33
+# HINT: Two string methods that might prove useful: .isupper() and .islower()
+
+# If you feel ambitious, explore the Collections module to solve this problem!
+
+import collections
+import string 
+def upper_lower(text):
+    lower_counter = 0
+    upper_counter = 0
+    alphabet = string.ascii_lowercase
+    for letter in text:
+        if letter.lower()in alphabet:
+            if letter.isupper():
+                upper_counter += 1
+            else:
+                lower_counter += 1
+    
+    orginal_text = 'Orginal text: ' + text + '\n'
+    upper_text = 'No. of Upper case characters: ' + str(upper_counter) + '\n'
+    lower_text = 'No. of Upper case characters: ' + str(lower_counter) + '\n'
+    return orginal_text + upper_text + lower_text
+
+    # print(f"Orginal text: {text}\nNo. of Upper case characters : {upper_counter}\nNo. of Upper case characters : {lower_counter}")
+
+s = 'Hello Mr. Rogers, how are you this fine Tuesday?'
+print(upper_lower(s)) 
+
+"""
+
+
+# ------------------------------------------------------------------------------------
+### 4.Write a Python function that takes a list and returns a new list with unique elements of the first list.
+'''
+TEACHER SOLUTION
+ x = []
+    for a in lst:
+        if a not in x:
+            x.append(a)
+    return x
+'''
+""" 
+# Sample List : [1,1,1,1,2,2,3,3,3,3,4,5]
+# Unique List : [1, 2, 3, 4, 5]
+
+def unique_list(input):
+  
+     return (list(set(input)))
+
+unique_list([1,1,1,1,2,2,3,3,3,3,4,5])    
+
+"""
+ # ------------------------------------------------------------------------------------
+### 5.Write a Python function to multiply all the numbers in a list.
+
+""" 
+# Sample List : [1, 2, 3, -4]
+# Expected Output : -24
+
+def multiply_list(numList):
+    result = 1
+    for item in numList:
+        result *= item 
+    
+    return result
+
+print(multiply_list([1, 2, 3, -4]))
+
+ """
+
+# ------------------------------------------------------------------------------------
+### 6.Write a Python function that checks whether a passed in string is palindrome or not.
+
+""" 
+# Note: A palindrome is word, phrase, or sequence that reads the same backward as forward, e.g., madam or nurses run.
+
+def palindrome(text):
+    s = text.replace(' ','') # replace a special character(old) in text with another(new):::: White spaces to none white space
+    print(s) 
+    return s == s[::-1]
+
+print(palindrome('nurses run'))
+
+ """
+# ------------------------------------------------------------------------------------
+### 6.Write a Python function that checks whether a passed in string is palindrome or not.
+'''
+TEACHER SOLUTION
+def ispangram(str1, alphabet=string.ascii_lowercase):  
+    alphaset = set(alphabet)  
+    return alphaset <= set(str1.lower())  
+'''
+
+""" 
+
+# Write a Python function to check whether a string is pangram or not.
+# Note : Pangrams are words or sentences containing every letter of the alphabet at least once.
+# For example : "The quick brown fox jumps over the lazy dog"
+# Hint: Look at the string module
+#string.ascii_lowercase = 'abcdefghijklmnopqrstuvwxyz'
+
+
+# WAY nr 1
+import string
+def pangram(text):
+    alphabet = list(string.ascii_lowercase)
+    
+    for letter in text:
+        if letter in alphabet:
+            alphabet.remove(letter)
+    return len(alphabet) == 0
+ #    change the output(return value not Bool or write more explaning) 
+print(pangram("The quick brown fox jumps over the lazy dog"))
+
+
+# WAY nr 2
+def ispangram(str1, alphabet=string.ascii_lowercase):
+# exactly the same but change the output(return value to Bool)   
+"""
+
+# ------------------------------------------------------------------------------------
+### 6.Write a Python function that checks whether a passed in string is palindrome or not.
+
+print('---------------------------------------------')
