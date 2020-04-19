@@ -128,8 +128,47 @@ print(small_circle.radius)
 print(small_circle.area)
 print("the circumference is : " + str (small_circle.get_circumference()))
 
+#-----------------------------------------------------------------
+# ADDING ANOTHER EXAMPLE OR RECTANGULAR, TRIANGEL AND SEQUARE
+
+class Rectangular():
+    # Gnereal class attributes
+
+    # attributes
+    def __init__(self,lenght=3,width=1):
+        self.length = lenght
+        self.width = width
+    # methods
+    def get_area(self):
+        return self.length * self.width
+    def get_circumference(self):
+        return (self.length + self.width) * 2
+
+class Triangel():
+    # common class attributes
+
+    # attributes
+    def __init__(self,a,b,c,height):
+        self.firstline = a
+        self.secondline = b
+        self.thirdline = c
+        self.height = height
+        
+    # methods
+    def get_area(self):
+        return self.firstline * self.height
+    def get_circumference(self):
+        return self.firstline + self.secondline + self.thirdline
+
+
+small_rectangular = Rectangular()
+print('Small recatngualr')
+print(f"length: {small_rectangular.length} , width: {small_rectangular.width}")
+print(small_rectangular.get_area())
+print(small_rectangular.get_circumference())
+
+large_rectangular = Rectangular(6,2)
+print(f"large --> length: {large_rectangular.length} , width: {large_rectangular.width}, area:{large_rectangular.get_area()} , circumgerence:{large_rectangular.get_circumference()}")
 """
-"""
-ADDING ANOTHER EXAMPLE OR RECTANGULAR, TRIANGEL AND SEQUARE
-"""
+
 # # # # # # # # # #  part 62 (Object Oriented Programming - Inheritance and Polymorphism ) # # # # # # # # #
