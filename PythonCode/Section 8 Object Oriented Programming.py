@@ -172,3 +172,128 @@ print(f"large --> length: {large_rectangular.length} , width: {large_rectangular
 """
 
 # # # # # # # # # #  part 62 (Object Oriented Programming - Inheritance and Polymorphism ) # # # # # # # # #
+
+# -------------------------------------- Inheritance -----------------------------
+
+''' 
+# BASE CLASS
+class Animal():
+
+    def __init__(self):
+        print('Animal created')
+
+    def hungry(self):
+        print(f" Your Animal is hungry !! ")
+
+# CHILD CLASS
+class Dog(Animal):
+    # Class common attributes 
+    species = 'Mammal'
+
+    # Attributes
+    def __init__(self,name,age,breed): 
+        Animal.__init__(self) # this is enabling us to check that the classes are ineherited
+        print('Dog created')
+        self.name = name
+        self.age = age
+        self.breed = breed
+    
+    # ACTIONS / METHODS
+    def bark(self):
+        print(f"{self.name} is barking and my age is {self.age} WOOOF!!")
+        
+    def eat(self):
+        print(f"{self.name} is eating now , thanks for feeding me :)")
+
+### OVERRIDING THE BASE CLASS METHOD
+# IT CAN BE BY HAVING THE SAME METHOD NAME IN THE CHILD CLASS
+    def hungry(self):
+        print(f" DOG is hungry !! ")
+
+# calling the # BASE and # CHILD class
+mydog = Dog('Poppy',3,'Lab')
+
+print(mydog.species)
+mydog.bark()
+mydog.hungry()
+mydog.eat()
+'''
+
+# -------------------------------------- Polymorphism -----------------------------
+
+''' 
+# Polymorphism is using the same name of the method from two different classes like SPEAK example
+# We can call it by:
+# way nr 1 
+class Dog():
+    def __init__(self,name):
+        self.name = name
+    def speak(self):
+        return self.name + ' Says WOOF!'
+        
+class Cat():
+    def __init__(self,name):
+        self.name = name
+    def speak(self):
+        return self.name + ' Says MEOW!'
+
+niko = Cat('Niko')
+felix = Dog('Felix')
+
+print (niko.speak())
+print (felix.speak())
+print('-----------------------------')
+for pet in [niko,felix]:
+    print(type(pet))
+    print(pet.speak())
+    print(type(pet.speak()))
+
+# way nr 2
+print('*****************************************************')
+def pet_speak(pet):
+    print(pet.speak())
+
+pet_speak(niko) # niko is a CAT object
+pet_speak(felix)# felix is a DOG object
+'''
+
+# -------------------------------------- ABSTRACT CLASS -------------------------------------
+
+''' 
+# ABSTRACT CAN BE ONLY BASE CLASS WITHOUT ANY METHOD IMPLEMENTED
+# ABSTRACT CLASS IS A CLASS THAT CAN BE INTIALIZED AND ALL IT'S METHOD WILL BE OVERRIDED AND 
+# IMPLEMENTED IN THE CHILD CLASS
+
+class Animal():
+    def __init__(self,name):
+        self.name = name
+    def speak(self):
+        raise NotImplementedError('Sub class must implement this abstract method')
+
+myanimal = Animal('Frid')
+#myanimal.speak() # this line will through an exception
+
+# AS LONG AS YOU HAVE A __init__ METHOD IN THE BASE CLASS WE DO NOT HAVE TO HAVE IT IN THE CHILD CLASS
+# UNLESS WE NEED TO ADD ATTRIBUTES
+
+class Dog(Animal):
+
+    def speak(self):
+        return self.name + ' says WOOOF' + ' ,Sub class implemented the "abstract method" '
+
+class Cat(Animal):
+    
+    def speak(self):
+        return self.name + ' says MEYW' + ' ,Sub class implemented the "abstract method" '
+
+
+mydog= Dog('Pop')
+mycat = Cat('meme')
+print(mydog.speak())
+print(mycat.speak())
+
+# real life example is to open the file is Abstract base class.
+# opening an excel is inheriting open file method and then it differs from opening a text file...etc
+
+'''
+# # # # # # # # # #  part 63 (Object Oriented Programming - Special (Magic/Dunder) Methods) # # # # # # # # #
