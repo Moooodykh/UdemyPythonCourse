@@ -128,6 +128,23 @@ print(small_circle.radius)
 print(small_circle.area)
 print("the circumference is : " + str (small_circle.get_circumference()))
 
+class Circle:
+    pi = 3.14
+
+    # Circle gets instantiated with a radius (default is 1)
+    def __init__(self, radius=1):
+        self.radius = radius 
+        self.area = radius * radius * Circle.pi
+
+    # Method for resetting Radius
+    def setRadius(self, new_radius):
+        self.radius = new_radius
+        self.area = new_radius * new_radius * self.pi
+
+    # Method for getting Circumference
+    def getCircumference(self):
+        return self.radius * self.pi * 2
+
 #-----------------------------------------------------------------
 # ADDING ANOTHER EXAMPLE OR RECTANGULAR, TRIANGEL AND SEQUARE
 
@@ -255,8 +272,30 @@ def pet_speak(pet):
 
 pet_speak(niko) # niko is a CAT object
 pet_speak(felix)# felix is a DOG object
-'''
 
+i= 10
+print('This is:', i)
+print('------------------------------------------')
+class Dog():
+    def __init__(self,name):
+        self.name = name
+    def speak(self):
+        return self.name + ' says WOOOF!'
+class Cat():
+    def __init__(self,name):
+        self.name = name
+    def speak(self):
+        return self.name + ' says WOOOF!'
+
+fido = Dog('fido')
+sisi = Cat('sisi')
+
+def pet_speak(pet):
+    print(pet.speak())
+
+pet_speak(fido)
+pet_speak(sisi)
+'''
 # -------------------------------------- ABSTRACT CLASS -------------------------------------
 
 ''' 
@@ -295,5 +334,74 @@ print(mycat.speak())
 # real life example is to open the file is Abstract base class.
 # opening an excel is inheriting open file method and then it differs from opening a text file...etc
 
+class Animal():
+    def __init__(self,name):
+        self.name = name
+    def speak(self):
+        raise NotImplementedError('Abstract method . needed to be implemented in the child class')
+
+class Dog(Animal):
+    
+    def speak(self):
+        return self.name + ' says WOOOF!'
+
+class Cat(Animal):
+
+    def speak(self):
+        return self.name + ' says WOOOF!'
+ani = Animal('Ani')
+ani.speak()
+fido = Dog('fido')
+sisi = Cat('sisi')
+
+def pet_speak(pet):
+    print(pet.speak())
+
+pet_speak(fido)
+pet_speak(sisi)
 '''
 # # # # # # # # # #  part 63 (Object Oriented Programming - Special (Magic/Dunder) Methods) # # # # # # # # #
+""" 
+my_list= [1,2,3]
+len(my_list) # this is possible
+
+class Sample():
+    pass
+
+mysample= Sample()
+
+print(mysample) # Answer will be <__main__.Sample object at 0x00000270BF6DE848>
+#len(mysample) # this will give an error 
+# TypeError: object of type 'Sample' has no len()
+
+print(mysample)
+
+
+
+class Book():
+    def __init__(self,title,Author,pages):
+        self.title = title
+        self.author = Author
+        self.pages = pages
+
+    def __str__(self):# RETURN ALL THE TIME NOT PRINT
+        return f" {self.title} by {self.author}"
+    def __len__(self):
+        return self.pages
+    def __del__(self):
+        print('A book object is deleted')
+    
+
+
+        
+b = Book('Python Rokcs','Moody',200)
+
+print(b) # this will point to a memory place , <__main__.Book object at 0x000002BC9E772F08>
+print(str(b)) # this is the string represetation of the book 
+print(len(b))
+
+# TO DELETE A BOOK FROM A computer MEMORY
+del b
+print(b)
+
+ """
