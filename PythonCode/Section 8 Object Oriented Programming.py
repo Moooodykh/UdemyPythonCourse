@@ -235,7 +235,35 @@ mydog.bark()
 mydog.hungry()
 mydog.eat()
 '''
+""" 
+class Parent:        # define parent class
+   parentAttr = 100
+   def __init__(self):
+      print "Calling parent constructor"
 
+   def parentMethod(self):
+      print 'Calling parent method'
+
+   def setAttr(self, attr):
+      Parent.parentAttr = attr
+
+   def getAttr(self):
+      print "Parent attribute :", Parent.parentAttr
+
+class Child(Parent): # define child class
+   def __init__(self):
+      print "Calling child constructor"
+
+   def childMethod(self):
+      print 'Calling child method'
+
+c = Child()          # instance of child
+c.childMethod()      # child calls its method
+c.parentMethod()     # calls parent's method
+c.setAttr(200)       # again call parent's method
+c.getAttr()          # again call parent's method
+
+ """
 # -------------------------------------- Polymorphism -----------------------------
 
 ''' 
@@ -361,7 +389,10 @@ pet_speak(fido)
 pet_speak(sisi)
 '''
 # # # # # # # # # #  part 63 (Object Oriented Programming - Special (Magic/Dunder) Methods) # # # # # # # # #
+#http://www.tutorialspoint.com/python/python_classes_objects.htm
+
 """ 
+
 my_list= [1,2,3]
 len(my_list) # this is possible
 
@@ -405,3 +436,98 @@ del b
 print(b)
 
  """
+class Employee:
+    # Class common attribute
+    empcounter = 0
+
+    # Attributes
+    def __init__(self,name,salary):
+        self.name = name
+        self.salary = salary
+        Employee.empcounter +=1
+
+    # methods
+    def display_count(self):
+        print (f'Total employees are : {Employee.empcounter}')
+    
+    def display_employee(self):
+        return F"Empoyee Name:{self.name}, Salary: {self.salary}" 
+
+emp1 = Employee('Sivan',32000)
+emp2 = Employee('Ola',42000)
+
+print (emp1.display_employee())
+print (emp2.display_employee())
+emp1.display_count()
+
+#----------------------------------------
+#NICE METHODS WITH OBJECTS
+
+#The getattr(obj, name[, default]) − to access the attribute of object
+#The hasattr(obj,name) − to check if an attribute exists or not.,
+#The setattr(obj,name,value) − to set an attribute. If attribute does not exist, then it would be created
+# The delattr(obj, name) − to delete an attribute.
+print(hasattr(emp1,'age'))  
+setattr(emp1,'age',25)
+print(getattr(emp1,'age'))
+delattr(emp1,'age')
+print(hasattr(emp1,'age'))
+print(hasattr(emp1,'name'))
+setattr(emp2,'position','Architect')# Add a 'position' attribute.
+setattr(emp1,'age',0)
+emp1.age = 23
+print (F"Empoyee Name:{emp2.name}, Salary: {emp2.salary}, age:{emp1.age} ")
+print (F"Empoyee Name:{emp2.name}, Salary: {emp2.salary}, position:{emp2.position} ")
+emp2.position = 'HIL engineer'  #Modify 'age' attribute.
+print (F"Empoyee Name:{emp2.name}, Salary: {emp2.salary}, position:{emp2.position} ")
+
+
+#----------------------------------------------------
+# __dict__ − Dictionary containing the class's namespace.
+# __doc__ − Class documentation string or none, if undefined. 
+# __name__ − Class name.
+# __module__ − Module name in which the class is defined. This attribute is "__main__" in interactive mode. 
+# __bases__ − A possibly empty tuple containing the base classes, in the order of their occurrence in the base class list.
+
+print ("Employee.__doc__:" , Employee.__doc__)
+print ("Employee.__name__:", Employee.__name__)
+print ("Employee.__module__:", Employee.__module__)
+print ("Employee.__bases__:", Employee.__bases__)
+print ("Employee.__dict__:", Employee.__dict__)
+
+#------------------------------------------------
+print('*'*100)
+class Point:
+   def __init__( self, x=0, y=0):
+      self.x = x
+      self.y = y
+   def __del__(self):
+      class_name = self.__class__.__name__
+      print (class_name, "destroyed")
+
+pt1 = Point()
+pt2 = pt1
+pt3 = pt1
+print (id(pt1))
+print (id(pt2))
+print (id(pt3))
+# prints the ids of the obejcts
+# del pt1
+# del pt2
+# del pt3
+
+#-----------------------------------------Multiple Inheritance --------------------
+#you can drive a class from multiple parent classes as follows −
+""" class A:        # define your class A
+.....
+
+class B:         # define your class B
+.....
+
+class C(A, B):   # subclass of A and B
+..... """
+
+# www.tutorialspoint.com/python/python_classes_objects.htm
+
+class Father:
+    pass
