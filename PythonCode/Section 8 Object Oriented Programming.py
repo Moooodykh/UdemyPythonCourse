@@ -435,7 +435,11 @@ print(len(b))
 del b
 print(b)
 
- """
+"""
+
+#-----------------------------------------------------------------------
+#EXAMPLES FROM http://www.tutorialspoint.com/python/python_classes_objects.htm
+"""  
 class Employee:
     # Class common attribute
     empcounter = 0
@@ -497,6 +501,8 @@ print ("Employee.__dict__:", Employee.__dict__)
 
 #------------------------------------------------
 print('*'*100)
+#---------------------------------------------------------------------------
+
 class Point:
    def __init__( self, x=0, y=0):
       self.x = x
@@ -515,19 +521,162 @@ print (id(pt3))
 # del pt1
 # del pt2
 # del pt3
-
-#-----------------------------------------Multiple Inheritance --------------------
+''''''
+#-----------------------------------------Multiple Inheritance -----------------------------------------
 #you can drive a class from multiple parent classes as follows −
-""" class A:        # define your class A
+""" 
+
+"""
+class A:        # define your class A
 .....
 
 class B:         # define your class B
 .....
 
 class C(A, B):   # subclass of A and B
-..... """
+..... 
+"""
 
 # www.tutorialspoint.com/python/python_classes_objects.htm
 
+""" 
+class Syster:
+    def __init__(self):
+        print('Syster constructor called ')
+
+
 class Father:
-    pass
+    def __init__(self):
+        print('Father constructor called ')
+
+    def fatherfeeding(self):
+        print('Father feeding')
+
+
+class Mohter:
+    def __init__(self):
+        print('Mother constructor called ')
+    
+    def motherfeeding(self):
+        print('Mother feeding')
+
+# MULTIPLE INHERTIANCE
+class Child(Father,Mohter):
+    def __init__(self):
+        print('Child contructor is called')
+
+c = Child()
+f= Father()
+m = Mohter()
+print(c.__class__)
+print(c.__class__.__name__)
+
+# ISSUBCLASS
+print(issubclass(Child,Father))
+print(issubclass(Child,Syster))
+print(issubclass(Child,(Father,Mohter)))
+print(issubclass(Child,(Father,Syster))) # True becuase OR, which means if Child is sbuclass of father or subclass to syster
+
+print('-----------------------------------')
+# IS OBJECT INSTATNCE
+print(isinstance(c,Child))
+print(isinstance(c,Syster))
+ """
+#-----------------------------------------Base Overloading Methods  -----------------------------------------
+
+""" 
+class Vector:
+
+######
+# 1. __init__ ( self [,args...] )
+
+# Constructor (with any optional arguments)
+
+# Sample Call : obj = className(args)
+    def __init__(self,a,b):
+        self.a = a
+        self.b = b 
+
+######
+# 2. __del__( self )
+
+# Destructor, deletes an object
+
+# Sample Call : del obj
+    def __del__(self):
+        print('Are you sure that you want to delete this object?')
+        user_input= input('yes or no, please')
+        if user_input == 'yes':
+            del self
+        else:
+            pass
+
+######
+# 3. __repr__( self )
+
+# Evaluable string representation
+
+# Sample Call : repr(obj)
+    def __repr__(self):
+        pass
+
+######
+# 4. __str__( self )
+
+# Printable string representation
+
+# Sample Call : str(obj)
+    def __str__(self):
+        return 'Vector (%d, %d)' % (self.a, self.b)
+
+######
+# 5. __cmp__ ( self, x )
+
+# Object comparison
+
+# Sample Call : cmp(obj, x)
+
+    def __cmp__(self,x):
+        return self.a == x
+
+
+    def __add__(self,other):
+        return f'Vector({self.a}+{other.a}, {self.b}+{other.b})'
+
+v1 = Vector(5,6)
+v2 = Vector(10,12)
+print(v1+v2) """
+
+class Vector:
+   def __init__(self, a, b):
+      self.a = a
+      self.b = b
+
+   def __str__(self):
+      return 'Vector (%d, %d)' % (self.a, self.b)
+   
+   def __add__(self,other):
+      return Vector(self.a + other.a, self.b + other.b)
+
+v1 = Vector(2,10)
+v2 = Vector(5,-2)
+print (v1 + v2)
+
+
+# -----------------------Data Hiding------------------------
+# An object's attributes may or may not be visible outside the class definition. 
+# You need to name attributes with a double underscore prefix, 
+# and those attributes then are not be directly visible to outsiders.
+
+class JustCounter:
+   __secretCount = 0
+  
+   def count(self):
+      self.__secretCount += 1
+      print (self.__secretCount)
+
+counter = JustCounter()
+counter.count()
+counter.count()
+# print counter.__secretCount # this will show an error 
+print (counter._JustCounter__secretCount) # object._className__attrName
