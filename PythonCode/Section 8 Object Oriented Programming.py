@@ -680,3 +680,125 @@ counter.count()
 counter.count()
 # print counter.__secretCount # this will show an error 
 print (counter._JustCounter__secretCount) # object._className__attrName
+
+
+# # # # # # # # # #  part 64- 65 (Object Oriented Programming - Homework & Solution) # # # # # # # # #
+
+""" 
+# Problem nr 2 , 
+class Cylinder:
+
+    pi =3.14
+
+    def __init__(self,height=1,radius = 1):
+        self.height = height
+        self.radius = radius
+
+    def volume(self):
+        return self.pi * self.radius**2 * self.height
+
+    def surface_area(self):
+        return (2 * self.pi * self.radius * self.height + 2 * self.pi * self.radius**2)
+    
+
+c = Cylinder(2,3)
+print(c.volume())
+print(c.surface_area())
+
+
+# Problem nr 1 ,
+import math
+class Line:
+
+    def __init__(self,coor1,coor2):
+        self.x1 = coor1[0]
+        self.y1 = coor1[1]
+        self.x2 = coor2[0]
+        self.y2 = coor2[1]
+    
+
+    def distance(self):
+        return math.sqrt((self.x2 - self.x1)**2 + (self.y2 - self.y1)**2) 
+
+    def slope(self):
+        return ((self.y2  - self.y1 )/(self.x2 - self.x1))
+
+    def __str__(self):
+        return f'({self.coor1},{self.coor2})'
+       # return '(%d,%d)' %(self.coor1,self.coor2)
+
+
+coordinate1 = (3,2)
+coordinate2 = (8,10)
+
+li = Line(coordinate1,coordinate2)
+print(li.slope())
+print(li.distance())
+"""
+
+'''
+TEACHER SOLUTION
+
+class Line(object):
+    
+    def __init__(self,coor1,coor2):
+        self.coor1 = coor1
+        self.coor2 = coor2
+    
+    def distance(self):
+        x1,y1 = self.coor1
+        x2,y2 = self.coor2
+        return ((x2-x1)**2 + (y2-y1)**2)**0.5
+    
+    def slope(self):
+        x1,y1 = self.coor1
+        x2,y2 = self.coor2
+        return (y2-y1)/(x2-x1)
+
+coordinate1 = (3,2)
+coordinate2 = (8,10)
+
+li = Line(coordinate1,coordinate2)
+print(li.slope())
+print(li.distance())
+
+'''
+
+# # # # # # # # # #  part 66- 67 (Object Oriented Programming - Challenge Overview & Solution) # # # # # # # # #
+
+"""
+print('*'*100)
+class Account:
+    
+
+    def __init__(self,owner,balance = 0):
+        self.owner = owner
+        self.balance = balance
+
+    def deposit(self,amount):
+        self.balance += amount 
+        print(f'Desposit accpeted, we added ${amount} to your account ')
+        print(f'Your new balance:${self.balance}')
+
+    def withdraw(self,amount):
+        if amount > self.balance:
+            print('Funds Unavailable in your balance, try again with less amount')
+        else:
+            self.balance -= amount 
+            print(f'Withdrawal accpeted, you withdraw ${amount} from your account ')
+            print(f'Your new balance:${self.balance} ')
+
+    def __str__(self):
+        return (f'Account owner:{self.owner} \nAccount balance:${self.balance}' )
+
+    def __len__(self):
+        return(self.balance)
+
+acc1 = Account('Moody',500)
+print(acc1)
+print(acc1.owner)
+print(acc1.balance)        
+acc1.deposit(50)
+acc1.deposit(350)
+acc1.withdraw(700) 
+"""
