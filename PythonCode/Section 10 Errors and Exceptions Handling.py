@@ -2,6 +2,8 @@
 
 # # # # # # # # # #  part 71 (Errors and Exception Handling) # # # # # # # # #
 
+
+
 """ 
 # errors can happen all the time
 # if an error happens that means the running script will be stopped so that we use error/exception handling
@@ -83,8 +85,58 @@ is_int()
 
 # # # # # # # # # #  part 72 - 73 (Errors and Exceptions Homework / Solution) # # # # # # # # #
 
+"""
+### Problem 1
+# Handle the exception thrown by the code Sbelow by using try and except blocks.
+#for i in ['a','b','c']:
+#    print(i**2)
 
+try:
+    for i in [1,'b','c']:
+        print(i**2)
+except:
+    print('You are not entering numbers')
+else:
+    print(i**2)
 
+### Problem 2
+# Handle the exception thrown by the code below by using try and except blocks
+# . Then use a finally block to print 'All Done.'
+# x = 5
+# y = 0
+# z = x/y
+print('*'*100)
+try:
+    x = 5 
+    y = 0
+    z = x/y
+except:
+    print('division by zero')
+else:
+    print(z)
+finally:
+    print('All done!!')
+
+### Problem 3
+# Write a function that asks for an integer and prints the square of it. 
+# Use a while loop with a try, except, else block to account for incorrect inputs.
+#  def ask()
+print('+'*100)
+
+def ask():
+    while True:
+
+        try:
+            num = int(input('provide a number '))
+        except:
+            print('please provide an integer')
+            continue
+        else:
+            print(f'Sequre of {num} is:',num**2)
+            break
+    
+ask()
+"""
 # # # # # # # # # #  part 74 (Pylint Overview) # # # # # # # # #
 
 
