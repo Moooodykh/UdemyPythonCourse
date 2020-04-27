@@ -82,3 +82,34 @@ some_sub_func()
 """
 
 # # # # # # # # # #  part 70 ( __name__ and "__main__") # # # # # # # # #
+# in this example will use two.py ad one.py(this file)
+# ONE.py is located in Mainpackage folder.
+
+# TWO.PY
+
+# from Mainpackage.one import func
+# func()
+""" 
+def func2():
+    print('FUNC()2 CALLED FROM TWO.PY')
+from Mainpackage import one
+one.func()
+print('TWO top level')
+
+if __name__ == "__main__":
+    print('TWO.PY is running directly ')
+else:
+    print('TWO.py is being imported into another module')
+
+ """
+
+# THREE.py is just to try to import from other python file which is located in other location
+""" 
+import sys,os
+my_dir ='E:/PROGRAMMING/github/UdemyPythonCourse/PythonCode/Mainpackage/SubPackage/'
+
+#this CODE WILL HELP US TO import func2 from three.py which is located in other directory
+#three.py is just to try to implement import functinality
+sys.path.insert(1, my_dir)
+from three import func2
+ """
