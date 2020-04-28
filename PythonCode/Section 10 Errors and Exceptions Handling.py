@@ -138,10 +138,37 @@ def ask():
 ask()
 """
 # # # # # # # # # #  part 74 (Pylint Overview) # # # # # # # # #
+# we need to install pylint library
+# pip install pylint
+# WE need to run that to one simple example by openning cmd then Pylint thisfile.py
+# check the report and try to implement and correct the errors
 
 
+""" 
+we put this example as start
+a = 1
+b = 2
+print (a)
+print(b)
+we got -6 of 10 by running this in CMD pylint cap.py
 
+# we developed the code to look like down and I got 10 of 10 : 
+'''
+This is a simple function
+'''
+
+def func():
+    '''
+    this is a simple function
+    '''
+    first = 1
+    second = 2
+    print(second)
+    print(first)
+    
+
+ """
 
 # # # # # # # # # #  part 75 (Running tests with the Unittest Library) # # # # # # # # #
 
-
+# in this section will move to Folder Unittest which contains the function script and unit tests for this function
