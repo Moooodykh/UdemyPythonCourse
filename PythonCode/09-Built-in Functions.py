@@ -69,13 +69,70 @@ print(list(filter(lambda num : num >= 9,lst))) # greater than nine
 #--------------------------------------------------------
 # # # # # # # # # #  part 4 (Zip Function) # # # # # # # # #
 
+'''
+# Zip is joining two iterables together and the result will be TUPLE PAIRS
+a = [1,2,3]
+b = [4,5,6]
+c= [7,8,9,10,11,12]
 
+print(list(zip(a,b)))
+print(list(zip(a,c)))# Zip gives Tuples based on the smaller size 
+#(a is smaller than c so the Tuples will be based on a lenght)
+
+
+# trying to find a max of zipped list
+for item in zip(a,b):
+    print(max(item))
+
+# Zip with Dictionary
+d1 = {'a':1,'b':2}
+d2 = {'c':3,'d':4}
+
+print(list(zip(d1.items(),d2.items())))
+print(list(zip(d1.keys(),d2.values()))) # swapping the values from d2 to d1 
+print(list(zip(d2.keys(),d1.values()))) # swapping the values from d1 to d2 
+''' 
+#--------------------------------------------------------
 # # # # # # # # # #  part 5 (Enumerate Function) # # # # # # # # #
 
+''' 
+# enumerate will make a counter to an iterable(list)
+lst = ['a','b','c']
+
+for item in lst:
+    print(item)
+
+for i,item in enumerate(lst):
+    print(f"({i},{item})")
+
+for i,item in enumerate(lst): # TUPLE UNPACKING , COUNTER FIRST (I or N) and then the ITEM it self
+    if i >=2 :
+        break
+    else: 
+        print(item)
+'''
+#--------------------------------------------------------
 # # # # # # # # # #  part 6 (all() and any() Function) # # # # # # # # #
 
+''' 
+# ALL: is taking a list of booleans , if all are true i return true else it returns false
+# ANY: is taking a list of booleans , if any of them is true return true else returns false
+lst = [True,True,False,False]
+print(all(lst))
+print(any(lst))
+'''
+#--------------------------------------------------------
 # # # # # # # # # #  part 7 (Complex Function) # # # # # # # # #
 
+''' 
+# COMPLEX Function is to make a complex number: (which contains a real and imaginary number) (e.g 2 + 5j)
+# it can deals with string or numbers 
+
+print(complex(2,3))
+print(complex(2))
+print(complex('2+5j'))
+'''
+#--------------------------------------------------------
 # # # # # # # # # #  part 8 (Built-in Functions Assessment Test) # # # # # # # # #
 
 # # # # # # # # # #  part 9 (Built-in Functions Assessment Test - Solution) # # # # # # # # #
