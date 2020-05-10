@@ -132,8 +132,223 @@ print(complex(2,3))
 print(complex(2))
 print(complex('2+5j'))
 '''
-#--------------------------------------------------------
-# # # # # # # # # #  part 8 (Built-in Functions Assessment Test) # # # # # # # # #
+#-------------------------------------------------------------------------------------------------
+# # # # # # # # # #  part 8 & 9 (Built-in Functions Assessment Test & solutions) # # # # # # # # #
+#-------------------------------------------------------------------------------------------------
 
-# # # # # # # # # #  part 9 (Built-in Functions Assessment Test - Solution) # # # # # # # # #
+#### Problem 1
+'''
+# Use map() to create a function which finds the length of each word in the phrase (broken by spaces)
+#  and returns the values in a list.
+# The function will have an input of a string, and output a list of integers.
 
+# word_lengths('How long are the words in this phrase')
+# [3, 4, 3, 3, 5, 2, 4, 6]
+
+def word_lenghts(text):
+    words = text.split()
+    print(list(map(len,words))) 
+word_lenghts('How long are the words in this phrase')
+
+print('*'*100)
+'''
+#----------------------------------------------
+
+####Problem 2
+''' 
+# Use reduce() to take a list of digits and return the number that they correspond to.
+# For example, [1, 2, 3] corresponds to one-hundred-twenty-three. 
+# Do not convert the integers to strings!
+
+# digits_to_num([3,4,3,2,1])
+# 34321
+"""
+TEACHER SOLUTION:
+from functools import reduce
+
+def digits_to_num(digits):
+    
+    return reduce(lambda x,y:x*10 + y,digits)
+"""
+from functools import reduce
+def digits_to_num(lst):
+    return reduce(lambda x,y:f"{x}{y}",lst)
+
+print(digits_to_num([3,4,3,2,1]))
+
+print('*'*100)
+'''
+
+#----------------------------------------------
+
+####Problem 3
+'''
+# Use filter to return the words from a list of words which start with a target letter.
+
+# l = ['hello','are','cat','dog','ham','hi','go','to','heart']
+# filter_words(l,'h')
+# result = ['hello', 'ham', 'hi', 'heart']
+
+def filter_words(lst,letter):
+
+    return list(filter(lambda x: x[0] == letter,lst)) 
+    
+l = ['hello','are','cat','dog','ham','hi','go','to','heart']
+print(filter_words(l,'h'))
+
+print('*'*100) 
+'''
+#----------------------------------------------
+####Problem 4
+'''
+# Use zip() and a list comprehension to return a list of the same length where
+# each value is the two strings from L1 and L2 concatenated together with connector between them. 
+# Look at the example output below:
+# concatenate(['A','B'],['a','b'],'-')
+# ['A-a', 'B-b']
+
+"""
+TEACHER SOLUTION:
+def concatenate(L1, L2, connector):
+    
+    return [word1+connector+word2 for (word1,word2) in zip(L1,L2)]
+"""
+
+
+def concatenate(lst1,lst2,connector):
+    result = list(zip(lst1,lst2))
+    c_result = []
+    for item in result:
+        print(item)
+        c_result.append(connector.join(item))
+    
+    return c_result
+
+
+print(concatenate(['A','B'],['a','b'],'-'))
+
+print('*'*100)
+'''
+#----------------------------------------------
+
+#### Problem 5
+''' # Use enumerate() and other skills to return a dictionary which has the values 
+# of the list as keys and the index as the value. 
+# You may assume that a value will only appear once in the given list.
+
+# d_list(['a','b','c'])
+# {'a': 0, 'b': 1, 'c': 2}
+
+"""
+TEACHER SOLUTION:
+def d_list(L):
+    
+    return {key:value for value,key in enumerate(L)}
+"""
+
+def list_to_dict(lst):
+    dic = {}
+    Enumerated_list = enumerate(lst)
+    for i,item in Enumerated_list:
+        dict(Enumerated_list)
+    return Enumerated_list
+
+print(list_to_dict(['a','b','c']))
+
+print('*'*100)
+'''
+#----------------------------------------------
+
+#### Problem 6
+
+''' 
+# Use enumerate() and other skills from above to return the count of the number of items
+#  in the list whose value equals its index.
+
+# count_match_index([0,2,2,1,5,5,6,10])
+# 4
+
+"""
+TEACHER SOLUTION:
+def count_match_index(L):
+       
+    return len([num for count,num in enumerate(L) if num==count])
+"""
+
+
+def count_match_index(lst):
+    x = enumerate(lst)
+    counter = 0
+    for i, item in x:
+        if i == item:
+            counter += 1
+
+    return counter
+
+print(count_match_index([0,2,2,1,5,5,6,10]))
+'''
+
+#--------------------- Comprehension LIST with examples 1-2-3-4-5-6 -----------------------
+
+''' 
+####Problem 1 
+# word_lengths('How long are the words in this phrase')
+# [3, 4, 3, 3, 5, 2, 4, 6]
+def word_lengths(text):
+    return [len(x) for x in text.split()]
+
+print(word_lengths('How long are the words in this phrase'))
+#---------------------------
+
+####Problem 2
+# digits_to_num([3,4,3,2,1])
+# 34321
+from functools import reduce
+def digits_to_num(lst):
+    # either
+    return reduce(lambda x,y:x*10 + y , lst)
+    # or
+    return reduce(lambda x,y:f'{x}{y}',lst)
+print(digits_to_num([3,4,3,2,1]))  
+#---------------------------
+
+####Problem 3
+# without using Filter func
+l = ['hello','are','cat','dog','ham','hi','go','to','heart']
+def filter_words(lst,letter):
+    return [x for x in lst if x[0] == letter]
+
+# with Filter func
+def filter_words_f(lst,letter):
+    return list(filter(lambda x:x[0] == letter,lst))
+print(filter_words(l,'h'))
+print(filter_words_f(l,'h'))
+#---------------------------
+
+####Problem 4
+# concatenate(['A','B'],['a','b'],'-')
+# ['A-a', 'B-b']
+
+def concatenate(item1,item2,connector):
+    return [item1 + connector + item2 for (item1,item2) in zip(item1,item2)]
+
+print(concatenate(['A','B'],['a','b'],'-'))
+#---------------------------
+
+####Problem 5
+# d_list(['a','b','c'])
+# {'a': 0, 'b': 1, 'c': 2}
+def list_dic(lst):
+    return {item:i for i,item in enumerate(lst)}
+
+print(list_dic(['a','b','c']))
+#---------------------------
+
+####Problem 6
+# count_match_index([0,2,2,1,5,5,6,10])
+# 4
+def  count_match_index(lst):
+    return len([item for i,item in enumerate(lst) if i == item])
+
+print(count_match_index([0,2,2,1,5,5,6,10]))
+'''
