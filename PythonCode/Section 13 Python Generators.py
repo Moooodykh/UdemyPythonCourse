@@ -106,3 +106,65 @@ print(next(s_iter)) # print l
 
 
 # # # # # # # # # #  part 84 - 85(Generators Homework Overview & solutions) # # # # # # # # #
+
+""" 
+### Problem 1
+# Create a generator that generates the squares of numbers up to some number N.
+def gensquares(n):
+    for item in range(1,n+1):
+        yield item **2 
+
+print(list(gensquares(5)))
+print('-'*100)
+### Problem 2
+# Create a generator that yields "n" random numbers between a low and high number (that are inputs). 
+# Note: Use the random library. For example:
+
+import random
+
+def rand_num(low,high,n):
+    if n < abs(high-low):
+          
+        for i in range(n):
+            yield random.randint(low,high)
+    else:
+        print(f'You can not intialize{n}numbers between {low} and {high}')
+r = rand_num(1,12,5)
+print(list(rand_num(1,12,10)))
+print(next(r))
+print(next(r))
+print(next(r))
+print(next(r))
+print('-'*100)
+### Problem 3
+# Use the iter() function to convert the string below into an iterator:
+s = 'hello'
+s_iter = iter(s)
+for i in s_iter:
+    print(i)
+# another way
+g = iter(s)    
+print(next(g))
+
+print('-'*100)
+### Problem 4
+# Explain a use case for a generator using a yield statement where
+#  you would not want to use a normal function with a return statement.
+
+# we can use it when we have a big iteration(input from user = 100000) and we do not need to keep that in the 
+# memory , we need to take it value by value.
+# e.g FIBONACCI function
+
+print('-'*100)
+### Problem 5 : EXTRA CREDIT
+# Can you explain what gencomp is in the code below? (Note: We never covered this in lecture!
+#  You will have to do some Googling/Stack Overflowing!)
+
+my_list = [1,2,3,4,5]
+
+gencomp = (item for item in my_list if item > 3)
+
+
+for item in gencomp:
+    print(item)
+"""
