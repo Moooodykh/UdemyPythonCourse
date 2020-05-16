@@ -139,7 +139,49 @@ print(someddict[3]) # print int(), thus 0
 """
 
 # # # # # # # # # #  part 89 ( Collections Module - OrderedDict) # # # # # # # # #
+
+""" # Ordered dict is a dictionary with ordered items in it
+from collections import OrderedDict
+
+d1 = {}
+d1['a'] = 1
+d1['c'] = 3
+d1['b'] = 2
+d1['e'] = 5
+d1['d'] = 4
+
+for k,v in d1.items():
+    print(k,v) # here the items does not need to be ordereded in the correct way as it entered because a dictionary is like a place 
+    # to hold despite the order
+
+
+d2 = OrderedDict()
+d2['a'] = 1
+d2['b'] = 2
+d2['c'] = 3
+d2['d'] = 4
+d2['e'] = 5
+
+for k,v in d2.items():
+    print(k,v)
+
+# you can see when you print boths of dicts , it is not the same order the items is placed inside of them.
+print('Dictionaries are equal?')
+
+d1 = OrderedDict()
+d1['a'] = 'A'
+d1['b'] = 'B'
+
+d2 = OrderedDict()
+d2['b'] = 'B'
+d2['a'] = 'A'
+
+print(d1==d2)
+"""
+
 # # # # # # # # # #  part 90 ( Collections Module - namedtuple) # # # # # # # # #
+
+
 # # # # # # # # # #  part 91 ( Datetime ) # # # # # # # # #
 # # # # # # # # # #  part 92 ( Python Debugger - pdb) # # # # # # # # #
 # # # # # # # # # #  part 93 ( Timing your code - timeit) # # # # # # # # #
