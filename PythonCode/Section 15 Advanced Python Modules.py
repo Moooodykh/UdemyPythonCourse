@@ -181,9 +181,106 @@ print(d1==d2)
 
 # # # # # # # # # #  part 90 ( Collections Module - namedtuple) # # # # # # # # #
 
+#Namedtuple is another way of having a class/tuple with name of attributes(not only value)
+
+"""
+from collections import namedtuple
+# normal classic wat
+t = (1,2,3)
+print(t[0])
+
+dog = namedtuple('Dog','name breed age')
+sam = dog(name ='Sammy',breed=88, age=9)
+print(sam.age,sam.breed,sam.name)
+# or as normal tuples
+print(sam[0],sam[1],sam[2])
+"""
 
 # # # # # # # # # #  part 91 ( Datetime ) # # # # # # # # #
+
+"""
+import datetime
+##### TIME
+
+# specifying datetime.time(hour,minute,second,microsecond)
+t = datetime.time(11,22,55) # this will throw a value error if you enter a wrong time stamp(hour,min,sec...etc)
+print(t)
+print(t.hour)
+print(t.min)
+print(t.second)
+print(t.isoformat())# HH:MM:SS:mmmmmmm
+print(t.tzinfo)
+print(t.utcoffset())
+print(t.dst())
+print(t.min) # calling the minimum value of time 
+print(datetime.time.min)
+print(datetime.time.max)# calling the maximum value of time 
+
+
+print(t)
+print('hour  :', t.hour)
+print('minute:', t.minute)
+print('second:', t.second)
+print('microsecond:', t.microsecond)
+print('tzinfo:', t.tzinfo)
+
+print('Earliest  :', datetime.time.min)
+print('Latest    :', datetime.time.max)
+print('Resolution:', datetime.time.resolution)
+##### DATE
+
+print('*'*100)
+today = datetime.date.today()
+ts = datetime.date(19,5,29)
+print(today)
+print(today.isoweekday())
+print(today.day)
+print(today.month)
+print(today.year)
+print(today.timetuple())
+print(today.replace(month=9))
+print(today.ctime()) #ctime(DAY NAME , MONTH, DAY NUMBER , HOURS, YEAR ) 
+                        #IS THIS FORMAT : Tue May 19 00:00:00 2020
+
+print(ts.isoformat())# This is 'YYYY-MM-DD'.
+print(today.toordinal())
+print(today.fromordinal(737564))
+print(today.fromordinal(7)) # manipulate this number to see the differences
+
+print(today)
+print('ctime:', today.ctime())
+print('tuple:', today.timetuple())
+print('ordinal:', today.toordinal())
+print('Year :', today.year)
+print('Month:', today.month)
+print('Day  :', today.day)
+
+
+import time,calendar
+
+d = datetime.datetime.now()
+print(d.ctime())
+print(d.timetz())
+print(d.tzinfo)
+print(d.resolution)
+print (time.mktime(d.timetuple()))
+
+s = datetime.datetime.utcnow()
+print(s.ctime())
+print (calendar.timegm(s.timetuple()))
+
+
+print('Earliest  :', datetime.date.min)
+print('Latest    :', datetime.date.max)
+print('Resolution:', datetime.date.resolution)
+
+
+y = datetime.date.today()
+u = datetime.date(2020,3,19)
+print(y-u)
+print(datetime.timedelta(5555,6))
+"""
 # # # # # # # # # #  part 92 ( Python Debugger - pdb) # # # # # # # # #
 # # # # # # # # # #  part 93 ( Timing your code - timeit) # # # # # # # # #
 # # # # # # # # # #  part 94 (  Regular Expressions -re) # # # # # # # # #
-# # # # # # # # # #  part 95 ( StringIO ) # # # # # # # # #         
+# # # # # # # # # #  part 95 ( StringIO ) # # # # # # # # #
