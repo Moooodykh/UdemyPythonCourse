@@ -281,6 +281,82 @@ print(y-u)
 print(datetime.timedelta(5555,6))
 """
 # # # # # # # # # #  part 92 ( Python Debugger - pdb) # # # # # # # # #
+
+"""
+# this PYTHON Debugger will help me to debug my code.
+# I need to set a trace directly when I import that 
+import pdb
+pdb.set_trace()
+
+
+x = 5
+y= 'a'
+result = x+y
+print(result)
+"""
+
 # # # # # # # # # #  part 93 ( Timing your code - timeit) # # # # # # # # #
+
+""" 
+#Sometimes it's important to know how long your code is taking to run, or at least know if a particular line of code is slowing down your entire project.
+#  Python has a built-in timing module to do this.
+# This module provides a simple way to time small bits of Python code. 
+# It has both a Command-Line Interface as well as a callable one. 
+# It avoids a number of common traps for measuring execution times.
+import timeit
+
+### range
+print('-'.join(str(i) for i in range(100)))
+print(
+timeit.timeit('"-".join(str(i) for i in range(100))', number = 10000) # calling the timeit(which count time execution)
+    )
+### Listcomprehension 
+print("-".join([str(x) for x in range(100)]))
+print(
+timeit.timeit('"-".join([str(x) for x in range(100)])',number= 10000)
+)
+
+### MAP func
+"-".join(map(str,range(100)))
+print(
+    timeit.timeit('"-".join(map(str,range(100)))',number= 10000)
+)
+x = range(5)
+print(*x)
+"""
+
 # # # # # # # # # #  part 94 (  Regular Expressions -re) # # # # # # # # #
+
+#Regular expressions are very useful functions/methods that we can use. it contains a lot of functions.
+
+### SEARCH func
+import re
+
+patterns =['term1','term2']
+
+text = 'This is a text where you find the term1 but not the other term.'
+
+print('FUNCTION SEARCH: ')
+
+for pattern in patterns:
+    print(f'We are seraching for "{pattern}" in \n"{text}"')
+    x = re.search(pattern,text)
+    if x :
+        print('Match found')
+        print(type(x))
+
+    else:
+        print('Match NOT found')
+
+match = re.search('hello','Hi guys and hello to our club')
+print(match)
+print(type(match))
+print(match.start())
+print(match.end())
+print(match)
+
+def strong():
+    
+
+
 # # # # # # # # # #  part 95 ( StringIO ) # # # # # # # # #
