@@ -81,6 +81,7 @@ print(d)
 """
 
 # # # # # # # # # #  part 88 ( Collections Module - defaultdict) # # # # # # # # #
+from typing import Any
 
 """ 
 # defaultdict is a dictionary which did not throw any error if we  apply a key which is not exist or has a value
@@ -180,10 +181,10 @@ print(d1==d2)
 """
 
 # # # # # # # # # #  part 90 ( Collections Module - namedtuple) # # # # # # # # #
-
+"""
 #Namedtuple is another way of having a class/tuple with name of attributes(not only value)
 
-"""
+
 from collections import namedtuple
 # normal classic wat
 t = (1,2,3)
@@ -327,12 +328,14 @@ print(*x)
 
 # # # # # # # # # #  part 94 (  Regular Expressions -re) # # # # # # # # #
 
-#Regular expressions are very useful functions/methods that we can use. it contains a lot of functions.
+# Regular expressions are very useful functions/methods that we can use. it contains a lot of functions.
 
-### SEARCH func
-import re
+#######
+# SEARCH func
+#######
+""" import re
 
-patterns =['term1','term2']
+patterns = ['term1', 'term2']
 
 text = 'This is a text where you find the term1 but not the other term.'
 
@@ -340,23 +343,658 @@ print('FUNCTION SEARCH: ')
 
 for pattern in patterns:
     print(f'We are seraching for "{pattern}" in \n"{text}"')
-    x = re.search(pattern,text)
-    if x :
+    x = re.search(pattern, text)
+    if x:
         print('Match found')
         print(type(x))
 
     else:
         print('Match NOT found')
 
-match = re.search('hello','Hi guys and hello to our club')
+match = re.search('hello', 'Hi guys and hello to our club')
 print(match)
 print(type(match))
 print(match.start())
 print(match.end())
-print(match)
+print(match.span())  # showing the start and the end index as tuple
+"""
 
-def strong():
+#######
+# SLPIT func
+#######
+
+""" 
+# this function as split function before
+split_mark = '@'
+statment = 'Is your email : hello@gmail.com?'
+print(statment.split(split_mark))
+
+# this is exactly the same as above function
+print(re.split(split_mark, statment))
+"""
+
+#######
+# FINDALL func
+#######
+
+''' 
+# Returns a list of all matches
+result = re.findall('match', 'We will try to find matches, here is the first match, here is another match.')
+print(result)
+# we use it normally with len func
+print(len(result))
+
+
+# This function is define to check all possible syntax.
+def multi_re_find(patterns,phrase):
+    """
+        Takes in a list of regex patterns
+        Prints a list of all matches
+    """
+    for pattern in patterns:
+        print('Searching the phrase using the re check: %r' % (pattern)) #%r is showing the pattern as it is without cut
+        print(re.findall(pattern, phrase))
+        print('\n')
+
+
+print ('%r'%('hi'))
+print('hi')
+
+'''
+#######
+# Repetition Syntax
+#######
+
+""" 
+# There are five ways to express repetition in a pattern:
+#
+# A pattern followed by the meta-character * is repeated zero or more times.
+# Replace the * with + and the pattern must appear at least once.
+# Using ? means the pattern appears zero or one time.
+# For a specific number of occurrences, use {m} after the pattern, where m is replaced with the number of times the
+# pattern should repeat.
+
+# Use {m,n} where m is the minimum number of repetitions and n is the maximum. Leaving out n {m,} means the value
+# appears at least m times, with no maximum.
+
+
+
+test_phrase = 'sdsd..sssddd...sdddsddd...dsds...dsssss...sdddd'
+
+test_patterns = ['sd*',  # s followed by zero or more d's
+                 'sd+',  # s followed by one or more d's
+                 'sd?',  # s followed by zero or one d's
+                 'sd{3}',  # s followed by three d's
+                 'sd{2,3}',  # s followed by two to three d's
+                 ]
+
+multi_re_find(test_patterns,test_phrase)
+
+text_statement = 'tststt.tsss...ttt..stst.tst..ststttts....stststst.tttt.sss.sts'
+test_p = [
+            'st*',# this will s and then zero t or more
+            'st+',# this will return s and then one t or more
+            'st?',# this will return s and then zero t or more
+            'st{2}',#this will return s and then TWO t's
+            'st{3,4}', # this will return s and then THREE or FOUR t's
+            ]
+
+# print(*test_p)
+multi_re_find(test_p,text_statement)
+"""
+
+###########
+# Character Sets
+##########
+
+""" 
+# Character sets are used when you wish to match any one of a group of characters at a point in the input.
+#  Brackets are used to construct character set inputs. For example:
+#  the input ab searches for occurrences of either a or b. Let's see some examples:
+
+test_phrase_2 = 'sdsd..sssddd...sdddsddd...dsds...dsssss...sdddd'
+
+test_patterns_2 = ['[sd]',    # either s or d
+                's[sd]+']   # s followed by one or more s or d
+
+multi_re_find(test_patterns_2,test_phrase_2)
+
+
+##########
+# Exclusion
+##########
+# We can use ^ to exclude terms by incorporating it into the bracket syntax notation. 
+# For example: ^... will match any single character not in the brackets.
+
+t_phrase = 'This is a string! But it has punctuation. How can we remove it?'
+
+print('[^!.? ]+')
+print(re.findall('[^!.? ]+',t_phrase))
+print('-'*100)
+print('[^!.? ]')
+print(re.findall('[^!.? ]',t_phrase))
+print('-'*100)
+print('[^!.?]')
+print(re.findall('[^!.?]',t_phrase))
+print('-'*100)
+print('[^!.?]+')
+print(re.findall('[^!.?]+',t_phrase))
+"""
+
+##########
+# Character Ranges
+##########
+""" 
+# As character sets grow larger, typing every character that should (or should not) 
+# match could become very tedious. A more compact format using character ranges lets you define
+#  a character set to include all of the contiguous characters between a start and stop point.
+#  The format used is start-end.
+
+# Common use cases are to search for a specific range of letters in the alphabet.
+#  For instance, a-f would return matches with any occurrence of letters between a and f.
+# Let's walk through some examples:
+
+print('*'*100)
+test_phrase = 'This is an example sentence. Lets see if we can find some letters.'
+
+test_patterns=['[a-z]+',      # sequences of lower case letters
+               '[A-Z]+',      # sequences of upper case letters
+               '[a-zA-Z]+',   # sequences of lower or upper case letters
+               '[A-Z][a-z]+'] # one upper case letter followed by lower case letters
+                
+multi_re_find(test_patterns,test_phrase)
+
+
+
+##########
+# Escape Codes
+##########
+
+# You can use special escape codes to find specific types of patterns in your data, 
+# such as digits, non-digits, whitespace, and more. For example:
+
+# Code	Meaning
+# \d	a digit
+# \D	a non-digit
+# \s	whitespace (tab, space, newline, etc.)
+# \S	non-whitespace
+# \w	alphanumeric
+# \W	non-alphanumeric
+# \A	Returns a match if the specified characters are at the beginning of the string	"\AThe"
+# \b	Returns a match where the specified characters are at the beginning or at the end of a word
+        # (the "r" in the beginning is making sure that the string is being treated as a "raw string")	
+        # r"\bain"
+        # r"ain\b"	
+# \B	Returns a match where the specified characters are present, but NOT at the beginning (or at the end) of a word
+        # (the "r" in the beginning is making sure that the string is being treated as a "raw string")	
+        # r"\Bain"
+        # r"ain\B"
+# \Z	Returns a match if the specified characters are at the end of the string	"Spain\Z"
+
+# Escapes are indicated by prefixing the character with a backslash \. 
+# Unfortunately, a backslash must itself be escaped in normal Python strings, 
+# and that results in expressions that are difficult to read. Using raw strings,
+#  created by prefixing the literal value with r, eliminates this problem and maintains readability.
+
+# Personally, I think this use of r to escape a backslash is probably one of the things 
+# that block someone who is not familiar with regex in Python from being able to read regex code at first.
+#  Hopefully after seeing these examples this syntax will become clear.
+
+print('*'*100)
+test_phrase = 'This is a string with some numbers 1233 and a symbol #hashtag'
+
+test_patterns=[ r'\d+', # sequence of digits
+                r'\D+', # sequence of non-digits
+                r'\s+', # sequence of whitespace
+                r'\S+', # sequence of non-whitespace
+                r'\w+', # alphanumeric characters
+                r'\W+', # non-alphanumeric (# and white spaces)
+                ]
+
+multi_re_find(test_patterns,test_phrase)
+
+# You should now have a solid understanding of how to use the regular expression module in Python. 
+# There are a ton of more special character instances,
+#  but it would be unreasonable to go through every single use case. 
+# Instead take a look at the full documentation if you ever need to look up a particular pattern.
+# DOCUMENTATION:
+# https://docs.python.org/3/library/re.html#regular-expression-syntax
+# Other link:
+# http://www.tutorialspoint.com/python/python_reg_expressions.htm
+"""
+
+####################################EXAMPLES##########################################
+# these examles & a lot of tutorials comes from :
+# https://www.w3schools.com/python/python_regex.asp
+
+
+# Character	Description	
+# []	A set of characters	"[a-m]"	
+# \	    Signals a special sequence (can also be used to escape special characters)	"\d"	
+# .	    Any character (except newline character)	"he..o"	
+# ^	    Starts with	"^hello"	
+# $	    Ends with	"world$"	
+# *	    Zero or more occurrences	"aix*"	
+# +	    One or more occurrences	"aix+"	
+# {}    	Exactly the specified number of occurrences	"al{2}"	
+# |	    Either or	"falls|stays"	
+# ()    	Capture and group	 
+import re
+
+##### []	A set of characters	"[a-m]"	
+txt = "The rain in Spain"
+#Find all lower case characters alphabetically between "a" and "g":
+x = re.findall("[a-g]", txt)
+y = re.findall('[g-t]',txt) #finding the letters between "g" and "t"
+print(x,y)
+
+##### \	    Signals a special sequence (can also be used to escape special characters)	"\d"
+
+txt = 'there is 69 numbers in 99'
+x = re.findall('\d',txt)
+y = re.findall('\d+',txt)
+z = re.findall(r'\S+',txt) # same as '\S'
+
+print(x,y,z)
+
+                # r'\d+', # sequence of digits
+                # r'\D+', # sequence of non-digits
+                # r'\s+', # sequence of whitespace
+                # r'\S+', # sequence of non-whitespace
+                # r'\w+', # alphanumeric characters
+                # r'\W+', # non-alphanumeric (# and white spaces)
+
+
+##### .	    Any character (except newline character)	"he..o"	
+
+txt = 'Hello world guys'
+x = re.findall('He...',txt)
+y = re.findall('He...+',txt)
+print(x,y)
+
+##### ^	    Starts with	"^hello"	
+
+txt = 'Hello this text contains hello world'
+x = re.findall('^Hello',txt)
+if x:
+    print('Yes, the text start with HELLO')
+else:
+    print('the text did not start with HELLO')
+
+##### $	    Ends with	"world$"	
+
+txt = 'Hello this text contains hello world'
+x = re.findall('world$',txt)
+if x:
+    print('Yes, the text ends with world')
+else:
+    print('the text did not end with world')
+
+##### *	    Zero or more occurrences	"aix*"	
+
+txt = "The rain in Spain falls mainly in the plain!"
+#Check if the string contains "ai" followed by 0 or more "x" characters:
+x = re.findall("aix*", txt)
+print(x)
+
+if x:
+    print("Yes, there is at least zero match or more!")
+else:
+    print("No match")
+
+##### +	    One or more occurrences	"aix+"	
+
+txt = "The rain in Spain falls mainly in the plain!"
+#Check if the string contains "ai" followed by 0 or more "x" characters:
+x = re.findall("aix+", txt)
+print(x)
+
+if x:
+    print("Yes, there is at least one match or more!")
+else:
+    print("No match")
+
+##### {}    	Exactly the specified number of occurrences	"al{2}"	
+
+txt = 'Hello all, welcome to this club today'
+x = re.findall('al{2}',txt) # a followed by two l's
+
+if x:
+    print("Yes, there is match!")
+    print(x)
+else:
+    print("No match")
+
+##### |	    Either or	"falls|stays"	
+
+txt = "The rain in Spain falls mainly in the plain!"
+#Check if the string contains either "falls" or "stays":
+x = re.findall('falls|stays|rain',txt)
+y = re.findall('[falls]+',txt)
+z = re.findall('[stays]+',txt)
+
+if x:
+    print("Yes, there is match! X ")
+    print(x)
+else:
+    print("No match")
+
+if y:
+    print("Yes, there is match! Y")
+    print(y)
+else:
+    print("No match")
+
+if z:
+    print("Yes, there is match! Z")
+    print(z)
+else:
+    print("No match")
+
+##### \A	Returns a match if the specified characters are at the beginning of the string	"\AThe"
+
+txt = "The rain in Spain"
+#Check if the string starts with "The":
+x = re.findall("\AThe", txt)
+
+print(x)
+
+if x:
+    print("Yes, there is a match!")
+else:
+    print("No match")
+
+
+##### \b	Returns a match where the specified characters are at the beginning or at the end of a word
+        # (the "r" in the beginning is making sure that the string is being treated as a "raw string")	
+        # r"\bain"
+        # r"ain\b"	
+
+txt = "The rain in Spain"
+
+#Check if "ain" is present at the beginning of a WORD:
+x = re.findall(r"\bain", txt) # check if any word of the statment start with "ain"
+y = re.findall(r"\brai", txt) # check if any word of the statment start with "rai"
+
+print(x)
+
+if x:
+    print("Yes, there is a word of the statment start with 'ain'! X")
+    print(x)
+else:
+    print("No match")
+
+if y:
+    print("Yes, there is a word of the statment start with 'rai'! Y")
+    print(y)
+else:
+    print("No match")
+
+##### \B	Returns a match where the specified characters are present, but NOT at the beginning (or at the end) of a word
+        # (the "r" in the beginning is making sure that the string is being treated as a "raw string")	
+        # r"\Bain"
+        # r"ain\B"
+
+txt = "The rain in Spain"
+
+#Check if "ain" is present, but NOT at the beginning of a word:
+x = re.findall(r"\Bain", txt)
+
+print(x)
+
+if x:
+    print("Yes, 'ain' is present, but NOT at the beginning of a word ")
+    print(x)
+else:
+    print("No match")
+
+##### \Z	Returns a match if the specified characters are at the end of the string	"Spain\Z"
+
+txt = "The rain in Spain"
+
+#Check if the string ends with "Spain":
+x = re.findall("Spain\Z", txt)
+print(x)
+
+if x:
+    print("Yes, string ends with 'Spain'")
+else:
+    print("No match")
+
+
+##### [arn]  check if the string has any a, r, or n characters:
+
+#Check if the string has any a, r, or n characters:
+x = re.findall("[arn]", txt)
+
+print(x)
+if x:
+    print("Yes, there is at least one match!")
+else:
+    print("No match")
+
+
+
+##### [a-n]  Check if the string has any characters between a and n:
+
+#Check if the string has any characters between a and n:
+x = re.findall("[a-n]", txt)
+print(x)
+if x:
+    print("Yes, there is at least one match!")
+else:
+    print("No match")
+
+
+
+##### [^arn]  Check if the string has other characters than a, r, or n:
+
+txt = "The rain in spain"
+#Check if the string has other characters than a, r, or n:
+x = re.findall("[^\D]", txt) # ^ equals  Except
+y = re.findall('^The',txt) # ^ equals start with
+
+
+print(x)
+if x:
+    print("Yes, there is at least one match!")
+else:
+    print("No match")
+
+print(y)
+if y:
+    print("Yes, there is at least one match!")
+else:
+    print("No match")
+
+
+
+
+##### [0123]  Check if the string has any 0, 1, 2, or 3 digits:
+
+txt = "The rain in spain"
+
+#Check if the string has any 0, 1, 2, or 3 digits:
+x = re.findall("[0123]", txt)
+
+print(x)
+if x:
+    print("Yes, there is at least one match!")
+else:
+    print("No match")
     
 
+
+##### [0-9]  Check if the string has any digits:
+
+txt = "8 times before 11:45 AM"
+
+#Check if the string has any digits:
+
+x = re.findall("[0-9]", txt)
+
+print(x)
+if x:
+    print("Yes, there is at least one match!")
+else:
+    print("No match")
+
+
+##### [0-5][0-9]  Check if the string has any two-digit numbers, from 00 to 59:
+
+txt = "8 times before 11:45 AM"
+#Check if the string has any two-digit numbers, from 00 to 59:
+x = re.findall("[0-5][0-9]", txt)
+
+print(x)
+if x:
+    print("Yes, there is at least one match!")
+else:
+    print("No match")
+
+
+##### [a-zA-Z]  #Check if the string has any characters from a to z lower case, and A to Z upper case:
+
+txt = "8 times before 11:45 AM"
+#Check if the string has any characters from a to z lower case, and A to Z upper case:
+x = re.findall("[a-zA-Z]", txt)
+
+print(x)
+if x:
+    print("Yes, there is at least one match!")
+else:
+    print("No match")
+
+
+##### [0-5][0-9]  Check if the string has any two-digit numbers, from 00 to 59:
+
+txt = "8 times before 11:45 AM"
+#Check if the string has any + characters:
+x = re.findall("[+]", txt)
+y = re.findall('[^ ]+',txt)
+print(x)
+if x:
+    print("Yes, there is at least one match!")
+else:
+    print("No match")
+
+print(y)
+if y:
+    print("Yes, there is at least one match!")
+else:
+    print("No match")
+
+
+###### Split the string at the first white-space character:
+
+txt = "The rain in Spain"
+x = re.split("\s", txt, 1) #1 is split from the first occurence
+print(x)
+
+###### Replace all white-space characters with the digit "9":
+
+txt = "The rain in Spain"
+x = re.sub("\s", "9", txt)
+print(x)
+
+#Replace the first two occurrences of a white-space character with the digit 9:
+txt = "The rain in Spain"
+x = re.sub("\s", "9", txt, 2) # The9rain9in Spain
+print(x)
+
+#The search() function returns a Match object:
+
+txt = "The rain in Spain"
+x = re.search("ai", txt)
+print(x) #this will print an object , <_sre.SRE_Match object; span=(5, 7), match='ai'>
+
+
+#Search for an upper case "S" character in the beginning of a word, and print its position:
+txt = "The rain in Spain"
+x = re.search(r'\bS\w+',txt)
+print(x.span())
+
+
+##### match/search/group
+# this tutorial comes from this website
+#https://regexone.com/references/python
+
+
+
+# Lets use a regular expression to match a date string. Ignore
+# the output since we are just testing if the regex matches.
+regex = r"([a-zA-Z]+) (\d+)"
+if re.search(regex, "June 24"):
+    # Indeed, the expression "([a-zA-Z]+) (\d+)" matches the date string
+    
+    # If we want, we can use the MatchObject's start() and end() methods 
+    # to retrieve where the pattern matches in the input string, and the 
+    # group() method to get all the matches and captured groups.
+    match = re.search(regex, "June 24")
+    
+    # This will print [0, 7), since it matches at the beginning and end of the 
+    # string
+    print("Match at index %s, %s" % (match.start(), match.end()))
+    
+    # The groups contain the matched values.  In particular:
+    #    match.group(0) always returns the fully matched string
+    #    match.group(1), match.group(2), ... will return the capture
+    #            groups in order from left to right in the input string
+    #    match.group() is equivalent to match.group(0)
+    
+    # So this will print "June 24"
+    print("Full match: %s" % (match.group(0)))
+    # So this will print "June"
+    print("Month: %s" % (match.group(1)))
+    # So this will print "24"
+    print("Day: %s" % (match.group(2)))
+else:
+    # If re.search() does not match, then None is returned
+    print("The regex pattern does not match. :(")
+
+
+##### -------------------------------------------------------
+# Lets use a regular expression to match a few date strings.
+regex = r"[a-zA-Z]+ \d+"
+matches = re.findall(regex, "June 24, August 9, Dec 12")
+for match in matches:
+    # This will print:
+    #   June 24
+    #   August 9
+    #   Dec 12
+    print("Full match: %s" % (match))
+
+# To capture the specific months of each date we can use the following pattern
+regex = r"([a-zA-Z]+) \d+"
+matches = re.findall(regex, "June 24, August 9, Dec 12")
+for match in matches:
+    # This will now print:
+    #   June
+    #   August
+    #   Dec
+    print("Match month: %s" % (match))
+
+# If we need the exact positions of each match
+regex = r"([a-zA-Z]+) \d+"
+matches = re.finditer(regex, "June 24, August 9, Dec 12")
+for match in matches:
+    # This will now print:
+    #   0 7
+    #   9 17
+    #   19 25
+    # which corresponds with the start and end of each match in the input string
+    print("Match at index: %s, %s" % (match.start(), match.end()))
+
+
+
+#************************** doing example ******************************
+regex = r"([a-zA-Z]+) (\d+)"
+dates_txt = "June 24, August 9, Dec 12"
+dates = dates_txt.split(',')
+for word in dates:
+    x = re.search(regex,word)
+    print("Full match :%s" %(x.group(0)))
+    print("Month match :%s" %(x.group(1)))
+    print('Day match :%s'%(x.group(2)))
 
 # # # # # # # # # #  part 95 ( StringIO ) # # # # # # # # #
