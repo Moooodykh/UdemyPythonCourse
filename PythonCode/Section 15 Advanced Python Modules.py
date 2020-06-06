@@ -593,7 +593,7 @@ print(x,y)
 txt = 'there is 69 numbers in 99'
 x = re.findall('\d',txt)
 y = re.findall('\d+',txt)
-z = re.findall(r'\S+',txt) # same as '\S'
+z = re.findall(r'\S+',txt) # r'\S+' is same as '\S'
 
 print(x,y,z)
 
@@ -998,3 +998,21 @@ for word in dates:
     print('Day match :%s'%(x.group(2)))
 
 # # # # # # # # # #  part 95 ( StringIO ) # # # # # # # # #
+
+"""
+import io
+message = 'This is just a normal string.'
+f = io.StringIO(message)
+print(f.read())
+f.write('\nThis is new string')
+f.seek(0) # this is important to take the cursor to the start of the string 
+print(f.read())
+f.close() # close the object when it is nollonger needed
+
+
+y = io.StringIO(message)
+y.seek(len(message))
+y.write('hello baby')
+y.seek(0)
+print(y.read())
+"""
