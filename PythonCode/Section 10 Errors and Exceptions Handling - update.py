@@ -118,5 +118,46 @@ print(ask_square())
 
 """
 
-# # # # # # # # # #  part 83 (Methods and the Python Documentation) # # # # # # # # #
+# # # # # # # # # #  part 83-85 (Pylinting and Unitesting) # # # # # # # # #
 
+# inside unitest folder there is a Pylint_sample1.py file which is runned by Pylint.
+# run this command line: Pylint -r y Pylint_sample1.py
+#  try to correct the issues until you get 10/10.
+
+### Unitest
+
+#the title function is located inside unittest folder and the file named TITLED
+from Unittests import titled
+from Unittests import cap
+
+import unittest
+
+class test_title(unittest.TestCase):
+
+    def test_title_one_word(self):
+        text = 'Python'
+        result = titled.title_text(text)
+        self.assertEquals(text,result)
+
+    def test_title_multi_words(self):
+        text = 'Mondy Python'
+        result = titled.title_text(text)
+        self.assertEquals(text,result)
+
+    def test_cap_one_word(self):
+        text = 'python'
+        res = text.capitalize()
+        result = cap.cap_func(text)
+        self.assertEquals(res,result)
+        
+
+    def test_cap_multi_words(self):
+        text = 'Mondy Python'
+        res = text.capitalize()
+        result = cap.cap_func(text)
+        self.assertEquals(res,result)
+       
+       
+
+if __name__ == "__main__":
+    unittest.main()
