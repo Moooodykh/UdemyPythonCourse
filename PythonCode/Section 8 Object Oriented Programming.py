@@ -46,7 +46,7 @@ class Dog2():
     def __init__(self,mybreed): 
         # attributes
         # We take in the argument
-        # Assign it using sel.attribute_name
+        # Assign it using self.attribute_name
         self.class_attribute = mybreed
                 #NAME OF THE CLASS ATTRIBUTES
 my_small_dog = Dog2('Gelski')
@@ -802,3 +802,164 @@ acc1.deposit(50)
 acc1.deposit(350)
 acc1.withdraw(700) 
 """
+
+
+# # # # # # # # # #  part 70 (Object Oriented Programming - Class object attributes and Methods) # # # # # # # # #
+""" class Dog:
+    # class attribute
+    species = 'mammal'
+
+    def __init__(self,name,breed):
+        #ATTRIBUTES
+        self.namee = name
+        self.breede = breed
+
+    def Park(self):
+
+        print(f'{self.namee} is Parking , Wooof!')
+
+dog1 = Dog(name='Johnee',breed=True)
+
+dog1.Park()
+print(dog1.namee)
+print(type(dog1))
+print(dog1.species)
+
+
+class Circle:
+    Pi = 3.14
+
+    def __init__(self,radius= 1):
+      self.radius  = radius
+      self.area = Circle.Pi * radius * radius
+    
+    def get_cirucumference(self):
+        return 2 * Circle.Pi * self.radius
+    
+    def set_radius(self,new_radius):
+        self.radius = new_radius
+        self.area = Circle.Pi * new_radius * new_radius
+
+c1 = Circle()
+print(c1.radius)
+print(c1.area)
+print(c1.Pi)
+print(c1.get_cirucumference())
+c1.set_radius(5)
+print(c1.radius)
+print(c1.area)
+
+"""
+ # # # # # # # # #  part 71 (Inheritance) # # # # # # # # #
+'''
+""" 
+class Animal:
+    species = 'mammal'
+
+    def __init__(self):
+        print('Animal created!')
+
+    def WhoIam(self):
+        print('I am an animal')
+
+    def eat(self):
+        print('I am eating')
+
+class Dog(Animal):
+
+    def __init__(self, name, color):
+      self.name = name
+      self.color = color
+      Animal.__init__(self)
+      print('Dog created!')
+
+    def park(self):
+        print('WOOOOOOOF!')
+    def WhoIam(self):
+        print('I am an Dog')
+
+
+a1 = Animal()
+print(a1.species)
+a1.WhoIam()
+a1.eat()
+
+d1 = Dog('Samm','red')
+d1.park()
+d1.eat()
+print(d1.species)
+d1.WhoIam()
+"""
+
+##### --------- Polymorphism ---------
+
+# Polymorphism is calling the same method name from two different classes.
+class Parrot:
+
+ def fly(self):
+   print('Parrot can fly')
+
+ def swim(self):
+   print('Parrot can not swim')
+
+class Penguin:
+
+ def fly(self):
+   print('Penguin can not fly')
+
+ def swim(self):
+   print('Penguin can swim')
+
+
+def pet_swim(args):
+    for arg in args:
+        arg.swim()
+
+par = Parrot()
+Pen = Penguin()
+print(type(Pen))
+print(type(par))
+
+# here we call Swim method from two different classes
+pet_swim([Pen,par])
+# exactly the same
+pet_swim((Pen,par))
+
+
+### -------------- ABSTRACT CLASS ----------------
+### abstract class is a class which can not be intilized and there is no methods to implement
+# you add RAISE not implemented error for the method that u define 
+print('*'*100)
+class  Animal:
+    def __init__(self,name):
+        self.name = name
+
+    def speak(self):
+        raise NotImplementedError('Sub class must implement this abstract method')
+
+A1 = Animal('Jooody')
+#this will be raise an error
+# A1.speak() 
+
+# To solve the issue is to develop the method inside classes which inherit Animal class
+
+class Dog(Animal):
+    def speak(self):
+        return self.name + 'says WOOOOF!'
+class Cat(Animal):
+    def speak(self):
+        return self.name + 'says MEAOW!'
+
+doggy = Dog('Dooooogy')
+meo = Cat('Meme')
+
+print(doggy.speak())
+print(meo.speak())
+'''
+
+
+
+ # # # # # # # # #  part 72 (OOB Special methods) # # # # # # # # #
+
+
+
