@@ -956,10 +956,57 @@ meo = Cat('Meme')
 print(doggy.speak())
 print(meo.speak())
 '''
-
-
-
  # # # # # # # # #  part 72 (OOB Special methods) # # # # # # # # #
 
+mylist = [1,2,3]
+print(len(mylist))
 
+class Sampleclass:
+    pass
+
+sample1 = Sampleclass()
+print(sample1)
+
+
+
+class Book:
+    def __init__(self, title, author,pages):
+        self.title = title
+        self.author = author
+        self.pages = pages
+
+    #STRING REPRESENTATION
+    def __str__(self):
+        return f'{self.title} by {self.author} which has {self.pages} pages'
+    
+    #LENGTH REPRESENTATION
+    def __len__(self):
+        return self.pages
+    
+    #DELETE REPRESENTATION
+    def __del__(self):
+        print(self.title,'has deleted and destroyed')
+        # x = input(f'Are u sure that you want to delete this book  "{self.title}" ? Yes or No ')
+        # if x.lower() == 'yes':
+        #     del self
+        #     print('A book object has been deleted')
+        # else:
+        #     print('The book is not deleted because wrong input') 
+
+
+b1 = Book('Python rock','Dodi',200)
+
+#STRING REPRESENTATION
+print(b1)
+# or
+print(str(b1))
+
+
+#LENGTH REPRESENTATION
+print(len(b1))
+
+# DELETE REPRESENTATION
+del b1
+
+print(str(b1))
 
