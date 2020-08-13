@@ -1090,3 +1090,40 @@ li = Line(coordinate1,coordinate2)
 print(li.distance())
 print(li.slope())
 """
+##############CHALLENGE HOMEWORK Object Oriented Programming Homework Assignment
+
+"""
+# Object Oriented Programming Challenge
+# For this challenge, create a bank account class that has two attributes:
+# owner
+# balance
+# and two methods:
+# deposit
+# withdraw
+# As an added requirement, withdrawals may not exceed the available balance.
+# Instantiate your class, make several deposits and withdrawals, and test to make sure the account can't be overdrawn.
+
+class Bank:
+
+    def __init__(self, owner, balance):
+        self.owner = owner
+        self.balance = balance
+
+    def deposit(self,amount):
+        self.balance += amount
+        print(f'your new balance:{self.balance}')
+        
+    def withdraw(self,amount):
+        if amount > self.balance:
+            print('Your do not have enough money, operation aborted!')
+        else:
+            self.balance -= amount
+
+        print(f'The remaining balance:{self.balance}')
+
+bank = Bank('Moody',500)
+bank.deposit(200)
+bank.withdraw(600)
+bank.withdraw(600)
+print(bank.owner)
+"""
