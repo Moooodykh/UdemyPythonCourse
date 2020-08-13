@@ -524,22 +524,21 @@ print (id(pt3))
 ''''''
 #-----------------------------------------Multiple Inheritance -----------------------------------------
 #you can drive a class from multiple parent classes as follows −
-""" 
 
-"""
+
+'''
 class A:        # define your class A
-.....
+# .....
 
 class B:         # define your class B
-.....
+# .....
 
 class C(A, B):   # subclass of A and B
-..... 
-"""
+# ..... 
+
 
 # www.tutorialspoint.com/python/python_classes_objects.htm
 
-""" 
 class Syster:
     def __init__(self):
         print('Syster constructor called ')
@@ -572,6 +571,7 @@ print(c.__class__)
 print(c.__class__.__name__)
 
 # ISSUBCLASS
+# The issubclass(sub, sup) boolean function returns true if the given subclass sub is indeed a subclass of the superclass sup.
 print(issubclass(Child,Father))
 print(issubclass(Child,Syster))
 print(issubclass(Child,(Father,Mohter)))
@@ -579,12 +579,16 @@ print(issubclass(Child,(Father,Syster))) # True becuase OR, which means if Child
 
 print('-----------------------------------')
 # IS OBJECT INSTATNCE
+# The isinstance(obj, Class) boolean function returns true if obj is an instance of class Class or is an instance of 
+# a subclass of Class
 print(isinstance(c,Child))
 print(isinstance(c,Syster))
- """
+'''
 #-----------------------------------------Base Overloading Methods  -----------------------------------------
 
 """ 
+
+"""
 class Vector:
 
 ######
@@ -645,7 +649,9 @@ class Vector:
 
 v1 = Vector(5,6)
 v2 = Vector(10,12)
-print(v1+v2) """
+print(v1+v2) 
+"""
+""" 
 
 class Vector:
    def __init__(self, a, b):
@@ -661,13 +667,13 @@ class Vector:
 v1 = Vector(2,10)
 v2 = Vector(5,-2)
 print (v1 + v2)
-
+ """
 
 # -----------------------Data Hiding------------------------
 # An object's attributes may or may not be visible outside the class definition. 
 # You need to name attributes with a double underscore prefix, 
 # and those attributes then are not be directly visible to outsiders.
-
+""" 
 class JustCounter:
    __secretCount = 0
   
@@ -680,13 +686,13 @@ counter.count()
 counter.count()
 # print counter.__secretCount # this will show an error 
 print (counter._JustCounter__secretCount) # object._className__attrName
-
+ """
 
 # # # # # # # # # #  part 64- 65 (Object Oriented Programming - Homework & Solution) # # # # # # # # #
 
-""" 
+ 
 # Problem nr 2 , 
-class Cylinder:
+""" class Cylinder:
 
     pi =3.14
 
@@ -704,11 +710,11 @@ class Cylinder:
 c = Cylinder(2,3)
 print(c.volume())
 print(c.surface_area())
-
+ """
 
 # Problem nr 1 ,
 import math
-class Line:
+""" class Line:
 
     def __init__(self,coor1,coor2):
         self.x1 = coor1[0]
@@ -735,6 +741,7 @@ li = Line(coordinate1,coordinate2)
 print(li.slope())
 print(li.distance())
 """
+
 
 '''
 TEACHER SOLUTION
@@ -805,7 +812,9 @@ acc1.withdraw(700)
 
 
 # # # # # # # # # #  part 70 (Object Oriented Programming - Class object attributes and Methods) # # # # # # # # #
-""" class Dog:
+""" 
+
+class Dog:
     # class attribute
     species = 'mammal'
 
@@ -956,8 +965,10 @@ meo = Cat('Meme')
 print(doggy.speak())
 print(meo.speak())
 '''
+
  # # # # # # # # #  part 72 (OOB Special methods) # # # # # # # # #
 
+""" 
 mylist = [1,2,3]
 print(len(mylist))
 
@@ -1010,3 +1021,72 @@ del b1
 
 print(str(b1))
 
+"""
+
+#---------------DATA HIDING---------------
+""" 
+# An object's attributes may or may not be visible outside the class definition. You need to name attributes with a
+#  double underscore prefix, and those attributes then are not be directly visible to outsiders.
+
+class Counter:
+    __justcounter = 0
+    def __init__(self):
+        pass
+
+    def count(self):
+        self.__justcounter += 1
+        print(self.__justcounter)
+
+c = Counter()
+c.count()
+c.count()
+# Python protects those members by internally changing the name to include the class name. 
+# You can access such attributes as object._className__attrName. If you would replace your last line as following, 
+# then it works for you −
+print(c._Counter__justcounter)
+"""
+
+##############Object Oriented Programming Homework Assignment
+""" 
+# problem nr 2
+class Cylinder:
+    pi = 3.14
+
+    def __init__(self,radius=1,height=1):
+        self.radius =radius
+        self.height =height
+
+    def volume(self):
+        return Cylinder.pi * self.radius **2 * self.height
+
+    def surface_area(self):
+        return (2 * self.pi * self.radius * self.height + 2 * Cylinder.pi * self.radius **2 )
+
+c= Cylinder(3,2)
+print(c.volume())
+print(c.surface_area())
+
+### problem nr 1
+import math
+class Line:
+    
+    def __init__(self,coor1,coor2):
+        self.x1 = coor1[0]
+        self.y1 = coor1[1]
+        self.x2 = coor2[0]
+        self.y2 = coor2[1]
+    
+    def distance(self):
+        return math.sqrt((self.x2-self.x1)**2 + (self.y2-self.y1)**2)
+    
+    def slope(self):
+        return (self.y2-self.y1)/(self.x2-self.x1)
+
+#output results
+coordinate1 = (3,2)
+coordinate2 = (8,10)
+
+li = Line(coordinate1,coordinate2)
+print(li.distance())
+print(li.slope())
+"""
