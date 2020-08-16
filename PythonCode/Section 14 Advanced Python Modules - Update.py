@@ -5,7 +5,7 @@
 
 # # # # # # # # # #  part 104 (Python Collections Module) # # # # # # # # #
 
-
+""" 
 ################### Counter class ########################
 # we use it to count how many times a list member shows up
 # Counter is dictionary sub class , which means it is a dictionary at the end
@@ -64,9 +64,44 @@ print(c.most_common()[-1]) #give us least common elements as ELEMENT (TUPLE)
 print('*'*100)
 
 
-################### Counter class ########################
+################### Default Dictionary ########################
+# this is as normal dictionary but when u try to see some key value which is not exist it will take a defualt value as zero.
 
+d = {'a':100,'b':200}
+print(d['a'])
+# print(d['wrong'])
+# this will print key error because we do not have 'wrong' as key
+# to continue running we use defaultdict
+from collections import defaultdict
 
+dd = defaultdict(lambda : 0)
+
+dd['wow']= 100
+dd['hello']= 400
+dd['yay']= 200
+print(dd['we']) # default value will be invoked
+print(dd)
+
+################### Tupled named ########################
+
+from collections import namedtuple
+
+#this is a developed tuple which can be calling either by index or attribute name
+mytuple = (10,20,30)
+print(mytuple[0]) # normall calling
+
+Ntuple = namedtuple('Dog',['age','name','color'])
+print(type(Ntuple))
+
+sam = Ntuple(age =5,color = 'red',name = 'Sam')
+print(sam.age)
+print(sam.color)
+print(sam.name)
+print(sam[0])
+print(sam[1])
+print(sam[2])
+print(sam)
+"""
 
 # # # # # # # # # #  part 105 (Methods and the Python Documentation) # # # # # # # # #
 # # # # # # # # # #  part 106 (Methods and the Python Documentation) # # # # # # # # #
