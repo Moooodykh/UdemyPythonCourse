@@ -104,6 +104,7 @@ print(sam)
 """
 
 # # # # # # # # # #  part 105 (Opening and Reading Files and Folders (Python OS Module)) # # # # # # # # #
+"""
 # we will use OS as library to check the folders and report the every thing exists in that directory
 # We use Shutil to move the staff around
 
@@ -134,9 +135,85 @@ source = "E:\\PROGRAMMING\\github\\UdemyPythonCourse\\PythonCode\\Top_level_fold
 new_path=os.path.join(file_path,'PythonCode\Top_level_folder\mid_2_level_folder')
 print(new_path)
 
-
 shutil.move(source,new_path)
+"""
+##### SECOND PART##### 
+""" 
+import os, shutil
+print(os.getcwd())
+print(os.listdir())
+new_path = os.path.join(os.getcwd(),'PythonCode\Top_level_folder')
+print(new_path)
+os.chdir(new_path)
+print(os.getcwd())
 
+f = open('Welcome.txt','w+')
+f.write('Hello and welcome to our course')
+f.close()
+
+shutil.copy('Welcome.txt','C:\\Area MK\\Learning\\UdemyPythonCourse\\PythonCode\\Top_level_folder\\mid_2_level_folder')
+
+#sending the file to recycle bin
+import send2trash
+send2trash.send2trash('C:\\Area MK\\Learning\\UdemyPythonCourse\\PythonCode\\Top_level_folder\\mid_2_level_folder\\Welcome.txt')
+print('Top Level directory:',os.listdir('C:\\Area MK\\Learning\\UdemyPythonCourse\\PythonCode\\Top_level_folder\\'))
+print(os.getcwd())
+
+#making a copy of the whole directory but the folder name must not be exist before
+shutil.copytree(os.getcwd(),'C:\\Area MK\\Learning\\OOO')
+# sending the whole folder to recycle bin
+send2trash.send2trash('C:\\Area MK\\Learning\\OOO')
+
+
+shutil.copytree(os.getcwd(),'C:\\Area MK\\Learning\\OOO')
+#reading the disk usage of the specific folder
+print(shutil.disk_usage('C:\\Area MK\\Learning\\OOO'))
+#make archive of that specific folder by adding the extention as string 'ZIP'
+shutil.make_archive('C:\\Area MK\\Learning\\OOO','zip')
+#removing the whole tree of that folder
+shutil.rmtree('C:\\Area MK\\Learning\\OOO')
+
+"""
+##################### WALK METHOD ##############################
+
+# this method is going through each folder -> sub_folders -> files 
+
+""" 
+print('*'*100)
+print(os.getcwd())
+for folder, sub_folders, files in os.walk('C:\\Area MK\\Learning\\UdemyPythonCourse\\PythonCode\\Top_level_folder'):
+    print('\n')
+    print(f'Currently we are looking at folder {folder}')
+    print('Subfolders are:'.upper())
+    for sub_older in sub_folders:
+        print('\tSubfolder:',sub_older)
+    print('files are:'.upper())
+    for fil in files:
+        print('\tfile:',fil)    
+"""
+"""
+print('-'*100)
+# I am using r'' as raw data to avoid putting a lot of backslash
+# Note that the string did not end with a #\\
+
+
+print(work_path)
+os.chdir(work_path)
+"""
+#work_path =r"C:\Area MK\Learning\UdemyPythonCourse\PythonCode"
+"""
+#this is also right
+# os.chdir('C:\\Area MK\\Learning\\UdemyPythonCourse\\PythonCode\\')
+for folder, sub_folders, files in os.walk('Top_level_folder'):
+    print('\n')
+    print('Currently we are looking at folder:',folder.upper())
+    print('Subfolders are:'.upper())
+    for sub_older in sub_folders:
+        print('\tSubfolder:',sub_older)
+    print('files are:'.upper())
+    for fil in files:
+        print('\tfile:',fil)    
+"""
 
 # # # # # # # # # #  part 106 (Methods and the Python Documentation) # # # # # # # # #
 # # # # # # # # # #  part 107 (Methods and the Python Documentation) # # # # # # # # #
