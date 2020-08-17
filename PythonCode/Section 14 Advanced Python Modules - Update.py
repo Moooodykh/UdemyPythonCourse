@@ -103,7 +103,41 @@ print(sam[2])
 print(sam)
 """
 
-# # # # # # # # # #  part 105 (Methods and the Python Documentation) # # # # # # # # #
+# # # # # # # # # #  part 105 (Opening and Reading Files and Folders (Python OS Module)) # # # # # # # # #
+# we will use OS as library to check the folders and report the every thing exists in that directory
+# We use Shutil to move the staff around
+
+import os,shutil
+
+#printing the working directory
+file_path = os.getcwd()
+full_path = os.path.join(file_path,'PythonCode\Top_level_folder')
+print(os.getcwd())
+print(full_path)
+os.chdir(full_path)
+print('*'*100)
+
+print(os.getcwd())
+
+
+f = open('Practice.txt','w+')
+f.write('This is the file')
+f.close()
+
+print('Currtent directory:',os.listdir()) # printing all files and folders inside the directory
+
+
+# OR any other directory by passing the source path
+print('Other directory:',os.listdir(file_path))
+print(os.listdir("E:\\PROGRAMMING\\github\\UdemyPythonCourse\\PythonCode\\Top_level_folder\\"))
+source = "E:\\PROGRAMMING\\github\\UdemyPythonCourse\\PythonCode\\Top_level_folder\\Practice.txt"
+new_path=os.path.join(file_path,'PythonCode\Top_level_folder\mid_2_level_folder')
+print(new_path)
+
+
+shutil.move(source,new_path)
+
+
 # # # # # # # # # #  part 106 (Methods and the Python Documentation) # # # # # # # # #
 # # # # # # # # # #  part 107 (Methods and the Python Documentation) # # # # # # # # #
 # # # # # # # # # #  part 108 (Methods and the Python Documentation) # # # # # # # # #
