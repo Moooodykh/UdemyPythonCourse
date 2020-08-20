@@ -215,7 +215,82 @@ for folder, sub_folders, files in os.walk('Top_level_folder'):
         print('\tfile:',fil)    
 """
 
-# # # # # # # # # #  part 106 (Methods and the Python Documentation) # # # # # # # # #
+# # # # # # # # # #  part 106 ( Python Datetime Module) # # # # # # # # #
+
+""" import  datetime
+
+### TIME
+mytime = datetime.time(5,20)
+print(mytime.hour)
+print(mytime.minute)
+print(mytime.second)
+
+### DATE
+mt = datetime.datetime.today()
+print(mt)
+print(mt.year)
+print(mt.month)
+print(mt.day)
+print(mt.ctime()) # another time format
+
+
+from datetime import datetime
+my_time = datetime(2020,9,23,22,33,44,23) # this is specifying the Day and Hours
+print(my_time)
+my_time=my_time.replace(year=2050) # replace if I want to modify some time/date
+print(my_time)
+
+
+#### Usign Arthimtetic with:
+### DATE
+date1 = datetime(2021,8,12)
+date2 = datetime(2017,5,13)
+result = date1 - date2
+print(result)
+print(type(result))
+print(result.days)
+
+###TIME
+dateime1 = datetime(2021,11,3,3,22,0)
+dateime2 = datetime(2021,11,3,3,12,0)
+mydiff = dateime1 - dateime2
+print(mydiff)
+print(mydiff.days)
+print(mydiff.seconds)
+print(mydiff.total_seconds())
+
+
+
+import datetime
+
+t = datetime.time(4, 20, 1)
+
+# Let's show the different components
+print(t)
+print('hour  :', t.hour)
+print('minute:', t.minute)
+print('second:', t.second)
+print('microsecond:', t.microsecond)
+print('tzinfo:', t.tzinfo)
+print('Earliest  :', datetime.time.min)
+print('Latest    :', datetime.time.max)
+print('Resolution:', datetime.time.resolution)
+
+
+today = datetime.date.today()
+print(today)
+print('ctime:', today.ctime())
+print('tuple:', today.timetuple())
+print('ordinal:', today.toordinal())
+print('From ordinal:', today.fromordinal(737657))
+print('Year :', today.year)
+print('Month:', today.month)
+print('Day  :', today.day)
+print('Earliest  :', datetime.date.min)
+print('Latest    :', datetime.date.max)
+print('Resolution:', datetime.date.resolution)
+"""
+
 # # # # # # # # # #  part 107 (Methods and the Python Documentation) # # # # # # # # #
 # # # # # # # # # #  part 108 (Methods and the Python Documentation) # # # # # # # # #
 # # # # # # # # # #  part 109 (Methods and the Python Documentation) # # # # # # # # #
