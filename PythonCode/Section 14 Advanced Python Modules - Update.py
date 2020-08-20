@@ -291,7 +291,67 @@ print('Latest    :', datetime.date.max)
 print('Resolution:', datetime.date.resolution)
 """
 
-# # # # # # # # # #  part 107 (Methods and the Python Documentation) # # # # # # # # #
+# # # # # # # # # #  part 107 (Python Math and Random Modules) # # # # # # # # #
+
+""" 
+####MATH
+import  math
+# calling the help for MATH lib
+# help(math) 
+
+value = 4.35
+print(math.floor(value)) # round it down
+print(math.ceil(value)) # rount it up
+print(round(value)) #normal round
+
+print(math.pi)
+print(math.e)
+print(math.inf)
+print(math.nan)# NOT A NUMBER
+
+# NUMPY is a specific library which can be used when we used complex marthmatic operation
+
+print(math.log(math.e))
+
+# to define your log and base we can define that
+print(math.log(100,10)) # which means I have 10 as a base , which number is as power to have 100 as result
+print(math.sin(10))# radians
+print(math.degrees(math.pi/2))# degrees
+print(math.radians(180))# radians
+
+print('*'*100)
+####RANDOM
+import random
+print(random.randint(0,100))
+random.seed(101) # THIS will make the randon as same place
+print(random.randint(0,100))
+print(random.randint(0,100))
+print(random.randint(0,100))
+print(random.randint(0,100))
+print(random.randint(0,100))
+
+
+### other thing
+mylist = list(range(5,20))
+print(mylist)
+print(random.choice(mylist)) # choose one item randomly
+
+# choose multipile items randomly
+#1. SAMPLE WITH REPEATED ITEMES
+print(random.choices(mylist,k=5)) # choose five items randomly
+#2. SAMPLE WITHOUT REPEATED ITEMES
+print(random.sample(mylist,k=5)) # choose five items randomly unique five elements
+
+random.shuffle(mylist)# SHUFFLE THE LIST
+print(mylist)
+
+#IF WE WANT TO HAVE A RANDOM FLOAT NUMBERS
+ele = random.uniform(0,100)
+print(ele)
+
+print(random.gauss(mu=0,sigma=1))
+"""
+
 # # # # # # # # # #  part 108 (Methods and the Python Documentation) # # # # # # # # #
 # # # # # # # # # #  part 109 (Methods and the Python Documentation) # # # # # # # # #
 # # # # # # # # # #  part 110 (Methods and the Python Documentation) # # # # # # # # #
