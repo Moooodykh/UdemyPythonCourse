@@ -352,10 +352,27 @@ print(ele)
 print(random.gauss(mu=0,sigma=1))
 """
 
-# # # # # # # # # #  part 108 (Methods and the Python Documentation) # # # # # # # # #
-# # # # # # # # # #  part 109 (Methods and the Python Documentation) # # # # # # # # #
-# # # # # # # # # #  part 110 (Methods and the Python Documentation) # # # # # # # # #
-# # # # # # # # # #  part 111 (Methods and the Python Documentation) # # # # # # # # #
+# # # # # # # # # #  part 108 ( Python Debugger) # # # # # # # # #
+"""
+import pdb
+
+x = [1,2,3]
+y = 2
+z = 3
+
+result1 = y + z
+
+pdb.set_trace()
+
+result2 = x + y
+"""
+# # # # # # # # # #  part 109 (Python Regular Expressions Part One) # # # # # # # # #
+
+
+
+
+# # # # # # # # # #  part 110 (Python Regular Expressions Part two) # # # # # # # # #
+# # # # # # # # # #  part 111 (Python Regular Expressions Part three) # # # # # # # # #
 # # # # # # # # # #  part 112 (Methods and the Python Documentation) # # # # # # # # #
 # # # # # # # # # #  part 113 (Methods and the Python Documentation) # # # # # # # # #
 # # # # # # # # # #  part 114 (Methods and the Python Documentation) # # # # # # # # #
