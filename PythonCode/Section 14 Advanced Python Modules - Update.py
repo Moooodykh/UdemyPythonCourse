@@ -401,7 +401,28 @@ for item in more_matches:
 
 # # # # # # # # # #  part 110 (Python Regular Expressions Part two) # # # # # # # # #
 
+
+# Code	Meaning 
+# \d	a digit
+# \D	a non-digit
+# \s	whitespace (tab, space, newline, etc.)
+# \S	non-whitespace
+# \w	alphanumeric
+# \W	non-alphanumeric
+
+
 # # # # # # # # # #  part 111 (Python Regular Expressions Part three) # # # # # # # # #
+
+
+
+
+
+
+
+
+
+########################## DO NOT GO OUT FROM RE UNTIL YOU CHECK THE OLD JYPTER NOOTBOOK
+
 # # # # # # # # # #  part 112 (Methods and the Python Documentation) # # # # # # # # #
 # # # # # # # # # #  part 113 (Methods and the Python Documentation) # # # # # # # # #
 # # # # # # # # # #  part 114 (Methods and the Python Documentation) # # # # # # # # #
