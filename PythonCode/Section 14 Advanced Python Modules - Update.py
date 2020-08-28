@@ -367,11 +367,40 @@ pdb.set_trace()
 result2 = x + y
 """
 # # # # # # # # # #  part 109 (Python Regular Expressions Part One) # # # # # # # # #
+"""
+print('hello' in 'hello man how are you?')
+
+pattern = 'hello'
+text = "The person's phone number is 408-555-1234. Call soon! hello hello hello"
+
+import re
+
+#this is to find the first object
+match = re.search(pattern,text)
+print(match)
+print(match.span())
+print(match.start())
+print(match.end())
 
 
+mat = re.findall(pattern,text)
+print(mat)
+print(len(mat))
 
+#IF I need to go through the iterations 
+# we use re.findIter
+more_matches = re.finditer(pattern,text)
+for item in more_matches:
+    print(item)
+    print(item.span())
+    print(item.start())
+    print(item.end())
+#if I want to return the actual match value , use group
+    print(item.group())
+"""
 
 # # # # # # # # # #  part 110 (Python Regular Expressions Part two) # # # # # # # # #
+
 # # # # # # # # # #  part 111 (Python Regular Expressions Part three) # # # # # # # # #
 # # # # # # # # # #  part 112 (Methods and the Python Documentation) # # # # # # # # #
 # # # # # # # # # #  part 113 (Methods and the Python Documentation) # # # # # # # # #
