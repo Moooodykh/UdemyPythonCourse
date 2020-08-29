@@ -525,6 +525,8 @@ textone = ' hello, would you like some catfish?'
 texttwo = ' hello, would you like to take a catnap?'
 textthree = ' hello, have you seen a caterpillar?'
 
+#Parenthesis for Multiple Options
+#If we have multiple options for matching, we can use parenthesis to list out these options. For Example:
 com_pat1 = r'cat(fish|nap|erpillar)'
 print(re.search(com_pat1,textone))
 print(re.search(com_pat1,texttwo))
@@ -543,6 +545,162 @@ print(re.search(com_pat2,textthree).group())
 ########################## DO NOT GO OUT FROM RE UNTIL YOU CHECK THE OLD JYPTER NOOTBOOK
 ########################################################################################
 
+""" 
+########### EXAMPLE OF EMAIL SEARCHING
+import re
+email = 'moody@gmail.com'
+c_pattern = re.compile(r'([\w]+)@([\w]+).([\w]+)')
+result = re.search(c_pattern,email)
+print(result)
+print(result.group())
+print(result.group(1))
+print(result.group(2))
+print(result.group(3))
+
+####
+print(re.findall(r'\S+at',"The bat went splat"))
+
+
+#### 
+
+# let's create a function that will print out results 
+def multi_re_find(patterns,phrase):
+    '''
+    Takes in a list of regex patterns
+    Prints a list of all matches
+    '''
+    for pattern in patterns:
+        print('We are searching for this pattern: %r' %(pattern))
+        print(re.findall(pattern,phrase))
+        print('\n')
+
+x = 5
+s = 'ssdasd'
+print('hello guys %d' %(x))
+print('hello guys %s' %(s))
+
+test_phrase = 'sdsd..sssddd...sdddsddd...dsds...dsssss...sdddd'
+
+test_patterns = [ 'sd*',     # s followed by zero or more d's
+                'sd+',          # s followed by one or more d's
+                'sd?',          # s followed by zero or one d's
+                'sd{3}',        # s followed by three d's
+                'sd{2,3}',      # s followed by two to three d's
+                ]
+multi_re_find(test_patterns,test_phrase)
+
+
+#####Character Sets
+test_phrase = 'sdsd..sssddd...sdddsddd...dsds...dsssss...sdddd'
+
+test_patterns = ['[sd]',    # either s or d
+                's[sd]+']   # s followed by one or more s or d
+
+multi_re_find(test_patterns,test_phrase)
+
+
+###### Character Ranges
+
+# Common use cases are to search for a specific range of letters in the alphabet.
+#  For instance, a-f would return matches with any occurrence of letters between a and f.
+
+test_phrase = 'This is an example sentence. Lets see if we can find some letters.'
+
+test_patterns=['[a-z]+',      # sequences of lower case letters
+               '[A-Z]+',      # sequences of upper case letters
+               '[a-zA-Z]+',   # sequences of lower or upper case letters
+               '[A-Z][a-z]+'] # one upper case letter followed by lower case letters
+                
+multi_re_find(test_patterns,test_phrase)
+
+
+##### Escape Codes
+test_phrase = 'This is a string with some numbers 1233 and a symbol #hashtag'
+
+test_patterns=[ r'\d+', # sequence of digits
+                r'\D+', # sequence of non-digits
+                r'\s+', # sequence of whitespace
+                r'\S+', # sequence of non-whitespace
+                r'\w+', # alphanumeric characters
+                r'\W+', # non-alphanumeric
+                ]
+
+multi_re_find(test_patterns,test_phrase)
+
+
+
+# Search and Replace
+# One of the most important re methods that use regular expressions is sub.
+# re.sub(pattern, repl, string, max=0)
+
+phone = "2004-959-559 # This is Phone Number"
+
+# Delete Python-style comments
+num = re.sub(r'#.*$', "", phone)
+print ("Phone Num : ", num)
+
+# Remove anything other than digits
+num = re.sub(r'\D', "", phone)    
+print ("Phone Num : ", num)
+
+
+##########
+# Escape Codes
+##########
+
+# You can use special escape codes to find specific types of patterns in your data, 
+# such as digits, non-digits, whitespace, and more. For example:
+
+# Code	Meaning
+# \d	a digit
+# \D	a non-digit
+# \s	whitespace (tab, space, newline, etc.)
+# \S	non-whitespace
+# \w	alphanumeric
+# \W	non-alphanumeric
+# \A	Returns a match if the specified characters are at the beginning of the string	"\AThe"
+# \b	Returns a match where the specified characters are at the beginning or at the end of a word
+        # (the "r" in the beginning is making sure that the string is being treated as a "raw string")	
+        # r"\bain"
+        # r"ain\b"	
+# \B	Returns a match where the specified characters are present, but NOT at the beginning (or at the end) of a word
+        # (the "r" in the beginning is making sure that the string is being treated as a "raw string")	
+        # r"\Bain"
+        # r"ain\B"
+# \Z	Returns a match if the specified characters are at the end of the string	"Spain\Z"
+
+# Escapes are indicated by prefixing the character with a backslash \. 
+# Unfortunately, a backslash must itself be escaped in normal Python strings, 
+# and that results in expressions that are difficult to read. Using raw strings,
+#  created by prefixing the literal value with r, eliminates this problem and maintains readability.
+
+# Personally, I think this use of r to escape a backslash is probably one of the things 
+# that block someone who is not familiar with regex in Python from being able to read regex code at first.
+#  Hopefully after seeing these examples this syntax will become clear.
+
+print('*'*100)
+test_phrase = 'This is a string with some numbers 1233 and a symbol #hashtag'
+
+test_patterns=[ r'\d+', # sequence of digits
+                r'\D+', # sequence of non-digits
+                r'\s+', # sequence of whitespace
+                r'\S+', # sequence of non-whitespace
+                r'\w+', # alphanumeric characters
+                r'\W+', # non-alphanumeric (# and white spaces)
+                ]
+
+multi_re_find(test_patterns,test_phrase)
+
+# You should now have a solid understanding of how to use the regular expression module in Python. 
+# There are a ton of more special character instances,
+#  but it would be unreasonable to go through every single use case. 
+# Instead take a look at the full documentation if you ever need to look up a particular pattern.
+# DOCUMENTATION:
+# https://docs.python.org/3/library/re.html#regular-expression-syntax
+# Other link:
+# http://www.tutorialspoint.com/python/python_reg_expressions.htm
+
+"""
 
 # # # # # # # # # #  part 112 (Methods and the Python Documentation) # # # # # # # # #
 # # # # # # # # # #  part 113 (Methods and the Python Documentation) # # # # # # # # #
