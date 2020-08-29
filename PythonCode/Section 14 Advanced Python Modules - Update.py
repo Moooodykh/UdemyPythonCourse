@@ -401,15 +401,64 @@ for item in more_matches:
 
 # # # # # # # # # #  part 110 (Python Regular Expressions Part two) # # # # # # # # #
 
+"""
+###### CHARACTER IDENTINFIERS
+#############################
 
-# Code	Meaning 
-# \d	a digit
-# \D	a non-digit
-# \s	whitespace (tab, space, newline, etc.)
-# \S	non-whitespace
-# \w	alphanumeric
-# \W	non-alphanumeric
+# Code	Meaning                                 EXAMPLE PATTERN         EXAMPLE MATCHING
+# \d	a digit                                 file_\d\d               file_25
+# \D	a non-digit                             \D\D\D                  ABC
+# \s	whitespace (tab, space, newline, etc.)  a\sb\sc                 a b c 
+# \S	non-whitespace                          \S\S\S\S                Yoyo
+# \w	alphanumeric                            \w-\w\w-1               _-bc-1
+# \W	non-alphanumeric                        \W\W\W\W                +-*/
+import re
+text = 'my phone number is 992-442-5523'
+pattern = '\d\d\d-\d\d\d-\d\d\d\d'
+pattern2 = '\d{3}-\d{3}-\d{4}'
+pattern3 = r'\d{3}-\d{3}-\d{4}'
+match1 = re.search(pattern,text)
+match2 = re.search(pattern2,text)
+match3 = re.search(pattern3,text)
+print(match1)
+print(match1.group())
+print(match2)
+print(match2.group())
+print(match3)
+print(match3.group())
 
+
+###### CHARACTER QUANTIFIERS
+#############################
+
+# Code	Meaning                                 EXAMPLE PATTERN         EXAMPLE MATCHING
+# + 	occurs one or more                      Version\w-\w+           VersionA-b-sdsdsd
+# {3}	occurs exacly three times               \D{3}                   123
+# {2,4}	occurs between 2 and 4 times  a\sb\sc   \d{2,4}                 4556
+# {3,}	occurs three or more times              \w{3,}                  Anycharacter
+# * 	occurs zero or more times               A*B*C*                  AAACCC (Zero or more A followed by zero or more B followed by zero or more C)
+# ? 	occurs once or none                     Plurals?                Plural ('l' followed by Zero or one s)
+
+
+import re
+text = 'my phone number is 992-442-5523'
+c_pattern = r'\d{3}-\d{3}-\d{4}'
+
+match_number = re.search(c_pattern,text)
+print(match_number) 
+print(match_number.group()) 
+
+###### COMPILE is a great function to extract the information from patterns based on dividing them to groups
+# and then call which group you want as example I want to call the first three numbers
+# EACH () is a GROUP
+compile_pattern = re.compile(r'(\d{3})-(\d{3})-(\d{4})')
+result = re.search(compile_pattern,text)
+print(result)
+print(result.group())#calling the whole number
+print(result.group(1))#calling the first three numbers
+print(result.group(2))#calling the second three numbers
+print(result.group(3))#calling the third three numbers
+"""
 
 # # # # # # # # # #  part 111 (Python Regular Expressions Part three) # # # # # # # # #
 
@@ -420,8 +469,10 @@ for item in more_matches:
 
 
 
-
+########################################################################################
 ########################## DO NOT GO OUT FROM RE UNTIL YOU CHECK THE OLD JYPTER NOOTBOOK
+########################################################################################
+
 
 # # # # # # # # # #  part 112 (Methods and the Python Documentation) # # # # # # # # #
 # # # # # # # # # #  part 113 (Methods and the Python Documentation) # # # # # # # # #
