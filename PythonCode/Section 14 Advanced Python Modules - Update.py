@@ -461,12 +461,82 @@ print(result.group(3))#calling the third three numbers
 """
 
 # # # # # # # # # #  part 111 (Python Regular Expressions Part three) # # # # # # # # #
+"""
+import re
+###### ADDITIONAL REGEX SYNTAX
+#############################
 
+###OR
+#####
+# searching for 'dog' or 'cat'
+patt = r'cat|dog'
+statement = 'There is a cat in the garden'
+statement2 = 'There is a dog in the garden'
+print(re.search(patt,statement))
+print(re.search(patt,statement2))
 
+###WILDCARD CHARACTER (.)
+########################
+statement3 = 'There is a cat in wearing hat sat the garden'
+print(re.findall('.at',statement3)) #. means grab the letter before AT
+print(re.findall('..at',statement3)) #. means grab two letters before AT
 
+###STARTWITH(^) 
+##################
+print(re.search(r'^\d','1 is the number')) #ONE MATCH 1 because the text start with a digit
+print(re.search(r'^\d','the 2 is a number')) #NO MATCH, t is not a digit
 
+###ENDWITH($)
+##################
+print(re.search(r'\d$','1 is the number')) #NO MATCH, r is not a digit
+print(re.search(r'\d$','the number is 2')) #ONE MATCH 2 because the text ends with a digit
 
+###### EXCLUDE([^])
+##################
+sen = 'there is 4 inside 55 numbers outside'
+pat = r'[^\d]' # exclude all numbers
+print(re.findall(pat,sen)) #this will give you a list of all letters in that sentence, each letter as a singel list member.
 
+# IF I WANT TO HAVE THE STATEMENT BACK 
+pat2 = r'[^\d]+' # exclude all numbers
+print(re.findall(pat2,sen))
+
+# normally we use [^] to clear a sentence with signs like .?!...etc .
+test = 'This is a string! But this has a punctionation. How can we remove that?'
+s1 = re.findall(r'[^.!?]+',test)
+clean_sentence = re.findall(r'[^.!? ]+',test) # added spaces 
+print(s1)
+print(*s1)
+print(clean_sentence)
+print(' '.join(clean_sentence)) # joining the words with spaces
+
+###### INCLUSION([])
+##################
+sent = 'Only find the hypen-word in this sentence, but you do not know long-ish words'
+#my job is to find the xxxx-xxxx words,, but I do not care about the length of it.
+
+p = r'[\w]+'
+print(re.findall(p,sent))
+p2 = r'[\w]+-[\w]+'  #returns  xxxx-xxxx words
+print(re.findall(p2,sent))
+
+##########JOINING words
+textone = ' hello, would you like some catfish?'
+texttwo = ' hello, would you like to take a catnap?'
+textthree = ' hello, have you seen a caterpillar?'
+
+com_pat1 = r'cat(fish|nap|erpillar)'
+print(re.search(com_pat1,textone))
+print(re.search(com_pat1,texttwo))
+print(re.search(com_pat1,textthree))
+com_pat2 = r'cat([\w]+)'
+print(re.search(com_pat2,textone))
+print(re.search(com_pat2,textone).group(1))
+print(re.search(com_pat2,texttwo))
+print(re.search(com_pat2,texttwo).group())
+print(re.search(com_pat2,textthree))
+print(re.search(com_pat2,textthree).group())
+"""
 
 
 ########################################################################################
