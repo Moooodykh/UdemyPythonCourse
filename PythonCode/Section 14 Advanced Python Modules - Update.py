@@ -1211,10 +1211,58 @@ print('Execution time for func_two: ',res2)
 # AS MUCH YOU INCREASE A NUMBER OF RUNNING , THE RESULT OF THE COPARING BETWEEN TWO FUNCTIONS IS GETTING MORE CLEAR
 """
 
-
 # # # # # # # # # #  part 113 (Zipping and Unzipping files with Python) # # # # # # # # #
+"""
+# we will deal with zip functionaliy inside ZIPPING FOLDER
+import os,shutil,zipfile,send2trash
+current_path = os.getcwd()
+folder_path = os.path.join(current_path,'PythonCode\ZIPPING')
+os.chdir(folder_path)
+
+def make_txt_files(number_of_files):
+    for file_name in range(number_of_files):
+        f = open(f'file_{file_name}.txt','w+')
+        f.write(f'This is file {file_name} ')
+        f.close
+
+# make_txt_files(3)
+
+# Zipping the files
+#creating the zipfile object with proper mode
+comp_file = zipfile.ZipFile('comp_file.zip',mode='w')
+#add the files that you want to the archive
+comp_file.write('file_0.txt',compress_type=zipfile.ZIP_DEFLATED)
+comp_file.close()
+
+send2trash.send2trash('comp_file.zip')
+
+### another example of building a zip file with more than one file
+ comp_file_two = zipfile.ZipFile('compressed_file.zip',mode='w')
+comp_file_two.write('file_0.txt',compress_type=zipfile.ZIP_DEFLATED)
+comp_file_two.write('file_1.txt',compress_type=zipfile.ZIP_DEFLATED)
+comp_file_two.write('file_2.txt',compress_type=zipfile.ZIP_DEFLATED)
+comp_file_two.close() 
+
+########EXTRACT FILE(s)
+
+####Extract specific file(s)
+com_file = zipfile.ZipFile('compressed_file.zip',mode='r')
+com_file.extract('file_1.txt')
+
+#### EXTRACT the whole zipped file
+extracted_path = os.path.join(folder_path,'extracted_folder')
+com_file.extractall(extracted_path)
 
 
+
+###### MAKING AN ARCHIVE FROM SHUTIL library for the entire folder
+zip_folder = os.path.join(folder_path,'Shutil_compress')
+shutil.make_archive('Shutil_compressed_folder','zip',zip_folder)
+
+###### UNZIP THE COMPRESSED FILE
+unzip_folder = os.path.join(folder_path,'Shutil_UNZIP')
+shutil.unpack_archive('Shutil_compressed_folder.zip',unzip_folder,'zip')
+"""
 
 # # # # # # # # # #  part 114 (Methods and the Python Documentation) # # # # # # # # #
 # # # # # # # # # #  part 115 (Methods and the Python Documentation) # # # # # # # # #
