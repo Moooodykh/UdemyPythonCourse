@@ -702,7 +702,450 @@ multi_re_find(test_patterns,test_phrase)
 
 """
 
-# # # # # # # # # #  part 112 (Methods and the Python Documentation) # # # # # # # # #
-# # # # # # # # # #  part 113 (Methods and the Python Documentation) # # # # # # # # #
+
+####################################EXAMPLES##########################################
+####################################REGEX EXAMPLES####################################
+""" # these examles & a lot of tutorials comes from :
+# https://www.w3schools.com/python/python_regex.asp
+
+
+# Character	Description	
+# []	A set of characters	"[a-m]"	
+# \	    Signals a special sequence (can also be used to escape special characters)	"\d"	
+# .	    Any character (except newline character)	"he..o"	
+# ^	    Starts with	"^hello"	
+# $	    Ends with	"world$"	
+# *	    Zero or more occurrences	"aix*"	
+# +	    One or more occurrences	"aix+"	
+# {}    	Exactly the specified number of occurrences	"al{2}"	
+# |	    Either or	"falls|stays"	
+# ()    	Capture and group	 
+import re
+
+##### []	A set of characters	"[a-m]"	
+txt = "The rain in Spain"
+#Find all lower case characters alphabetically between "a" and "g":
+x = re.findall("[a-g]", txt)
+y = re.findall('[g-t]',txt) #finding the letters between "g" and "t"
+print(x,y)
+
+##### \	    Signals a special sequence (can also be used to escape special characters)	"\d"
+
+txt = 'there is 69 numbers in 99'
+x = re.findall('\d',txt)
+y = re.findall('\d+',txt)
+z = re.findall(r'\S+',txt) # r'\S+' is same as '\S'
+
+print(x,y,z)
+
+                # r'\d+', # sequence of digits
+                # r'\D+', # sequence of non-digits
+                # r'\s+', # sequence of whitespace
+                # r'\S+', # sequence of non-whitespace
+                # r'\w+', # alphanumeric characters
+                # r'\W+', # non-alphanumeric (# and white spaces)
+
+
+##### .	    Any character (except newline character)	"he..o"	
+
+txt = 'Hello world guys'
+x = re.findall('He...',txt)
+y = re.findall('He...+',txt)
+print(x,y)
+
+##### ^	    Starts with	"^hello"	
+
+txt = 'Hello this text contains hello world'
+x = re.findall('^Hello',txt)
+if x:
+    print('Yes, the text start with HELLO')
+else:
+    print('the text did not start with HELLO')
+
+##### $	    Ends with	"world$"	
+
+txt = 'Hello this text contains hello world'
+x = re.findall('world$',txt)
+if x:
+    print('Yes, the text ends with world')
+else:
+    print('the text did not end with world')
+
+##### *	    Zero or more occurrences	"aix*"	
+
+txt = "The rain in Spain falls mainly in the plain!"
+#Check if the string contains "ai" followed by 0 or more "x" characters:
+x = re.findall("aix*", txt)
+print(x)
+
+if x:
+    print("Yes, there is at least zero match or more!")
+else:
+    print("No match")
+
+##### +	    One or more occurrences	"aix+"	
+
+txt = "The rain in Spain falls mainly in the plain!"
+#Check if the string contains "ai" followed by 0 or more "x" characters:
+x = re.findall("aix+", txt)
+print(x)
+
+if x:
+    print("Yes, there is at least one match or more!")
+else:
+    print("No match")
+
+##### {}    	Exactly the specified number of occurrences	"al{2}"	
+
+txt = 'Hello all, welcome to this club today'
+x = re.findall('al{2}',txt) # a followed by two l's
+
+if x:
+    print("Yes, there is match!")
+    print(x)
+else:
+    print("No match")
+
+##### |	    Either or	"falls|stays"	
+
+txt = "The rain in Spain falls mainly in the plain!"
+#Check if the string contains either "falls" or "stays":
+x = re.findall('falls|stays|rain',txt)
+y = re.findall('[falls]+',txt)
+z = re.findall('[stays]+',txt)
+
+if x:
+    print("Yes, there is match! X ")
+    print(x)
+else:
+    print("No match")
+
+if y:
+    print("Yes, there is match! Y")
+    print(y)
+else:
+    print("No match")
+
+if z:
+    print("Yes, there is match! Z")
+    print(z)
+else:
+    print("No match")
+
+##### \A	Returns a match if the specified characters are at the beginning of the string	"\AThe"
+
+txt = "The rain in Spain"
+#Check if the string starts with "The":
+x = re.findall("\AThe", txt)
+
+print(x)
+
+if x:
+    print("Yes, there is a match!")
+else:
+    print("No match")
+
+
+##### \b	Returns a match where the specified characters are at the beginning or at the end of a word
+        # (the "r" in the beginning is making sure that the string is being treated as a "raw string")	
+        # r"\bain"
+        # r"ain\b"	
+
+txt = "The rain in Spain"
+
+#Check if "ain" is present at the beginning of a WORD:
+x = re.findall(r"\bain", txt) # check if any word of the statment start with "ain"
+y = re.findall(r"\brai", txt) # check if any word of the statment start with "rai"
+
+print(x)
+
+if x:
+    print("Yes, there is a word of the statment start with 'ain'! X")
+    print(x)
+else:
+    print("No match")
+
+if y:
+    print("Yes, there is a word of the statment start with 'rai'! Y")
+    print(y)
+else:
+    print("No match")
+
+##### \B	Returns a match where the specified characters are present, but NOT at the beginning (or at the end) of a word
+        # (the "r" in the beginning is making sure that the string is being treated as a "raw string")	
+        # r"\Bain"
+        # r"ain\B"
+
+txt = "The rain in Spain"
+
+#Check if "ain" is present, but NOT at the beginning of a word:
+x = re.findall(r"\Bain", txt)
+
+print(x)
+
+if x:
+    print("Yes, 'ain' is present, but NOT at the beginning of a word ")
+    print(x)
+else:
+    print("No match")
+
+##### \Z	Returns a match if the specified characters are at the end of the string	"Spain\Z"
+
+txt = "The rain in Spain"
+
+#Check if the string ends with "Spain":
+x = re.findall("Spain\Z", txt)
+print(x)
+
+if x:
+    print("Yes, string ends with 'Spain'")
+else:
+    print("No match")
+
+
+##### [arn]  check if the string has any a, r, or n characters:
+
+#Check if the string has any a, r, or n characters:
+x = re.findall("[arn]", txt)
+
+print(x)
+if x:
+    print("Yes, there is at least one match!")
+else:
+    print("No match")
+
+
+
+##### [a-n]  Check if the string has any characters between a and n:
+
+#Check if the string has any characters between a and n:
+x = re.findall("[a-n]", txt)
+print(x)
+if x:
+    print("Yes, there is at least one match!")
+else:
+    print("No match")
+
+
+
+##### [^arn]  Check if the string has other characters than a, r, or n:
+
+txt = "The rain in spain"
+#Check if the string has other characters than a, r, or n:
+x = re.findall("[^\D]", txt) # ^ equals  Except
+y = re.findall('^The',txt) # ^ equals start with
+
+
+print(x)
+if x:
+    print("Yes, there is at least one match!")
+else:
+    print("No match")
+
+print(y)
+if y:
+    print("Yes, there is at least one match!")
+else:
+    print("No match")
+
+
+
+
+##### [0123]  Check if the string has any 0, 1, 2, or 3 digits:
+
+txt = "The rain in spain"
+
+#Check if the string has any 0, 1, 2, or 3 digits:
+x = re.findall("[0123]", txt)
+
+print(x)
+if x:
+    print("Yes, there is at least one match!")
+else:
+    print("No match")
+    
+
+
+##### [0-9]  Check if the string has any digits:
+
+txt = "8 times before 11:45 AM"
+
+#Check if the string has any digits:
+
+x = re.findall("[0-9]", txt)
+
+print(x)
+if x:
+    print("Yes, there is at least one match!")
+else:
+    print("No match")
+
+
+##### [0-5][0-9]  Check if the string has any two-digit numbers, from 00 to 59:
+
+txt = "8 times before 11:45 AM"
+#Check if the string has any two-digit numbers, from 00 to 59:
+x = re.findall("[0-5][0-9]", txt)
+
+print(x)
+if x:
+    print("Yes, there is at least one match!")
+else:
+    print("No match")
+
+
+##### [a-zA-Z]  #Check if the string has any characters from a to z lower case, and A to Z upper case:
+
+txt = "8 times before 11:45 AM"
+#Check if the string has any characters from a to z lower case, and A to Z upper case:
+x = re.findall("[a-zA-Z]", txt)
+
+print(x)
+if x:
+    print("Yes, there is at least one match!")
+else:
+    print("No match")
+
+
+##### [0-5][0-9]  Check if the string has any two-digit numbers, from 00 to 59:
+
+txt = "8 times before 11:45 AM"
+#Check if the string has any + characters:
+x = re.findall("[+]", txt)
+y = re.findall('[^ ]+',txt)
+print(x)
+if x:
+    print("Yes, there is at least one match!")
+else:
+    print("No match")
+
+print(y)
+if y:
+    print("Yes, there is at least one match!")
+else:
+    print("No match")
+
+
+###### Split the string at the first white-space character:
+
+txt = "The rain in Spain"
+x = re.split("\s", txt, 1) #1 is split from the first occurence
+print(x)
+
+###### Replace all white-space characters with the digit "9":
+
+txt = "The rain in Spain"
+x = re.sub("\s", "9", txt)
+print(x)
+
+#Replace the first two occurrences of a white-space character with the digit 9:
+txt = "The rain in Spain"
+x = re.sub("\s", "9", txt, 2) # The9rain9in Spain
+print(x)
+
+#The search() function returns a Match object:
+
+txt = "The rain in Spain"
+x = re.search("ai", txt)
+print(x) #this will print an object , <_sre.SRE_Match object; span=(5, 7), match='ai'>
+
+
+#Search for an upper case "S" character in the beginning of a word, and print its position:
+txt = "The rain in Spain"
+x = re.search(r'\bS\w+',txt)
+print(x.span())
+
+
+##### match/search/group
+# this tutorial comes from this website
+#https://regexone.com/references/python
+
+
+
+# Lets use a regular expression to match a date string. Ignore
+# the output since we are just testing if the regex matches.
+regex = r"([a-zA-Z]+) (\d+)"
+if re.search(regex, "June 24"):
+    # Indeed, the expression "([a-zA-Z]+) (\d+)" matches the date string
+    
+    # If we want, we can use the MatchObject's start() and end() methods 
+    # to retrieve where the pattern matches in the input string, and the 
+    # group() method to get all the matches and captured groups.
+    match = re.search(regex, "June 24")
+    
+    # This will print [0, 7), since it matches at the beginning and end of the 
+    # string
+    print("Match at index %s, %s" % (match.start(), match.end()))
+    
+    # The groups contain the matched values.  In particular:
+    #    match.group(0) always returns the fully matched string
+    #    match.group(1), match.group(2), ... will return the capture
+    #            groups in order from left to right in the input string
+    #    match.group() is equivalent to match.group(0)
+    
+    # So this will print "June 24"
+    print("Full match: %s" % (match.group(0)))
+    # So this will print "June"
+    print("Month: %s" % (match.group(1)))
+    # So this will print "24"
+    print("Day: %s" % (match.group(2)))
+else:
+    # If re.search() does not match, then None is returned
+    print("The regex pattern does not match. :(")
+
+
+##### -------------------------------------------------------
+# Lets use a regular expression to match a few date strings.
+regex = r"[a-zA-Z]+ \d+"
+matches = re.findall(regex, "June 24, August 9, Dec 12")
+for match in matches:
+    # This will print:
+    #   June 24
+    #   August 9
+    #   Dec 12
+    print("Full match: %s" % (match))
+
+# To capture the specific months of each date we can use the following pattern
+regex = r"([a-zA-Z]+) \d+"
+matches = re.findall(regex, "June 24, August 9, Dec 12")
+for match in matches:
+    # This will now print:
+    #   June
+    #   August
+    #   Dec
+    print("Match month: %s" % (match))
+
+# If we need the exact positions of each match
+regex = r"([a-zA-Z]+) \d+"
+matches = re.finditer(regex, "June 24, August 9, Dec 12")
+for match in matches:
+    # This will now print:
+    #   0 7
+    #   9 17
+    #   19 25
+    # which corresponds with the start and end of each match in the input string
+    print("Match at index: %s, %s" % (match.start(), match.end()))
+
+
+
+#************************** doing example ******************************
+regex = r"([a-zA-Z]+) (\d+)"
+dates_txt = "June 24, August 9, Dec 12"
+dates = dates_txt.split(',')
+for word in dates:
+    x = re.search(regex,word)
+    print("Full match :%s" %(x.group(0)))
+    print("Month match :%s" %(x.group(1)))
+    print('Day match :%s'%(x.group(2)))
+
+"""
+
+# # # # # # # # # #  part 112 (Timing Your Python Code) # # # # # # # # #
+
+
+# # # # # # # # # #  part 113 (Zipping and Unzipping files with Python) # # # # # # # # #
+
+
+
 # # # # # # # # # #  part 114 (Methods and the Python Documentation) # # # # # # # # #
 # # # # # # # # # #  part 115 (Methods and the Python Documentation) # # # # # # # # #
