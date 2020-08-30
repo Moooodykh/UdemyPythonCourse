@@ -1142,6 +1142,75 @@ for word in dates:
 
 # # # # # # # # # #  part 112 (Timing Your Python Code) # # # # # # # # #
 
+"""
+# the efficent way of testing a code is to see how time it will take until it executed.
+
+def func_one(n):
+    return[str(num) for num in range(n)]
+
+def func_two(n):
+    return list(map(str,range(n)))
+
+# these two functions is doing the same functionality
+
+print(func_one(10))
+print(func_two(10))
+
+# when we measure the run time, we need to consider
+
+###CURRENT TIME BEFORE
+###RUN CODE
+###CURRENT TIME AFTER
+### ELAPSED TIME(DIFFERENCE BETWEEN THE TWO TIMES)
+
+################### WAY NR.1 #####################
+################### TIME MODULE ##################
+import time
+
+### Func one
+start_time = time.time()
+code_run = func_one(100000)
+end_time = time.time()
+elapsed_time = end_time - start_time
+print(elapsed_time)
+
+### Func two
+start_time = time.time()
+code_run = func_two(100000)
+end_time = time.time()
+elapsed_time = end_time - start_time
+print(elapsed_time)
+
+#NOTICE WHEN U PUT SMALL AMOUNT OF NUMBERS LIKE N = 100 OR 10 THE DIFFERNECE WILL BE zero
+
+################### WAY NR.2 #####################
+################### TIMEIT MODULE ##################
+import timeit
+# we need to define statment , setup : AS STRINGS and a number of running(repeating)
+#we use ''' ''' to run multiple line code
+statment1 = '''
+func_one(100)
+'''
+setup1 ='''
+def func_one(n):
+    return[str(num) for num in range(n)]
+'''
+res1 = timeit.timeit(statment1,setup1,number=100000) # run/repeat this code 100000 times
+
+statment2 = '''
+func_two(100)
+'''
+setup2 ='''
+def func_two(n):
+    return[str(num) for num in range(n)]
+'''
+res2 = timeit.timeit(statment2,setup2,number=100000) # run/repeat this code 100000 times
+print('Execution time for func_one: ',res1)
+print('Execution time for func_two: ',res2)
+
+# AS MUCH YOU INCREASE A NUMBER OF RUNNING , THE RESULT OF THE COPARING BETWEEN TWO FUNCTIONS IS GETTING MORE CLEAR
+"""
+
 
 # # # # # # # # # #  part 113 (Zipping and Unzipping files with Python) # # # # # # # # #
 
