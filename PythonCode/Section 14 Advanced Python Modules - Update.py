@@ -1263,6 +1263,98 @@ shutil.make_archive('Shutil_compressed_folder','zip',zip_folder)
 unzip_folder = os.path.join(folder_path,'Shutil_UNZIP')
 shutil.unpack_archive('Shutil_compressed_folder.zip',unzip_folder,'zip')
 """
+# # # # # # # # # #  part 114&115 (Advanced Python Module Puzzle - Overview & Solution) # # # # # # # # #
+######## THE SOLUTION
 
-# # # # # # # # # #  part 114 (Methods and the Python Documentation) # # # # # # # # #
-# # # # # # # # # #  part 115 (Methods and the Python Documentation) # # # # # # # # #
+excersize_path = r'E:\PROGRAMMING\PythonTutorials\Complete-Python-3-Bootcamp-master_NEW\Complete-Python-3-Bootcamp-master\12-Advanced Python Modules\08-Advanced-Python-Module-Exercise'
+import os,shutil,re
+### part 1
+file_path = os.path.join(excersize_path,'extracted_content/Instructions.txt')
+path = os.path.join(excersize_path,'extracted_content')
+
+with open(file_path) as f:
+    text = f.read()
+    print(text)
+
+### part2
+def search_inside_file(file_path):
+    pattern = r'\d{3}-\d{3}-\d{4}'
+    f = open(file_path,mode='r')
+    content = f.read()
+    if re.search(pattern,content):
+        return re.search(pattern,content)
+    else:
+        return ''
+results = []
+for folder, sub_folders,files in os.walk(path):
+    for file_item in files:
+        fullpath = folder + '\\'+ file_item
+        results.append(search_inside_file(fullpath))
+
+for result in results:
+    if result != '':
+        print(result.group())
+    else:
+        pass
+
+#### TESTING CODE
+""" import os,shutil,re
+# os.chdir(excersize_path)
+# shutil.unpack_archive('unzip_me_for_instructions.zip',excersize_path,format='zip')
+
+pattern = '\d{3}-\d{3}-\d{4}'
+walk_path = os.path.join(excersize_path,'extracted_content')
+results = []
+
+for folder,subfolders,files in os.walk(walk_path):
+    print('\n')
+    print('The search inside folder:',f'{folder}'.upper() )
+    for subfolder in subfolders:
+        pass
+    for txt_file in files:
+        os.chdir(walk_path)
+        f = open(f'{txt_file}',mode='r')
+        phrase = f.readlines()
+        for line in phrase:
+            result = re.findall(pattern,line) 
+            results.append(f'{txt_file} contians: {result}')
+
+print(*results)
+ """
+######### TESTING CODE
+
+""" 
+import os
+os.chdir(work_path)
+f = open('file_0.txt',mode='r')
+text = f.readlines()
+for item in text:
+    print(item.strip())
+
+# print('LINES %s'%(text))
+print(*text)
+                # counter = 1
+                # while text:
+                #     print(f'line:{counter} ::',text.strip())
+                #     text = f.readline()
+                #     counter += 1
+"""
+""" 
+import os
+print('*'*100)
+print(os.getcwd())
+for folder, sub_folders, files in os.walk('E:\\PROGRAMMING\\github\\UdemyPythonCourse\\PythonCode\\Top_level_folder'):
+    print('\n')
+    print(f'Currently we are looking at folder {folder}')
+    print('Subfolders are:'.upper())
+    for sub_older in sub_folders:
+        print('\tSubfolder:',sub_older)
+    print('files are:'.upper())
+    for fil in files:
+        print('\tfile:',fil)   
+        # t = open(fil,mode='r')
+        # line = t.readline()
+        # print(line.strip()) 
+ """
+p = r'E:\PROGRAMMING\github\UdemyPythonCourse\PythonCod  ve\Top_level_folder'
+work_path = r'E:\PROGRAMMING\github\UdemyPythonCourse\PythonCode\ZIPPING'
