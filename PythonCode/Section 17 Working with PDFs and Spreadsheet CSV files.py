@@ -4,6 +4,7 @@
 #### JUST INTRODUCTION
 
 # # # # # # # # # #  part 130 ( Working with CSV Files in Python) # # # # # # # # #
+""" 
 #CSV is a Comma Sperated Variables
 #CSV contains ONLY the data, not macros,styling...etc
 
@@ -68,12 +69,51 @@ for line in data_lines[1:15]: #from the first name to number 15
     full_name = line[1] +' ' + line[2]
     fullnames.append(full_name)
 
+
 print(*fullnames,sep='\n')
 
 ##############WRITING FROM CSV files ######################
 #delimiter = seprator : NORMALLY COMMA','
 
 # I WANT TO MAKE A NEW CSV file
+# files are saved to : Result_of_the script folder
+
+file_to_write = open('names.csv',mode='w',newline='\n')
+# newline controls how universal newlines works (it only applies to text
+# mode). It can be None, '', '\n', '\r', and '\r\n'.
+csv_writer = csv.writer(file_to_write,delimiter=',')
+csv_writer.writerow(['Id','FirstName','Lastname','email','gender','ip','city'])
+ten_names = data_lines[1:10]
+csv_writer.writerows(ten_names)
+file_to_write.close()
+
+
+
+#### EXCERSIZE TO READ AND WRITE FROM/TO CSV ####
+import os,csv
+desired_path = os.getcwd() +'\\' +'PythonCode\\PDFs_Sheets'
+write_path = desired_path + '\\' + 'read_write_excersize'
+os.chdir(desired_path)
+### READING
+csv_file = open('example.csv',mode='r',encoding='utf-8')
+data_lines = csv.reader(csv_file)
+data = list(data_lines)
+Output_list = []
+
+for row_data in data[:5]:
+    Output_list.append(row_data[:4])
+### WRITING
+csv_output = open('output_save.csv',mode='w',newline='')
+csv_writer = csv.writer(csv_output,delimiter=',')
+csv_writer.writerows(Output_list)
+csv_output.close()
+"""
+
+
+
+
+
+
 
 
 # # # # # # # # # #  part 131 ( Advanced Dictionaries) # # # # # # # # #
