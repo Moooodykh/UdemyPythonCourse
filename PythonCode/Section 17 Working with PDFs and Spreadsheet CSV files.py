@@ -188,5 +188,50 @@ file_under_work.close()
 
 
 #
-# # # # # # # # # #  part 132 ( Advanced Lists) # # # # # # # # #
-# # # # # # # # # #  part 133 ( Advanced Lists) # # # # # # # # #
+# # # # # # # # # #  part 132-133 ( PDFs and Spreadsheets Python Puzzle Exercise && SOLUTION) # # # # # # # # #
+
+path =r'E:\PROGRAMMING\github\UdemyPythonCourse\PythonCode\PDFs_Sheets\Exercise_Files'
+""" #### TASK1
+# Task One: Use Python to extract the Google Drive link from the .csv file. 
+# (Hint: Its along the diagonal from top left to bottom right).
+# the answer looks like = 'https://drive.google.com/open?id=1G6SEgg018UB4_4xsAJJ5TdzrhmXipr4Q'
+
+import os,csv
+os.chdir(path)
+output_result = ''
+file_under_work = open('find_the_link.csv',mode='r',encoding='utf-8')
+csv_reader = csv.reader(file_under_work)
+csv_data = list(csv_reader)
+# print(*csv_data,sep='\n\n')
+line_counter = 0
+for row in csv_data:
+    output_result +=  row[line_counter]
+    line_counter += 1
+
+print(output_result)
+
+
+#### TASK2
+# Task Two: Download the PDF from the Google Drive link (we already downloaded it for you just in case you can't
+#  download from Google Drive) and find the phone number that is in the document. Note: There are different
+#  ways of formatting a phone number!
+# You should get this phone number
+# 505 503 4455
+import os,re,PyPDF2
+small_pattern = r'\d{3}'
+pattern = r'\d{3}.\d{3}.\d{4}'
+os.chdir(path)
+
+pdf_file = open('Find_the_Phone_Number.pdf',mode='rb') 
+pdf_reader = PyPDF2.PdfFileReader(pdf_file)
+output_txt = ''
+print('--'*25)
+for page in range(pdf_reader.numPages):
+    page_object = pdf_reader.getPage(page)
+    page_content = page_object.extractText()
+    output_txt += page_content
+
+# print(output_txt)
+ItemFound = re.search(pattern,output_txt)
+print(ItemFound.group())
+"""
