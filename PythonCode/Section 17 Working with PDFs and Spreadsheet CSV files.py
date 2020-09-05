@@ -109,13 +109,84 @@ csv_writer.writerows(Output_list)
 csv_output.close()
 """
 
+# # # # # # # # # #  part 131 ( Working with PDF Files in Python) # # # # # # # # #
+""" 
+# PDF :portable document format
+#PYpdf2 library which will be used
+import PyPDF2
+import os
+current_directory = os.getcwd()
+files_path = os.path.join(current_directory,'PythonCode\PDFs_Sheets')
+os.chdir(files_path)
+
+file_under_work = open('Working_Business_Proposal.pdf',mode='rb') # Notice we read it as a binary with 'rb'
+# Similar to the csv library, we open a pdf, then create a reader object for it. Notice how we use the binary method of reading , 
+# 'rb', instead of just 'r'.
+pdf_reader = PyPDF2.PdfFileReader(file_under_work)
+print(pdf_reader.numPages) # getting the number of pages of that PDF dokument
+
+page_one = pdf_reader.getPage(0)
+page_one_text = page_one.extractText()
+page_two = pdf_reader.getPage(1)
+page_two_text =page_two.extractText()
+page_three = pdf_reader.getPage(2)
+page_three_text = page_three.extractText()
+
+print('Page1: \n',page_one_text)
+print('\nPage2: \n',page_two_text)
+print('\nPage3: \n',page_three_text)
+
+# file_under_work.close()
 
 
 
+#### Adding to PDFs
+# We can not write to PDFs using Python because of the differences between the single string type of Python, and the variety of fonts, placements, and other parameters that a PDF could have.
+# What we can do is copy pages and append pages to the end.
+
+## we need to have a page element to be able to attach it to a PDF 
+print(type(page_three)) # it should be PyPDF2.pdf.PageObject
+
+pdf_writer = PyPDF2.PdfFileWriter()
+pdf_writer.addPage(page_three)
+pdf_writer.addPage(page_two)
+pdf_file_output = open('New_file.pdf',mode='wb')
+pdf_writer.write(pdf_file_output)
+
+file_under_work.close()
+
+"""
+
+#########EXCERSIZE ###########
+# I want to read all text in that PDF and then CREAT a PDF with UPPERCASE OF ALL LETTERS
+# Working_Business_Proposal.pdf
+
+"""
+import PyPDF2,os
+result = ''
+file_under_work = open('Working_Business_Proposal.pdf',mode='rb')
+pdf_reader = PyPDF2.PdfFileReader(file_under_work)
+# for pageNumber in range(pdf_reader.numPages):
+#     page_element = pdf_reader.getPage(pageNumber)    
+#     page_txt = page_element.extractText()
+#     page_txt = page_txt.upper()
+#     result = result + f'Page {pageNumber+1}:\n' +  page_txt +'\n'
+# print(result)
+print('*'*100)
+page_zero = pdf_reader.getPage(0)
+page_zero_txt = page_zero.extractText()
+page_zero_txt = page_zero_txt.upper()
+
+pdf_writer = PyPDF2.PdfFileWriter()
+# pdf_writer.addPage(page_zero)
+pdf_writer.insertPage(page_zero,index=0)
+pdf_writer..insertPage(page_zero,index=1)
+pdf_output = open('test_upper.pdf',mode='wb')
+pdf_writer.write(pdf_output)
+file_under_work.close()
+"""
 
 
-
-
-# # # # # # # # # #  part 131 ( Advanced Dictionaries) # # # # # # # # #
+#
 # # # # # # # # # #  part 132 ( Advanced Lists) # # # # # # # # #
 # # # # # # # # # #  part 133 ( Advanced Lists) # # # # # # # # #

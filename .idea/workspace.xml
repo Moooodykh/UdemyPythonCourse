@@ -1,16 +1,47 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="a258a0ee-4e7d-4d4d-a397-5064b00a654f" name="Default Changelist" comment="" />
+    <list default="true" id="a258a0ee-4e7d-4d4d-a397-5064b00a654f" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/PythonCode/Section 17 Working with PDFs and Spreadsheet CSV files.py" beforeDir="false" afterPath="$PROJECT_DIR$/PythonCode/Section 17 Working with PDFs and Spreadsheet CSV files.py" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="ProjectId" id="1h3qNQmEVT5Jk7dcts11dN1ElgT" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+    <option name="showMembers" value="true" />
+  </component>
+  <component name="PropertiesComponent">
+    <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
+    <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
+    <property name="settings.editor.selected.configurable" value="com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable" />
+  </component>
   <component name="SvnConfiguration">
     <configuration />
   </component>
   <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="a258a0ee-4e7d-4d4d-a397-5064b00a654f" name="Default Changelist" comment="" />
+      <created>1599250082844</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1599250082844</updated>
+    </task>
     <servers />
+  </component>
+  <component name="WindowStateProjectService">
+    <state x="309" y="75" key="SettingsEditor" timestamp="1599250131149">
+      <screen x="0" y="0" width="1603" height="862" />
+    </state>
+    <state x="309" y="75" key="SettingsEditor/0.0.1603.862/1920.0.1603.862@0.0.1603.862" timestamp="1599250131149" />
   </component>
 </project>
