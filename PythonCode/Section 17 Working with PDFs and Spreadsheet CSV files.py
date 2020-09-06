@@ -235,3 +235,96 @@ for page in range(pdf_reader.numPages):
 ItemFound = re.search(pattern,output_txt)
 print(ItemFound.group())
 """
+
+
+#### Merging PDF files
+files_path=r'E:\PROGRAMMING\github\UdemyPythonCourse\PythonCode\PDFs_Sheets\Extrascripts'
+
+""" import PyPDF2,os
+os.chdir(files_path)
+
+def pdf_merger(pdfs,output):
+    # creating pdf file merger object 
+    pdf_merger = PyPDF2.PdfFileMerger()
+
+    # appending pdfs one by one 
+    for pdf in pdfs:
+        with open(pdf,mode='rb') as f:
+            pdf_reader = PyPDF2.PdfFileReader(f)
+            pdf_merger.append(f)
+    
+    # writing combined pdf to output pdf file
+    with open(output,mode='wb') as f:
+        pdf_merger.write(f)
+
+
+def main():
+    pdfs = ['Find_the_Phone_Number.pdf','Working_Business_Proposal.pdf']
+    output = 'Combined_PDF_file.pdf'
+
+    pdf_merger(pdfs,output)
+
+if __name__ == "__main__":
+    main()
+
+"""
+######## MERGING
+# You can find information 
+# https://realpython.com/creating-modifying-pdf/
+
+#### 1. CONTACTENATING (append())
+import os,PyPDF2
+from pathlib import Path
+print(Path.home())# show the user directory
+print(os.getcwd())
+
+
+pdf_merger = PyPDF2.PdfFileMerger()
+report_path = files_path + '\\reports'
+os.chdir(report_path)
+for folder,sub_folders,files in os.walk(report_path):
+    for f in files:
+        pdf_file_full_path = folder + '\\' + f
+        pdf_merger.append(pdf_file_full_path)
+
+with open('Report.pdf',mode='wb') as output_file:
+    pdf_merger.write(output_file) 
+
+#### 2.MERGING (merge) ## you need to append first of all some PDF to the merger
+merg_path = report_path + '\\merg'
+pdf_pathes = []
+for folder,sub_folders,files in os.walk(report_path):
+    for f in files:
+        pdf_file_full_path = folder + '\\' + f
+        pdf_pathes.append(pdf_file_full_path)
+
+pdf_merger_merge = PyPDF2.PdfFileMerger()
+pdf_merger_merge.append(pdf_pathes[0])
+pdf_merger_merge.merge(2,pdf_pathes[1])
+
+with open('report_merged_method.pdf',mode='wb') as file_output:
+    pdf_merger_merge.write(file_output)
+
+
+####### ROTATING PAGES
+# I will open expense_report1.pdf file and every even page I rotate that.
+import os,PyPDF2
+pdf_file = open('expense_report1.pdf',mode='rb')
+pdfreader_obj = PyPDF2.PdfFileReader(pdf_file)
+
+pdfwriter = PyPDF2.PdfFileWriter()
+for page in range(pdfreader_obj.numPages):
+    page_obj =pdfreader_obj.getPage(page)
+    if page % 2 == 0:
+        page_obj.rotateClockwise(90)
+        pdfwriter.addPage(page_obj)
+    else:
+        pdfwriter.addPage(page_obj)
+
+with open('Rotated_file.pdf',mode='wb') as output_rotated:
+    pdfwriter.write(output_rotated)
+
+pdf_file.close()
+
+
+####### Cropping Pages
