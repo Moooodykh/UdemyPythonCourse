@@ -1,9 +1,12 @@
 # ------------------------ Section 16: Section 16 Working with Images is from part 125 to 128   -----------------------------
 
 path =r'E:\PROGRAMMING\github\UdemyPythonCourse\PythonCode\PDFs_Sheets\Exercise_Files'
-""" # PIL : python Image Library is the main library
+# # # # # # # # # #  part 125 ( Introduction to Images with Python) # # # # # # # # #
 # We will work with PILLOW lib, Pip install pillow
+# PIL : python Image Library is the main library
 
+# # # # # # # # # #  part 126 ( Working with Images with Python) # # # # # # # # #
+"""
 import os
 from PIL import Image
 ### EVER THING WITH IMAGE IS TUPLES
@@ -98,7 +101,28 @@ blue = Image.open('blue_color.png')
 #
 blue.show()
 """
-# # # # # # # # # #  part 125 ( Advanced Numbers) # # # # # # # # #
-# # # # # # # # # #  part 126 ( Advanced Sets) # # # # # # # # #
-# # # # # # # # # #  part 127 ( Advanced Dictionaries) # # # # # # # # #
-# # # # # # # # # #  part 128 ( Advanced Lists) # # # # # # # # #
+# # # # # # # # # #  part 127 & 128 ( Python Image Exercises - Overview & SOLUTION) # # # # # # # # #
+"""
+
+import os
+from PIL import Image
+
+image_path = os.getcwd() + '\\Images'
+os.chdir(image_path)
+word_matrix = Image.open('word_matrix.png',mode='r')
+mask = Image.open('mask.png',mode='r')
+
+x_matrix,y_matrix = word_matrix.size
+x_mask,y_masks = mask.size
+
+print(x_matrix,y_matrix)
+print(x_mask,y_masks)
+new_mask = mask.resize((x_matrix,y_matrix))
+# new_mask.show()
+# word_matrix.show()
+
+new_mask.putalpha(150)
+word_matrix.paste(new_mask,(0,0),new_mask)
+word_matrix.show()
+
+"""
