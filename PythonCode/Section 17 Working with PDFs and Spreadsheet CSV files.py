@@ -444,3 +444,77 @@ with open('Newsletter_after_decryption.pdf',mode='wb') as fw:
 
 pdf_file.close() 
 """
+
+
+###################### Creating a PDF File From Scratch
+
+"""
+###### X: lowerleft
+###### Y: lowerleft
+
+# Using the Canvas Class
+# The main interface for creating PDFs with reportlab is the Canvas class,
+#  which is located in the reportlab.pdfgen.canvas module.
+import os
+from reportlab.lib.units import inch,cm
+from reportlab.lib.pagesizes import LETTER,A4,TABLOID
+from reportlab.pdfgen.canvas import Canvas
+from reportlab.lib.colors import blue,red,green
+
+print(cm)
+print(inch)
+os.chdir(os.getcwd()+r'\PythonCode\Canvas')
+canvas_obj = Canvas('hello.pdf',pagesize=(612.0, 792.0)) # empty PDF object with this size of points
+# 1 inch = 72 points
+# 1 cm = 28.2324 points
+
+canvas_obj2 = Canvas('hello.pdf',pagesize=(8.5 * inch, 11 * inch)) # empty PDF object
+canvas_obj3 = Canvas('hello.pdf',pagesize=LETTER) # empty PDF object
+
+canvas_obj3.drawString(72,72,'Hello GUYS')
+#x: The first specifies the distance from the left edge of the canvas
+#y:the second specifies the distance from the bottom edge.
+canvas_obj.save()
+
+canvas = Canvas("font-example.pdf", pagesize=LETTER)
+canvas.setFont("Times-Roman", 18)
+canvas.drawString(1*inch,6*inch,'HELO HELLO HOW ARE YOU MAN WE LOVE YOU')
+canvas.drawString(1*inch,6*inch,'HELO HELLO HOW ARE YOU MAN WE LOVE YOU')
+canvas.save()
+
+# There are three fonts available by default:
+# "Courier"
+# "Helvetica"
+# "Times-Roman"
+
+# Each font has bolded and italicized variants. Here’s a list of all the font variations available in reportlab:
+# "Courier"
+# "Courier-Bold"
+# "Courier-BoldOblique"
+# "Courier-Oblique"
+# "Helvetica"
+# "Helvetica-Bold"
+# "Helvetica-BoldOblique"
+# "Helvetica-Oblique"
+# "Times-Bold"
+# "Times-BoldItalic
+# "Times-Italic"
+# "Times-Roman"
+
+canvas_courier = Canvas('Different_Fonts.pdf',pagesize=A4)
+print(A4)
+
+canvas_courier.setFont('Courier-Bold',size=16)
+canvas_courier.setFillColor(blue)
+canvas_courier.drawString(1*inch,4*inch,'Here is the "Courier-Bold" TEXT ')
+
+canvas_courier.setFont('Helvetica-Bold',size=16)
+canvas_courier.setFillColor(green)
+canvas_courier.drawString(1*inch,8*inch,'Here is the "Helvetica-Bold" TEXT ')
+
+canvas_courier.setFont('Times-Bold',size=16)
+canvas_courier.setFillColor(red)
+canvas_courier.drawString(1*inch,6*inch,'Here is the "Times-Bold" TEXT ')
+
+canvas_courier.save()
+"""
