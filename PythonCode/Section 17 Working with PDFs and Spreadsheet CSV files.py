@@ -157,7 +157,7 @@ file_under_work.close()
 
 """
 
-#########EXCERSIZE ###########
+######### EXCERSIZE ###########
 # I want to read all text in that PDF and then CREAT a PDF with UPPERCASE OF ALL LETTERS
 # Working_Business_Proposal.pdf
 
@@ -237,7 +237,7 @@ print(ItemFound.group())
 """
 
 
-#### Merging PDF files
+############### Merging PDF files
 files_path=r'E:\PROGRAMMING\github\UdemyPythonCourse\PythonCode\PDFs_Sheets\Extrascripts'
 
 """ import PyPDF2,os
@@ -268,11 +268,11 @@ if __name__ == "__main__":
     main()
 
 """
-######## MERGING
+################### MERGING
 # You can find information 
 # https://realpython.com/creating-modifying-pdf/
 
-#### 1. CONTACTENATING (append())
+""" #### 1. CONTACTENATING (append())
 import os,PyPDF2
 from pathlib import Path
 print(Path.home())# show the user directory
@@ -325,6 +325,122 @@ with open('Rotated_file.pdf',mode='wb') as output_rotated:
     pdfwriter.write(output_rotated)
 
 pdf_file.close()
+"""
+
+################## Cropping Pages
+""" 
+import os,PyPDF2
+
+working_path = os.getcwd() + '\\PythonCode\\creating-and-modifying-pdfs\\practice_files'
+os.chdir(working_path)
+# print(working_path)
+pdf_file = open('half_and_half.pdf',mode='rb')
+pdf_reader = PyPDF2.PdfFileReader(pdf_file)
+first_page = pdf_reader.getPage(0)
+page_text = first_page.extractText()
+
+print(first_page.mediaBox)
+# The .mediaBox attribute returns a RectangleObject. This object is defined in the PyPDF2 package and represents a rectangular area on the page.
+
+# RectangleObject([0, 0, 792, 612]) represents a rectangular region with the lower-left corner at the origin,
+#  a width of 792 points, or 11 inches, and a height of 612 points, or 8.5 inches. Those are the dimensions of 
+#  a standard letter-sized page in landscape orientation, which is used for the example PDF of The Little Mermaid.
+#  A letter-sized PDF page in portrait orientation would return the output RectangleObject([0, 0, 612, 792]).
+
+print(first_page.mediaBox.lowerLeft)
+print(first_page.mediaBox.lowerRight)
+print(first_page.mediaBox.upperLeft)# TUPLES
+print(first_page.mediaBox.upperRight)
+print(first_page.mediaBox.upperRight[0])
+print(first_page.mediaBox.upperRight[1])
+
+# we change the upper left size 
+first_page.mediaBox.upperLeft = (0,360)
+print(first_page.mediaBox.upperLeft)# TUPLES
+print(first_page.mediaBox.upperRight)
+
+pdf_writer = PyPDF2.PdfFileWriter()
+pdf_writer.addPage(first_page)
+with open('cropped_page.pdf',mode='wb') as f_w:
+    pdf_writer.write(f_w)
+
+pdf_file.close()
 
 
-####### Cropping Pages
+### CROPPING RIGHT LEFT
+import copy
+import os,PyPDF2
+
+pdf_file = open('half_and_half.pdf',mode='rb')
+pdf_reader = PyPDF2.PdfFileReader(pdf_file)
+first_page = pdf_reader.getPage(0)
+
+
+left_side = copy.copy(first_page)
+current_coords = left_side.mediaBox.upperRight
+new_coords = (current_coords[0] / 2, current_coords[1])
+left_side.mediaBox.upperRight = new_coords
+
+right_side = copy.copy(first_page)
+right_side.mediaBox.upperLeft = new_coords
+
+
+pdf_writer2 = PyPDF2.PdfFileWriter()
+pdf_writer2.addPage(left_side)
+pdf_writer2.addPage(right_side)
+with open("cropped_pages_2.pdf",mode="wb") as output_file:
+    pdf_writer2.write(output_file)
+
+pdf_file.close()
+
+"""
+###################### Encrypting and Decrypting PDFs
+""" 
+# You can add password protection to a PDF file using the .encrypt() method of a PdfFileWriter() instance. 
+# It has two main parameters:
+# user_pwd sets the user password. This allows for opening and reading the PDF file.
+# owner_pwd sets the owner password. This allows for opening the PDF without any restrictions, including editing.
+
+
+#####ENCRYPT
+import os,PyPDF2
+user_password = "SuperSecret"
+owner_password = "ReallySuperSecret"
+
+
+working_path = os.getcwd() + '\\PythonCode\\creating-and-modifying-pdfs\\practice_files'
+os.chdir(working_path)
+pdf_file = open('newsletter.pdf',mode='rb')
+pdf_reader = PyPDF2.PdfFileReader(pdf_file)
+pdf_writer = PyPDF2.PdfFileWriter()
+
+for page in range(pdf_reader.numPages):
+    Page_item = pdf_reader.getPage(page)
+    pdf_writer.addPage(Page_item)
+
+with open('Newsletter_encrypted.pdf',mode='wb') as fw:
+    pdf_writer.encrypt(user_pwd=user_password,owner_pwd=owner_password)
+    pdf_writer.write(fw)
+
+pdf_file.close()
+
+#####DECRYPT
+
+import os,PyPDF2
+user_password = "SuperSecret"
+owner_password = "ReallySuperSecret"
+
+pdf_file = open('Newsletter_encrypted.pdf',mode='rb')
+pdf_reader = PyPDF2.PdfFileReader(pdf_file)
+pdf_reader.decrypt(user_password)
+pdf_writer = PyPDF2.PdfFileWriter()
+
+for page in range(pdf_reader.numPages):
+    Page_item = pdf_reader.getPage(page)
+    pdf_writer.addPage(Page_item)
+
+with open('Newsletter_after_decryption.pdf',mode='wb') as fw:
+    pdf_writer.write(fw)
+
+pdf_file.close() 
+"""
