@@ -518,3 +518,193 @@ canvas_courier.drawString(1*inch,6*inch,'Here is the "Times-Bold" TEXT ')
 
 canvas_courier.save()
 """
+
+############################################ EXCERSIZE 
+# go through both PDFs , find the phone number and then SAVE it as a head of the file in color BLUE
+# then Each age of  Working_Business_Proposal.pdf will have a different FONT TYPE and FONT COLOR.
+# THe FINAL RESULT PDF file is having even pages as normal and odd as verticals.
+#THe PDF file need to be encrypted
+# location = PythonCode\PDFs\Final_excesize
+import os,PyPDF2,re
+from reportlab.lib.colors import red,greenyellow,blueviolet,orange,green,blue
+from reportlab.pdfgen.canvas import Canvas
+from reportlab.lib.pagesizes import LETTER,A4
+from reportlab.lib.units import inch
+import textwrap #wrapping the code
+from reportlab.pdfbase.pdfmetrics import stringWidth # measuring the lenth of the string
+
+
+#access the files
+files_directory = os.getcwd()+r'\\PythonCode\\PDFs\\Final_excesize'
+os.chdir(files_directory)
+
+
+
+def find_pdf_file_path(folder_path):
+    '''
+    Param:folder_path
+    Output: List of full path of all PDFs
+    '''
+    paths = []    
+    for folder,sub_folders,files in os.walk(folder_path):
+        for fil in files:
+            full_path = folder + '\\' + fil
+            paths.append(full_path)
+    return paths
+
+list_of_pdfs = find_pdf_file_path(files_directory)
+
+
+#Extract date from PDF file and search
+def extract_data_from_pdfs(pdf_file):
+    '''
+    param:pdf file path
+    output: dictionary which contain all data from that PDF (key = page number,value = text paragraph)
+    '''
+    pdf_content = {}
+    # pdf_text = ''
+
+    file_to_open = open(f'{pdf_file}',mode='rb')
+    pdf_reader = PyPDF2.PdfFileReader(file_to_open)
+    for page in range(pdf_reader.numPages):
+        page_element = pdf_reader.getPage(page)
+        page_text = page_element.extractText()
+        pdf_content[page] = page_text
+        # pdf_text = pdf_text + f'Page {page}:\n' + page_text
+    file_to_open.close()
+    
+    return pdf_content
+
+data_out_1 = extract_data_from_pdfs(list_of_pdfs[0])# first PDF file (search number)
+data_out_2 = extract_data_from_pdfs(list_of_pdfs[1])# second pdf file , TEXT file
+
+# print(len(data_out_2))
+def pdf_file_with_its_own_data(list_of_pdfs):  
+    '''
+    param:list of PDFS
+    output: dictionary contains each PDF file name attached to its content dict:(pdfname,content)
+    '''
+    pdfname_with_content = {}
+    for pdf in list_of_pdfs:
+        pdf_data = extract_data_from_pdfs(pdf)
+        pdfname_with_content[pdf] = pdf_data
+    return pdfname_with_content
+
+
+# EVEN = normal ,ODD = vertical
+def rotate_encrypt_pdf(pdf_file):
+    '''
+    param:PDF file
+    output: PDF file , odd page numbers will be rotated and even page numbers will be normal
+    param:PDF file
+    output: Encrypted PDF file
+    '''
+    user_password = 'superNiceActivity'
+    file_to_open = open(f'{pdf_file}',mode='rb')
+    pdf_reader = PyPDF2.PdfFileReader(file_to_open)
+    pdf_writer = PyPDF2.PdfFileWriter()
+    for page in range(pdf_reader.numPages):
+        page_element = pdf_reader.getPage(page)
+        if page % 2 == 0:
+            page_element.rotateClockwise(90)
+            pdf_writer.addPage(page_element)
+        else:
+            pdf_writer.addPage(page_element)
+    with open('Final_result.pdf',mode='wb') as fw:
+        pdf_writer.encrypt(user_pwd=user_password) #ENCRYPTION PART
+        pdf_writer.write(fw)
+
+    file_to_open.close()
+
+
+
+def serach_for_phone_number(dict_data):
+    '''
+    param : data from a file
+    output: results that match the pattern (List)
+    '''
+    pattern = r'\d{3}.\d{3}.\d{4}'
+    search_results = []
+    for key in dict_data.keys():
+        f = re.search(pattern,dict_data[key])
+        if f != None:
+            search_results.append(f)
+    return search_results
+
+
+search_output =  serach_for_phone_number(data_out_1)
+
+
+
+#Build PDF from scratch
+canvas = Canvas('New_PDF_file.pdf',pagesize=A4)
+canvas.setFont("Courier-Bold",size=16)
+canvas.setFillColor(blue)
+
+for item in search_output:
+    canvas.drawString(3*inch,11*inch  , item.group())
+
+# coloring each page
+for item in range(len(data_out_2)):
+    
+    if item == 0:
+        textobject = canvas.beginText(1*inch,10*inch)
+        textobject.setFillColor(red)
+        textobject.setFont('Helvetica-Bold',size= 13)
+        textobject.textLines(data_out_2[item])
+        # canvas.showPage() # close the current page and start new one
+        canvas.drawText(textobject)
+
+    elif item == 1:
+        textobject = canvas.beginText(1*inch,10*inch)
+        textobject.setFont('Helvetica-Bold',size= 12)
+        textobject.setFillColor(green)
+        textobject.textLines(data_out_2[item])
+        canvas.showPage() # close the current page and start new one
+        canvas.drawText(textobject)
+
+    elif item == 2:
+        textobject = canvas.beginText(1*inch,10*inch)
+        textobject.setFillColor(orange)
+        textobject.setFont('Helvetica-Bold',size= 11)
+        textobject.textLines(data_out_2[item])
+        canvas.showPage() # close the current page and start new one
+        canvas.drawText(textobject)
+    elif item == 3:
+        textobject = canvas.beginText(1*inch,10*inch)
+        textobject.setFillColor(blueviolet)
+        textobject.setFont('Helvetica-Bold',size= 10)
+        textobject.textLines(data_out_2[item])
+        canvas.showPage() # close the current page and start new one
+        canvas.drawText(textobject)
+    else:
+        textobject = canvas.beginText(1*inch,10*inch)
+        textobject.setFillColor(greenyellow)
+        textobject.setFont('Helvetica-Bold',size= 9)
+        textobject.textLines(data_out_2[item])
+        canvas.showPage() # close the current page and start new one
+        canvas.drawText(textobject)
+canvas.save()
+
+#ROTATION & ENCRYPTION 
+rotate_encrypt_pdf('New_PDF_file.pdf')
+
+
+
+
+
+
+
+
+
+
+
+#----------------------------------------------
+
+        ###WRAPPER
+        # wrapper = textwrap.TextWrapper(width=50)
+        # words_list = wrapper.fill(data_out_2[item])
+        # for row in words_list:
+        #     print(row) 
+        #     canvas.drawString(1*inch,10.5*inch,row)   
+        #     canvas.drawString(1*inch,10.5*inch,'\n')   
