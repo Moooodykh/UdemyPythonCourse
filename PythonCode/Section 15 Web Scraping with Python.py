@@ -61,10 +61,83 @@ print(type(site_p[0]))
 
 """
 # # # # # # # # # #  part 119 ( Python Web Scraping - Grabbing a Class) # # # # # # # # #
+"""
+import requests,bs4
+
+# Syntax to pass to the .select() method
+# Match Results
+#
+# soup.select('div')
+# All elements with the <div> tag
+#
+# soup.select('#some_id')
+# The HTML element containing the id attribute of some_id
+#
+# soup.select('.notice')
+# All the HTML elements with the CSS class named notice
+#
+# soup.select('div span')
+# Any elements named <span> that are within an element named <div>
+#
+# soup.select('div > span')
+# Any elements named <span> that are directly within an element named <div>, with no other element in between
+#
+req = requests.get('https://en.wikipedia.org/wiki/Grace_Hopper')
+soup = bs4.BeautifulSoup(req.text,'lxml')
+print(soup)
+print('*'*100)
+site_toctext = soup.select('.toctext') #choosing the class named = toctext, TOCTEXT just came from inspection of the webpage that we
+# are looking for
+print(site_toctext)
+first_element = site_toctext[0]
+print (first_element)
+print (first_element.text)
+
+#running of all elements from that class
+for item in soup.select('.toctext'):
+    print(item.text)
+"""
+
+# # # # # # # # # #  part 120 ( Python Web Scraping - Grabbing an Image) # # # # # # # # #
+
+"""
+import  bs4,requests,os
+
+req = requests.get("https://en.wikipedia.org/wiki/Deep_Blue_(chess_computer)")
+soup = bs4.BeautifulSoup(req.text,'lxml')
+print(soup)
+ul_select = soup.select('ul li')
+
+print('*'*100)
+print(ul_select)
+
+img_elements = soup.select('img')
+print(img_elements) #many pictures will be back, it is good to search for either class or ID
+first_element = img_elements[0]
+#each image has a SRC url
+pictures = soup.select('.thumbimage')
+print('*'*100)
+#more than one picture
+for pic in pictures:
+    print(pic)
+    #Check the SRC and copy it to the browser to be sure enough that picture is what we try to find
+
+computer = pictures[0] # first element
+print(computer['class'])
+print(computer['src'])
+print(os.getcwd())
+# this soup tag is like a dictionary
+image_url = 'https:'+computer['src']
+image_link = requests.get(image_url)
+print(image_link.content) #binary representation of the picture
+f = open('computer_image.jpg',mode='wb')
+f.write(image_link.content) ###########CONTENT
+f.close()
+
+"""
 
 
-# # # # # # # # # #  part 120 ( Advanced Python Objects Assessment Test) # # # # # # # # #
-# # # # # # # # # #  part 121 ( Advanced Python Objects Test - Solutions) # # # # # # # # #
+# # # # # # # # # #  part 121 ( Python Web Scraping - Book Examples Part One) # # # # # # # # #
 # # # # # # # # # #  part 122 ( Advanced Python Objects Test - Solutions) # # # # # # # # #
 # # # # # # # # # #  part 123 ( Advanced Python Objects Test - Solutions) # # # # # # # # #
 # # # # # # # # # #  part 124 ( Advanced Python Objects Test - Solutions) # # # # # # # # #
