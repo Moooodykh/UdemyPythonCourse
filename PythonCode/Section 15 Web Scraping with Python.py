@@ -138,6 +138,49 @@ f.close()
 
 
 # # # # # # # # # #  part 121 ( Python Web Scraping - Book Examples Part One) # # # # # # # # #
-# # # # # # # # # #  part 122 ( Advanced Python Objects Test - Solutions) # # # # # # # # #
-# # # # # # # # # #  part 123 ( Advanced Python Objects Test - Solutions) # # # # # # # # #
-# # # # # # # # # #  part 124 ( Advanced Python Objects Test - Solutions) # # # # # # # # #
+
+# we will deal with www.toscrape.com
+### GOAL  IS TO PRINT ALL BOOKS WHICH HAS 2 STAR RATING
+### I need to find the Title
+### I need to find how to solve 2 star rating
+import requests,bs4
+
+req = requests.get('http://books.toscrape.com/catalogue/page-1.html')
+page_nr = 1
+base_url = 'http://books.toscrape.com/catalogue/page-{}.html'
+requ = requests.get(base_url.format(page_nr))
+soup = bs4.BeautifulSoup(requ.text,'lxml')
+
+books = soup.select('.product_pod')
+#showing that it contain 20 elements as shows in one page
+print(len(books))
+print(books[0])
+
+book_tile = books[0].select('a')[1]['title']
+print(book_tile)
+
+
+boook = books[0].select('.star-rating.Three')
+print(boook)
+
+book_names = list()
+
+
+for n in range(1,51):
+    #passing the page number to the link
+    req = requests.get(base_url.format(n))
+    soup = bs4.BeautifulSoup(req.text,'lxml')
+    #choosing the book object
+    books = soup.select('.product_pod')
+    for book in books:
+        #if the book object rated to two stars , find the title and add it to the name list
+        if book.select('.star-rating.Two'):
+            book_title = book.select('a')[1]['title']
+            book_names.append(book_title)
+
+print(book_names)
+
+
+
+# # # # # # # # # #  part 122 ( Python Web Scraping - Book Examples Part two) # # # # # # # # #
+# # # # # # # # # #  part 123 - 124 ( Python Web Scraping - Excersize Overview & solution) # # # # # # # # #
