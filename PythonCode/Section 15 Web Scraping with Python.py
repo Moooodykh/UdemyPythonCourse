@@ -36,8 +36,9 @@
 
 # # # # # # # # # #  part 118 ( Python Web Scraping - Grabbing a Title) # # # # # # # # #
 
-"""
+""" 
 #############Example Task 0 - Grabbing the title of a page
+from enum import unique
 import requests
 req = requests.get('http://www.example.com')
 print(type(req))
@@ -58,8 +59,8 @@ print(site_title[0]) # first element
 print(site_title[0].getText()) # the text of the first element
 print(site_p[0].getText())
 print(type(site_p[0]))
-
 """
+
 # # # # # # # # # #  part 119 ( Python Web Scraping - Grabbing a Class) # # # # # # # # #
 """
 import requests,bs4
@@ -138,7 +139,8 @@ f.close()
 
 
 # # # # # # # # # #  part 121 ( Python Web Scraping - Book Examples Part One) # # # # # # # # #
-
+# # # # # # # # # #  part 122 ( Python Web Scraping - Book Examples Part two) # # # # # # # # #
+""" 
 # we will deal with www.toscrape.com
 ### GOAL  IS TO PRINT ALL BOOKS WHICH HAS 2 STAR RATING
 ### I need to find the Title
@@ -179,8 +181,85 @@ for n in range(1,51):
             book_names.append(book_title)
 
 print(book_names)
+"""
 
-
-
-# # # # # # # # # #  part 122 ( Python Web Scraping - Book Examples Part two) # # # # # # # # #
 # # # # # # # # # #  part 123 - 124 ( Python Web Scraping - Excersize Overview & solution) # # # # # # # # #
+"""
+import bs4
+import requests
+
+Authors_names = set()
+web_url = 'http://quotes.toscrape.com/'
+req = requests.get(web_url)
+soup =bs4.BeautifulSoup(req.text,'lxml')
+# print(soup)
+qutoes = soup.select('.quote')
+print(len(qutoes))
+
+#TASK: Get the names of all the authors on the first
+# Authors NAMES
+for author in qutoes:
+    author_name = author.select('small')[0].getText()
+    ### OR
+    #qutoes[0].select('.author')[0].getText()
+    Authors_names.add(author_name)
+
+print(Authors_names)
+
+# TASK: Create a list of all the quotes on the first page.
+print('*'*100)
+quote_list = list()
+for quote in qutoes:
+    quote_text = quote.select('.text')[0].getText()
+    quote_list.append(quote_text)
+
+print(quote_list)
+
+#TASK: Inspect the site and use Beautiful Soup to extract the top ten tags 
+# from the requests text shown on the top right from the home page 
+# (e.g Love,Inspirational,Life, etc...). HINT: Keep in mind there are
+#  also tags underneath each quote, try to find a class only present 
+# in the top right tags, perhaps check the span.
+
+print('-'*100)
+tag_soup = bs4.BeautifulSoup(req.text,'lxml')
+tags = tag_soup.select('.tag-item')
+tags_texts = list()
+for tag in tags:
+    tag_text = tag.select('a')[0].getText()
+    tags_texts.append(tag_text)
+
+print(tags_texts)
+
+
+#TASK: Notice how there is more than one page, and subsequent pages look like this http://quotes.toscrape.com/page/2/. 
+# Use what you know about for loops and string concatenation to loop through all the pages and get all the unique authors on the website.
+#  Keep in mind there are many ways to achieve this, also note that you will need to somehow figure out
+#  how to check that your loop is on the last page with quotes. For debugging purposes,
+#  I will let you know that there are only 10 pages, so the last page is http://quotes.toscrape.com/page/10/, 
+# but try to create a loop that is robust enough that it wouldn't matter to know the amount of pages beforehand, 
+# perhaps use try/except for this, its up to you!
+print('+'*100)
+
+import bs4,requests
+unique_authors = set()
+counter = 1
+run = True
+
+while run:
+    page_url = 'http://quotes.toscrape.com/page/{}/'
+    req =requests.get(page_url.format(counter))
+    soup_element = bs4.BeautifulSoup(req.text,'lxml')
+    quotos = soup_element.select('.quote')
+    if quotos == []:
+        run = False
+    else:
+        counter +=1 
+        for quote in quotos:
+            author_name = quote.select('.author')[0].getText()
+            unique_authors.add(author_name)
+        
+print(unique_authors)
+print(len(unique_authors))
+
+"""
